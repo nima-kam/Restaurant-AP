@@ -1,0 +1,15 @@
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.csprojAssemblyReference.cache
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MainWindow.g.cs
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\App.g.cs
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant_MarkupCompile.cache
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant_MarkupCompile.lref
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC Restaurant.exe.config
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC Restaurant.exe
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC Restaurant.pdb
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MainWindow.baml
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.g.resources
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC_Restaurant.Properties.Resources.resources
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.csproj.GenerateResource.cache
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.csproj.CoreCompileInputs.cache
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.exe
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.pdb

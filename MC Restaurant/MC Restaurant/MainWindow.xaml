@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Entery"  Height="132.4" Width="281.867">
+    <StackPanel Background="Khaki">
+        <TextBlock FontWeight="DemiBold" FontSize="14" Foreground="Firebrick" Text="select your access:" Margin="7,10,0.2,10" Height="22" RenderTransformOrigin="0.495,0.207"/>
+        <Grid Margin="0 30 0 0">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="138*"/>
+                <ColumnDefinition Width="88*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="37*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--admin button-->
+            <Button Click="AdminButton_Click" x:Name="AdminButton" Content="Admin" Margin="4,-20,5.6,31.8" Background="AliceBlue"/>
+            <!--user button-->
+            <Button Click="UserButton_Click" Grid.Column="1" x:Name="UserButton" Content="User" Margin="4.4,-20,6.2,30.8" Background="AliceBlue" Grid.ColumnSpan="3"/>
+
+        </Grid>
+
+
+
+    </StackPanel>
 </Window>

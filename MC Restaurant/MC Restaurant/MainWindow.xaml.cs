@@ -12,9 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SQLite;
 
 namespace MC_Restaurant
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -23,6 +25,16 @@ namespace MC_Restaurant
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
