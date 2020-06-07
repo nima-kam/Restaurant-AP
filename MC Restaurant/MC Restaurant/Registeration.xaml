@@ -1,0 +1,33 @@
+﻿<Window x:Class="MC_Restaurant.Registeration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MC_Restaurant"
+        mc:Ignorable="d"
+        Title="Registeration" Height="350" Width="300">
+    <StackPanel Background="LightPink">
+        <TextBlock Text="Please fill the blank spaces" FontSize="13" FontWeight="Bold" Foreground="DarkBlue" Height="25" Margin="4,0,-0.4,0"/>
+        <Grid Height="22" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--name-->
+            <TextBlock Text="Full name :" Margin="11,1,18.2,-2" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold"/>
+            <TextBox x:Name="UserNameBox" Grid.ColumnSpan="2" Margin="90,1,44.6,-3"/>
+
+        </Grid>
+        <Grid Height="65" Margin="0,0,-0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--name-->
+            <TextBlock Text="ID :" Margin="12,17,17.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="31" VerticalAlignment="Top"/>
+            <TextBox x:Name="IDBox" Grid.ColumnSpan="2" Margin="90,16,44.6,24"/>
+
+        </Grid>
+    </StackPanel>
+
+</Window>
