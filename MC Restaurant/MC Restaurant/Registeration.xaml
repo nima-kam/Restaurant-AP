@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Registeration" Height="350" Width="300">
+        Title="Registeration" Height="450" Width="300">
     <StackPanel Background="LightPink">
         <TextBlock Text="Please fill the blank spaces" FontSize="13" FontWeight="Bold" Foreground="DarkBlue" Height="25" Margin="4,0,-0.4,0"/>
         <Grid Height="22" Margin="0,0,0,0">
@@ -15,18 +15,74 @@
             </Grid.ColumnDefinitions>
             <!--name-->
             <TextBlock Text="Full name :" Margin="11,1,18.2,-2" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold"/>
-            <TextBox x:Name="UserNameBox" Grid.ColumnSpan="2" Margin="90,1,44.6,-3"/>
+            <TextBox x:Name="UserNameBox" Grid.ColumnSpan="2" Margin="120,1,14.6,-3"/>
 
         </Grid>
-        <Grid Height="65" Margin="0,0,-0.4,0">
+        <Grid Height="53" Margin="0,0,-0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="114*"/>
+                <ColumnDefinition Width="146*"/>
+            </Grid.ColumnDefinitions>
+            <!--ID-->
+            <TextBlock Text="ID :" Margin="11,17,17.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="IDBox" Grid.ColumnSpan="2" Margin="87.2,16,14.6,12" Grid.Column="1"/>
+
+        </Grid>
+
+        <Grid Height="45" Margin="0,0,-0.4,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--name-->
-            <TextBlock Text="ID :" Margin="12,17,17.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="31" VerticalAlignment="Top"/>
-            <TextBox x:Name="IDBox" Grid.ColumnSpan="2" Margin="90,16,44.6,24"/>
+            <!--Mobile number-->
+            <TextBlock Text="Mobile number :" Margin="11,2,19.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
+            <TextBox x:Name="MobileNumBox" Grid.ColumnSpan="2" Margin="120,4,14.6,16"/>
 
+        </Grid>
+        <Grid Height="45" Margin="0,0,-0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Password-->
+            <TextBlock Text="Password :" Margin="11,2,19.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
+            <TextBox x:Name="PasswordBox" Grid.ColumnSpan="2" Margin="120,4,14.6,16"/>
+
+        </Grid>
+        <Grid Height="45" Margin="0,0,-0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Password-->
+            <TextBlock Text="Repeat password :" Margin="9,2,21.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
+            <TextBox x:Name="RepeatPasswordBox" Grid.ColumnSpan="2" Margin="120,4,14.6,16"/>
+
+        </Grid>
+        <Grid Height="42" Margin="0,0,-0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Email-->
+            <TextBlock Text="Email :" Margin="11,6,17.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
+            <TextBox x:Name="EmailBox" Grid.ColumnSpan="2" Margin="120,5,14.6,11"/>
+
+        </Grid>
+        <Grid Height="61" Margin="0,0,-0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Adress-->
+            <TextBlock Text="Address :" Margin="11,6,18.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="31" VerticalAlignment="Top"/>
+            <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="AddressBox" Grid.ColumnSpan="2" Margin="83,6,15.6,0" VerticalScrollBarVisibility="Visible"/>
+
+        </Grid>
+        <!--confirm button-->
+        <Grid Height="51" Margin="0,0,-0.4,0">
+            <Button Background="#1f5"  Click="ConfirmButton_Click" x:Name="ConfirmButton" Content="Confirm" Margin="90,23,90,3"/>
         </Grid>
     </StackPanel>
 

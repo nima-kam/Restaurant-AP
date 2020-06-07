@@ -23,5 +23,10 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

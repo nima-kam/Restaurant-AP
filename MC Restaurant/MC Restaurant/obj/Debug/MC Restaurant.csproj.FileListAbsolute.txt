@@ -13,3 +13,8 @@ D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.csproj.CoreCompileInputs.cache
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.exe
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.pdb
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\System.Data.SQLite.dll
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\System.Data.SQLite.xml
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Registeration.g.cs
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Registeration.baml
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\MC Restaurant.csproj.CopyComplete
