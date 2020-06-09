@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Registeration" Height="450" Width="300">
+        Title="Registeration" Height="450" Width="300" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
     <StackPanel Background="LightPink">
         <TextBlock Text="Please fill the blank spaces" FontSize="13" FontWeight="Bold" Foreground="DarkBlue" Height="25" Margin="4,0,-0.4,0"/>
         <Grid Height="22" Margin="0,0,0,0">

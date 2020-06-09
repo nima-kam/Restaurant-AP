@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Entery"  Height="132.4" Width="281.867">
+        Title="Entery"  Height="132.4" Width="281.867" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
     <StackPanel Background="Khaki">
         <TextBlock FontWeight="DemiBold" FontSize="14" Foreground="Firebrick" Text="select your access:" Margin="7,10,0.2,10" Height="22" RenderTransformOrigin="0.495,0.207"/>
         <Grid Margin="0 30 0 0">

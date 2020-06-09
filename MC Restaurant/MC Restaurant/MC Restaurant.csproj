@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="buy.xaml.cs">
+      <DependentUpon>buy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="customers login.xaml.cs">
       <DependentUpon>customers login.xaml</DependentUpon>
     </Compile>
@@ -67,6 +70,10 @@
     <Compile Include="Registeration.xaml.cs">
       <DependentUpon>Registeration.xaml</DependentUpon>
     </Compile>
+    <Page Include="buy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="customers login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
