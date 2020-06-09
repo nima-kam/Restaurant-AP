@@ -58,9 +58,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="customers login.xaml.cs">
+      <DependentUpon>customers login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="manager login.xaml.cs">
+      <DependentUpon>manager login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registeration.xaml.cs">
       <DependentUpon>Registeration.xaml</DependentUpon>
     </Compile>
+    <Page Include="customers login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +83,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="manager login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Registeration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

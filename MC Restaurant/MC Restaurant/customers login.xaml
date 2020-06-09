@@ -1,0 +1,31 @@
+﻿<Window x:Class="MC_Restaurant.customers_login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MC_Restaurant"
+        mc:Ignorable="d"
+        Title="customers_login" Height="350" Width="380">
+    <StackPanel Background="Gainsboro">
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Login" Margin="30,22,117.6,-15.8" Foreground="SeaGreen" FontSize="22" Grid.ColumnSpan="2"/>
+            <!--user name-->
+            <TextBlock  FontWeight="DemiBold" Text="Email or Phone number :" Margin="30,63,79.6,-63.8" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="userName" Margin="80,88,25.6,-75.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <!--password-->
+            <TextBlock FontWeight="DemiBold" Text="Password :" Margin="30,121,16.8,-109.8"/>
+            <TextBox x:Name="Password" Margin="80,148,25.6,-135.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <Button x:Name="Confirmbutton" Content="Confirm" Background="#ede" Click="Confirmbutton_Click" Margin="80,195,82.6,-182.8" Grid.ColumnSpan="2"/>
+            <Button x:Name="Registerbutton" Content="Register" Background="#1ad" Click="Registerbutton_Click" Margin="60.2,195,1.6,-182.8" Grid.Column="1" />
+            <TextBlock FontWeight="Bold" TextWrapping="Wrap" Text="If you do not have a account please register first " Grid.ColumnSpan="3" Margin="80,235,94.6,-235.8"/>
+
+        </Grid>
+
+
+    </StackPanel>
+</Window>

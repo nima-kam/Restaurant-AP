@@ -11,15 +11,16 @@
         <Grid Margin="0 30 0 0">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="138*"/>
-                <ColumnDefinition Width="88*"/>
+                <ColumnDefinition Width="76*"/>
+                <ColumnDefinition Width="12*"/>
                 <ColumnDefinition Width="13*"/>
                 <ColumnDefinition Width="37*"/>
             </Grid.ColumnDefinitions>
 
             <!--admin button-->
-            <Button Click="AdminButton_Click" x:Name="AdminButton" Content="Admin" Margin="4,-20,5.6,31.8" Background="AliceBlue"/>
+            <Button Click="AdminButton_Click" x:Name="AdminButton" Content="Manager" Margin="4,-20,5.6,32.6" Background="SkyBlue"/>
             <!--user button-->
-            <Button Click="UserButton_Click" Grid.Column="1" x:Name="UserButton" Content="User" Margin="4.4,-20,6.2,30.8" Background="AliceBlue" Grid.ColumnSpan="3"/>
+            <Button Click="UserButton_Click" Grid.Column="1" x:Name="UserButton" Content="Customer" Margin="4.4,-20,6.2,31.6" Background="OrangeRed" Grid.ColumnSpan="4"/>
 
         </Grid>
 
