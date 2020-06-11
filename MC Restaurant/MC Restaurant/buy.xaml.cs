@@ -23,5 +23,15 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
+
+        private void Filter_food_check_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Filter_food_check_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,10 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="buy" Height="477.2" Width="450" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
-    
-    <Grid Margin="0,-2,-3.8,-0.2">
-       
+        Title="buy" Height="470" Width="450" Background="OldLace" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
+    <Border Background="#f99" BorderThickness="2" BorderBrush="AliceBlue" Margin="0,0,0.2,303.8">
+        <Grid  >
+            <!--filtering food-->
+            <TextBlock Text="Filter foods by:" FontWeight="DemiBold" Margin="13,7,339,98.6"/>
+            <ComboBox IsReadOnly="True" x:Name="filter_combo" Margin="105,4,235,102.6">
+                <ComboBoxItem x:Name="namefilter" Content="Food Name"/>
+                <ComboBoxItem x:Name="typefilter" Content="Food type"/>
+            </ComboBox>
+            
+        </Grid>
         
-    </Grid>
+        
+    </Border>
 </Window>

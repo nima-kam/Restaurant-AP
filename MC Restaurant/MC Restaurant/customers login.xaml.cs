@@ -29,7 +29,7 @@ namespace MC_Restaurant
         private void Registerbutton_Click(object sender, RoutedEventArgs e)
         {
 
-        }     
+        }      
 
         private void Confirmbutton_Click(object sender, RoutedEventArgs e)
         {

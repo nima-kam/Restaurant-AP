@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="manager_login" Height="450" Width="800" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
-    <Grid>
-        
-    </Grid>
+        Title="manager_login" Height="404" Width="356" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
+    <StackPanel Background="Gainsboro">
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Login" Margin="36,61,111.6,-54" Foreground="SeaGreen" FontSize="22" Grid.ColumnSpan="2"/>
+            <!--user name-->
+            <TextBlock Text="Username " Margin="38,122,3.2,-122.8"/>
+            <TextBox x:Name="userName" Margin="81,140,10.6,-127.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <!--password-->
+            <TextBlock Text="Password " Margin="37,176,10.2,-164.8"/>
+            <TextBox x:Name="Password" Margin="81,199,9.6,-186.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <Button x:Name="loginbutton" Content="sign in" Background="OldLace" Click="loginbutton_Click" Margin="16.8,267,21.6,-254.8" Grid.Column="1"/>
+
+        </Grid>
+
+    </StackPanel>
+
 </Window>

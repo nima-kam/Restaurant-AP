@@ -23,5 +23,10 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
+
+        private void loginbutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
