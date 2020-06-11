@@ -17,6 +17,9 @@ using System.Data.SQLite;
 namespace MC_Restaurant
 {
 
+
+
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -29,11 +32,17 @@ namespace MC_Restaurant
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
-
+            customers_login customers_Login = new customers_login();
+            this.Visibility = Visibility.Collapsed;
+            customers_Login.Show();
+            
         }
 
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
+            manager_login manager_Login = new manager_login();
+            this.Visibility = Visibility.Collapsed;
+            manager_Login.Show();
 
         }
     }

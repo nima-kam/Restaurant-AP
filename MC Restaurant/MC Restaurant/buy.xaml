@@ -10,11 +10,13 @@
         <Grid  >
             <!--filtering food-->
             <TextBlock Text="Filter foods by:" FontWeight="DemiBold" Margin="13,7,339,98.6"/>
-            <ComboBox IsReadOnly="True" x:Name="filter_combo" Margin="105,4,235,102.6">
+            <ComboBox x:Name="filter_combo" Margin="105,4,235,102.6">
                 <ComboBoxItem x:Name="namefilter" Content="Food Name"/>
                 <ComboBoxItem x:Name="typefilter" Content="Food type"/>
             </ComboBox>
-            
+            <Button x:Name="ShowItemButton" Content="Show Food" Background="Beige" FontWeight="DemiBold" Click="ShowItemButton_Click" Margin="305,44,26,57.6" />
+
+
         </Grid>
         
         

@@ -33,5 +33,10 @@ namespace MC_Restaurant
         {
 
         }
+
+        private void ShowItemButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
