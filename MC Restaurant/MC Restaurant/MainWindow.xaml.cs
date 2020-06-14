@@ -13,11 +13,176 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
-
+using System.Text.RegularExpressions;
 namespace MC_Restaurant
 {
+    static class IDcodeSet
+    {
+        static public bool checkID(this string I)
+        {
+            int digits = 0;
+            int same = 0;
+            char ch = I[0];
+            foreach (char cc in I)
+            {
+                if (cc != ch)
+                {
+                    ++same;
+                }
+
+                ++digits;
+                switch (cc)
+                {
+                    case '0':
+                    case '1':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        break;
+                    default:
+                        return false;
+                }
+            }
+            if (same == 0)
+            {
+                return false;
+            }
+            if (digits != 10)
+            {
+                return false;
+            }
+            int a = (I[0] - '0');
+            int b = 0;
+            for (int i = 1; i <= 9; ++i)
+            {
+                b += (I[i] - '0') * (i + 1);
+            }
+            int c = b % 11;
+            if (a == c && (c == 0 || c == 1)) return true;
+            else if (c > 1)
+            {
+                if (a == Math.Abs(c - 11))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    class Person
+    {
+        string _FullName;
+        Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");
+        
+        public string FullName
+        {
+            get
+            {
+                return _FullName; 
+            }
+            set
+            {
+                if (FullNameAlg.IsMatch(value))
+                {
+                    _FullName = value;
+                }
+                else
+                {
+                    throw new Exception("Name not valid.");
+                }
+
+            }
+        }
+        string _phoneNum;
+        Regex phoneAlg = new Regex(@"\d[0-9]");
+        public string PhoneNum
+        {
+            get
+            {
+                return _phoneNum;
+            }
+            set
+            {
+                if (phoneAlg.IsMatch(value))
+                {
+                    _phoneNum = value;
+                }
+                else
+                {
+                    throw new Exception("Phone number is not in correct format.");
+                }
+            }
+        }
+        Regex emailExpression = new Regex(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z");
+        string _Email;
+        public string Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                if (emailExpression.IsMatch(value))
+                {
+                    this.Email = value;
+                }
+                else
+                {
+                    throw new Exception("Wrong Email format.");
+                }
+
+            }
+        }
+        string _ID;
+        public string IDataObject
+        {
+            get
+            {
+                return _ID;
+
+            }
+            set
+            {
+                if (value.checkID())
+                {
+                    _ID = value;
+                }
+                else
+                {
+                    throw new Exception("ID is not in correct format.");
+                }
+            }
+        }
+        string _Password;
+        Regex PasswordAlg= new Regex(@"\b({8-32}[a-z0-9!#$%&\-*+/?^_~-])");
+        public string Password//***
+        {
+            protected get
+            {
+                return _Password;
+            }
+            set
+            {
+                if (PasswordAlg.IsMatch(value))
+                    _Password = value;
+                else
+                {
+                    throw new Exception("Password format is wrong.");
 
 
+
+                }
+            }
+        }
+
+
+
+    }
 
 
     /// <summary>

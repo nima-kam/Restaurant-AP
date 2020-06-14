@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="customers_login" Height="350" Width="380" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
     
-    <StackPanel Background="#f00" >
+    <StackPanel Background="#f00"  >
 
 
         <Grid>

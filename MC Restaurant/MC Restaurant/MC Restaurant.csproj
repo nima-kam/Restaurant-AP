@@ -67,6 +67,9 @@
     <Compile Include="manager login.xaml.cs">
       <DependentUpon>manager login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Managment.xaml.cs">
+      <DependentUpon>Managment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registeration.xaml.cs">
       <DependentUpon>Registeration.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="manager login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Managment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
