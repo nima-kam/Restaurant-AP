@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
+using System.IO; 
+
 using System.Text.RegularExpressions;
 namespace MC_Restaurant
 {
@@ -188,10 +190,61 @@ namespace MC_Restaurant
     { 
 
     }
-    class Buy
+
+    abstract class Buy
     {
-        public List<Food> OrderedFood = new List<Food>();
+
+        public struct FoodList
+        {
+            public Food food { get; private set; }
+            public int FoodNumber { get; private set; }
+
+            public FoodList(Food food,int N)
+            {
+                this.food = food;
+                this.FoodNumber = N;
+
+            } 
+            public void ChangeFoodNum(int x)
+            {
+                if (x + this.FoodNumber > food.RemainingNumber)
+                {
+                    throw new Exception("Not enough food available to order.");
+                }
+                else if (x + this.FoodNumber < 0)
+                {
+                    throw new Exception("Not enough food available in your list.");
+                }
+                else
+                { 
+                    this.FoodNumber += x;
+                }
+            }
+        }
+        public List<FoodList> OrderedFood = new List<FoodList>();        
         public double TotalPrice { get; protected set; }
+        public void AddFood(Food NewOrder, int Amount)//***
+        {
+            if (OrderedFood.Count == 0)
+            {
+                OrderedFood.Add(new FoodList(NewOrder, Amount));
+                MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
+            }
+            else
+            {
+                if (OrderedFood.Where(x => x.food == NewOrder).Count() == 1)
+                {
+                    var foods =  OrderedFood.Where(x => x.food == NewOrder).Select(x => x) ;
+                    
+                }
+                    
+
+                
+            }
+
+
+
+        }
 
     }
     enum FoodType
@@ -200,13 +253,56 @@ namespace MC_Restaurant
     }
     class Food
     {
-
+        static int foodNumbers = 1;
+        public int ID ;
         public string Name { get; private set; }
         public FoodType FoodType; 
         public double Price { get; set; }
-        public double Profit { get; set; }
+        public double ProfitPercent  { get; set; }
         int _RemainingNumber;
+        public Food (string Name,FoodType type,double Price)
+        {
+            this.Name = Name;
+            this.FoodType = type;
+            this.Price = Price;
+            ProfitPercent = 24;
+            SetID();
 
+        }
+        public void SetID()
+        {
+            this.ID = foodNumbers;
+            ++foodNumbers;
+        }
+        void PrintInfo()
+        {
+            StreamReader streamReader;
+            if (!File.Exists("FoodInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("FoodInfo.txt");
+                writer.Close();
+            }
+             streamReader = new StreamReader("FoodInfo.txt");
+            
+            List<string> lines = new List<string>();
+            while (!streamReader.EndOfStream)
+            {
+                lines.Add(streamReader.ReadLine());
+            }
+            streamReader.Close();
+            StreamWriter streamWriter = new StreamWriter("FoodInfo.txt");
+            if (lines.Count == 0)
+            {
+                string firstline = "ID, Name, Type, Remaining Number, Price ";
+                lines.Add(firstline);
+            }
+            string info = $"{this.ID} {this.Name} {this.FoodType} {this.RemainingNumber} {this.Price / 100 * ProfitPercent + this.Price}";
+            lines.Add(info);
+            foreach(var s in lines)
+            {
+                streamWriter.WriteLine(s);
+            }
+        }
         public int RemainingNumber
         {
             get
@@ -225,10 +321,9 @@ namespace MC_Restaurant
                 }
             }
         }
-        public string Type;
         public void ChangeRemainingNumber(int x)
         {
-
+            RemainingNumber += x;
         }
     }
 
@@ -243,7 +338,7 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
-
+       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
             customers_login customers_Login = new customers_login();
