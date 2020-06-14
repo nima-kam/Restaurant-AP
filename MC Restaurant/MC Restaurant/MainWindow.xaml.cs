@@ -179,10 +179,59 @@ namespace MC_Restaurant
                 }
             }
         }
-
-
+    }
+    class Customers:Person 
+    {
 
     }
+    class Manager : Person
+    { 
+
+    }
+    class Buy
+    {
+        public List<Food> OrderedFood = new List<Food>();
+        public double TotalPrice { get; protected set; }
+
+    }
+    enum FoodType
+    {
+        SeaFood ,Chickenfries,Hamborgar,Pizza,Salad,Sandwich
+    }
+    class Food
+    {
+
+        public string Name { get; private set; }
+        public FoodType FoodType; 
+        public double Price { get; set; }
+        public double Profit { get; set; }
+        int _RemainingNumber;
+
+        public int RemainingNumber
+        {
+            get
+            {
+                return _RemainingNumber;
+            }
+            set
+            {
+                if (value + _RemainingNumber >= 0)
+                {
+                    _RemainingNumber += value;
+                }
+                else
+                {
+                    throw new Exception("Food is not available.");
+                }
+            }
+        }
+        public string Type;
+        public void ChangeRemainingNumber(int x)
+        {
+
+        }
+    }
+
 
 
     /// <summary>
