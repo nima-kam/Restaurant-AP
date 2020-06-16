@@ -75,11 +75,12 @@ namespace MC_Restaurant
             return false;
         }
     }
-    class Person
+    abstract class Person
     {
+        
         string _FullName;
         Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");
-        
+        public abstract void SaveInfo();        
         public string FullName
         {
             get
@@ -100,7 +101,7 @@ namespace MC_Restaurant
             }
         }
         string _phoneNum;
-        Regex phoneAlg = new Regex(@"\d[0-9]");
+        Regex phoneAlg = new Regex(@"{8-12}((?:\+)+\d[0-9])");
         public string PhoneNum
         {
             get
@@ -137,7 +138,6 @@ namespace MC_Restaurant
                 {
                     throw new Exception("Wrong Email format.");
                 }
-
             }
         }
         string _ID;
@@ -146,7 +146,6 @@ namespace MC_Restaurant
             get
             {
                 return _ID;
-
             }
             set
             {
@@ -175,25 +174,55 @@ namespace MC_Restaurant
                 else
                 {
                     throw new Exception("Password format is wrong.");
-
-
-
                 }
             }
         }
     }
-    class Customers:Person 
+    class Customers : Person
     {
+        public static Customers CurrentCusomer;
+        public long TotalBuy { get; protected set; }
+        public double Tax{ get; protected set; }
 
+        public override void SaveInfo()
+        {
+            StreamReader streamReader;
+            if (!File.Exists("CustomersInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("CustomersInfo.txt");
+                writer.Close();
+            }
+            streamReader = new StreamReader("CustomersInfo.txt");
+            List<string> lines = new List<string>();
+            while (!streamReader.EndOfStream)
+            {
+                lines.Add(streamReader.ReadLine());
+            }
+            streamReader.Close();
+        }
     }
     class Manager : Person
-    { 
-
+    {
+        public override void SaveInfo()
+        {
+            StreamReader streamReader;
+            if (!File.Exists("managerInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("managerInfo.txt");
+                writer.Close();
+            }
+            streamReader = new StreamReader("managerInfo.txt");
+            List<string> lines = new List<string>();
+            while (!streamReader.EndOfStream)
+            {
+                lines.Add(streamReader.ReadLine());
+            }
+            streamReader.Close();
+        }
     }
 
     abstract class Buy
     {
-
         public struct FoodList
         {
             public Food food { get; private set; }
@@ -236,45 +265,50 @@ namespace MC_Restaurant
                 {
                     var foods =  OrderedFood.Where(x => x.food == NewOrder).Select(x => x) ;
                     
-                }
-                    
-
-                
+                }                 
             }
-
-
-
         }
-
     }
     enum FoodType
     {
         SeaFood ,Chickenfries,Hamborgar,Pizza,Salad,Sandwich
     }
     class Food
-    {
+    {        
         static int foodNumbers = 1;
         public int ID ;
         public string Name { get; private set; }
+        public string Ex_Name { get; private set; }
+        public Image FoodImage { get; protected set; }
         public FoodType FoodType; 
         public double Price { get; set; }
+        public double Ex_Price { get; set; }
+        public double FinalPrice { get; protected set; }
         public double ProfitPercent  { get; set; }
         int _RemainingNumber;
-        public Food (string Name,FoodType type,double Price)
+        public string ingredients { get; protected set; }
+        public string Ex_ingredients { get; protected set; }
+        public Food (string Name,FoodType type,double Price,string Ingredient)
         {
-            this.Name = Name;
+            this.Name =this.Ex_Name= Name;
             this.FoodType = type;
-            this.Price = Price;
+            this.Price = this.Ex_Price = Price;
             ProfitPercent = 24;
+            this.ingredients = this.Ex_ingredients = Ingredient;
             SetID();
-
+            SetFinalPrice();
+            PrintInfo();
         }
-        public void SetID()
+        public void SetFinalPrice()
+        {
+            this.FinalPrice = this.Price / 100 * ProfitPercent + this.Price;
+        }
+        protected void SetID()
         {
             this.ID = foodNumbers;
             ++foodNumbers;
         }
-        void PrintInfo()
+        protected void PrintInfo()
         {
             StreamReader streamReader;
             if (!File.Exists("FoodInfo.txt"))
@@ -282,8 +316,7 @@ namespace MC_Restaurant
                 StreamWriter writer = new StreamWriter("FoodInfo.txt");
                 writer.Close();
             }
-             streamReader = new StreamReader("FoodInfo.txt");
-            
+            streamReader = new StreamReader("FoodInfo.txt");       
             List<string> lines = new List<string>();
             while (!streamReader.EndOfStream)
             {
@@ -296,7 +329,7 @@ namespace MC_Restaurant
                 string firstline = "ID, Name, Type, Remaining Number, Price ";
                 lines.Add(firstline);
             }
-            string info = $"{this.ID} {this.Name} {this.FoodType} {this.RemainingNumber} {this.Price / 100 * ProfitPercent + this.Price}";
+            string info = $"{this.ID} {this.Name} {this.FoodType} {this.RemainingNumber} {this.Price}";
             lines.Add(info);
             foreach(var s in lines)
             {
@@ -326,9 +359,6 @@ namespace MC_Restaurant
             RemainingNumber += x;
         }
     }
-
-
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -337,22 +367,18 @@ namespace MC_Restaurant
         public MainWindow()
         {
             InitializeComponent();
-        }
-       
+        }       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
             customers_login customers_Login = new customers_login();
             this.Visibility = Visibility.Collapsed;
-            customers_Login.Show();
-            
+            customers_Login.Show();            
         }
-
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
             manager_login manager_Login = new manager_login();
             this.Visibility = Visibility.Collapsed;
             manager_Login.Show();
-
         }
     }
 }
