@@ -274,7 +274,8 @@ namespace MC_Restaurant
         SeaFood ,Chickenfries,Hamborgar,Pizza,Salad,Sandwich
     }
     class Food
-    {        
+    {
+        static List<Food> FoodsMenu = new List<Food>();
         static int foodNumbers = 1;
         public int ID ;
         public string Name { get; private set; }
@@ -299,6 +300,34 @@ namespace MC_Restaurant
             SetFinalPrice();
             PrintInfo();
         }
+        static Food ReadFood(string line)//**
+        {
+            string[] items = line.Split(' ');
+        }
+        public static void IntializeFoods()
+        {
+            StreamReader streamReader;
+            if (!File.Exists("FoodInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("FoodInfo.txt");
+                writer.Close();
+            }
+            else
+            {
+                streamReader = new StreamReader("FoodInfo.txt");
+                List<string> lines = new List<string>();
+                while (!streamReader.EndOfStream)
+                {
+                    lines.Add(streamReader.ReadLine());
+                }
+                streamReader.Close();
+
+
+            }
+            
+
+        }
+
         public void SetFinalPrice()
         {
             this.FinalPrice = this.Price / 100 * ProfitPercent + this.Price;
