@@ -289,8 +289,22 @@ namespace MC_Restaurant
         int _RemainingNumber;
         public string ingredients { get; protected set; }
         public string Ex_ingredients { get; protected set; }
-        public Food (string Name,FoodType type,double Price,string Ingredient)
+        Food(string Name, FoodType type, double Price, string Ingredient,int ID)//reading from file food
         {
+            this.Name = this.Ex_Name = Name;
+            this.FoodType = type;
+            this.Price = this.Ex_Price = Price;
+            ProfitPercent = 24;
+            this.ingredients = this.Ex_ingredients = Ingredient;
+            this.ID = ID;
+            SetFinalPrice();            
+        }
+        public Food (string Name,FoodType type,double Price,string Ingredient)//making new food
+        {
+            if (IsMatchFoodName(Name))
+            {
+                throw new Exception("Name already exists.");
+            }
             this.Name =this.Ex_Name= Name;
             this.FoodType = type;
             this.Price = this.Ex_Price = Price;
@@ -299,31 +313,67 @@ namespace MC_Restaurant
             SetID();
             SetFinalPrice();
             PrintInfo();
+            FoodsMenu.Add(this);
+        }
+        static bool IsMatchFoodName(string Name)
+        {
+            foreach(var item in FoodsMenu)
+            {
+                if (item.Name == Name || item.Ex_Name == Name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         static Food ReadFood(string line)//**
         {
             string[] items = line.Split(' ');
-            items[]
-
+            //ID, Name, Type,ingrediant, Remaining Number, Price
+            int i = 0;
+            while (true) 
+            {
+                FoodType foodType = (FoodType)i;
+                if (foodType.ToString() == items[2])
+                {
+                    Food food = new Food(items[1], foodType, double.Parse(items[5]), items[3], int.Parse(items[0]));
+                    food.RemainingNumber = int.Parse(items[4]);
+                    return food;
+                }
+                ++i;
+            }           
         }
         public static void IntializeFoods()
         {
             StreamReader streamReader;
-            if (!File.Exists("FoodInfo.txt"))
+            try
             {
-                StreamWriter writer = new StreamWriter("FoodInfo.txt");
-                writer.Close();
-            }
-            else
-            {
-                streamReader = new StreamReader("FoodInfo.txt");
-                List<string> lines = new List<string>();
-                while (!streamReader.EndOfStream)
+                if (!File.Exists("FoodInfo.txt"))
                 {
-                    lines.Add(streamReader.ReadLine());
+                    StreamWriter writer = new StreamWriter("FoodInfo.txt");
+                    writer.Close();
                 }
-                streamReader.Close();
+                else
+                {
+                    streamReader = new StreamReader("FoodInfo.txt");
+                    List<string> lines = new List<string>();
+                    while (!streamReader.EndOfStream)
+                    {
+                        lines.Add(streamReader.ReadLine());
+                    }
+                    streamReader.Close();
+                    for(int i = 1; i < lines.Count; ++i)
+                    {
+                        FoodsMenu.Add(ReadFood(lines[i]));
+                        foodNumbers++;
+                    }
+                }
+
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
         }
         public void SetFinalPrice()
         {
@@ -352,10 +402,10 @@ namespace MC_Restaurant
             StreamWriter streamWriter = new StreamWriter("FoodInfo.txt");
             if (lines.Count == 0)
             {
-                string firstline = "ID, Name, Type, Remaining Number, Price ";
+                string firstline = "ID, Name, Type, ingridiants, Remaining Number, Price ";
                 lines.Add(firstline);
             }
-            string info = $"{this.ID} {this.Name} {this.FoodType} {this.RemainingNumber} {this.Price}";
+            string info = $"{this.ID} {this.Name} {this.FoodType.ToString()} {this.ingredients} {this.RemainingNumber} {this.Price}";
             lines.Add(info);
             foreach(var s in lines)
             {
@@ -393,6 +443,7 @@ namespace MC_Restaurant
         public MainWindow()
         {
             InitializeComponent();
+            Food.IntializeFoods();
         }       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
