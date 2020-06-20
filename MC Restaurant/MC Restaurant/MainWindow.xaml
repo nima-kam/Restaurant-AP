@@ -10,17 +10,22 @@
         <TextBlock FontWeight="DemiBold" FontSize="14" Foreground="Firebrick" Text="select your access:" Margin="7,10,0.2,10" Height="22" RenderTransformOrigin="0.495,0.207"/>
         <Grid Margin="0 30 0 0">
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="138*"/>
+                <ColumnDefinition Width="82*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="28*"/>
                 <ColumnDefinition Width="76*"/>
                 <ColumnDefinition Width="12*"/>
                 <ColumnDefinition Width="13*"/>
-                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="22*"/>
             </Grid.ColumnDefinitions>
 
             <!--admin button-->
-            <Button Click="AdminButton_Click" x:Name="AdminButton" Content="Manager" Margin="4,-20,5.6,32.6" Background="SkyBlue"/>
+            <Button Click="AdminButton_Click" x:Name="AdminButton" Content="Manager" Margin="4,-20,5.6,39.8" Background="SkyBlue" Grid.ColumnSpan="4"/>
             <!--user button-->
-            <Button Click="UserButton_Click" Grid.Column="1" x:Name="UserButton" Content="Customer" Margin="4.4,-20,6.2,31.6" Background="OrangeRed" Grid.ColumnSpan="4"/>
+            <Button Click="UserButton_Click" Grid.Column="4" x:Name="UserButton" Content="Customer" Margin="4.4,-20,6.2,38.8" Background="OrangeRed" Grid.ColumnSpan="6"/>
 
         </Grid>
 

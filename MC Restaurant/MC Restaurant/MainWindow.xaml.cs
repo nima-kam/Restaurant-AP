@@ -303,6 +303,8 @@ namespace MC_Restaurant
         static Food ReadFood(string line)//**
         {
             string[] items = line.Split(' ');
+            items[]
+
         }
         public static void IntializeFoods()
         {
@@ -321,13 +323,8 @@ namespace MC_Restaurant
                     lines.Add(streamReader.ReadLine());
                 }
                 streamReader.Close();
-
-
             }
-            
-
         }
-
         public void SetFinalPrice()
         {
             this.FinalPrice = this.Price / 100 * ProfitPercent + this.Price;
