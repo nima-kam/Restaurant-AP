@@ -75,17 +75,26 @@ namespace MC_Restaurant
             return false;
         }
     }
-    abstract class Person
+    interface Person
     {
-        
+        void SaveInfo();
+        string FullName { get; }
+        string PhoneNum { get;}
+        string Address { get;}
+        string Email { get; }
+        string Password { set; }
+
+    }
+    class Customers : Buy,Person
+    {
         string _FullName;
         Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");
-        public abstract void SaveInfo();        
+        
         public string FullName
         {
             get
             {
-                return _FullName; 
+                return _FullName;
             }
             set
             {
@@ -100,6 +109,7 @@ namespace MC_Restaurant
 
             }
         }
+
         string _phoneNum;
         Regex phoneAlg = new Regex(@"{8-12}((?:\+)+\d[0-9])");
         public string PhoneNum
@@ -160,7 +170,7 @@ namespace MC_Restaurant
             }
         }
         string _Password;
-        Regex PasswordAlg= new Regex(@"\b({8-32}[a-z0-9!#$%&\-*+/?^_~-])");
+        Regex PasswordAlg = new Regex(@"\b({8-32}[a-z0-9!#$%&\-*+/?^_~-])\z");
         public string Password//***
         {
             protected get
@@ -177,14 +187,17 @@ namespace MC_Restaurant
                 }
             }
         }
-    }
-    class Customers : Person
-    {
         public static Customers CurrentCusomer;
         public long TotalBuy { get; protected set; }
         public double Tax{ get; protected set; }
 
-        public override void SaveInfo()
+        public string Address { get ; set; }
+
+        protected void CalculateDiscount()
+        {
+            
+        }
+        public void SaveInfo()
         {
             StreamReader streamReader;
             if (!File.Exists("CustomersInfo.txt"))
@@ -203,7 +216,14 @@ namespace MC_Restaurant
     }
     class Manager : Person
     {
-        public override void SaveInfo()
+
+        public string FullName { get ; set ; }
+        public string PhoneNum { get => ; set; }
+        public string Address { get; set ; }
+        public string Email { get ; set ; }
+        public string Password { set => throw new NotImplementedException(); }
+
+        public void SaveInfo()//**
         {
             StreamReader streamReader;
             if (!File.Exists("managerInfo.txt"))
