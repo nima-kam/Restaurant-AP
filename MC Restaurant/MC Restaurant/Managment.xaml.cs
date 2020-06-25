@@ -22,6 +22,8 @@ namespace MC_Restaurant
         public Managment()
         {
             InitializeComponent();
+            manageCalendar.DisplayDateStart = System.DateTime.Today;
+
         }
     }
 }

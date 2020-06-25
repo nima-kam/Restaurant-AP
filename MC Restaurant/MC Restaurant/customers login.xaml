@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="customers_login" Height="350" Width="380" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
     
-    <StackPanel Background="#f00"  >
-
+        
+    <StackPanel>
 
         <Grid>
             <Grid.ColumnDefinitions >
@@ -16,19 +16,27 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Login" Margin="30,22,117.6,-15.8" Foreground="Yellow" FontSize="22" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Login" Margin="30,22,117.6,-15.8" Foreground="#fc1" FontSize="22" Grid.ColumnSpan="2"/>
             <!--user name-->
             <TextBlock Foreground="Yellow" FontSize="13" FontWeight="DemiBold" Text="Email or Phone number :" Margin="30,63,79.6,-63.8" Grid.ColumnSpan="2"/>
             <TextBox x:Name="userName" Margin="80,88,25.6,-75.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
             <!--password-->
             <TextBlock Foreground="Yellow" FontSize="13" FontWeight="DemiBold" Text="Password :" Margin="30,121,16.8,-109.8"/>
-            <TextBox x:Name="Password" Margin="80,148,25.6,-135.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <PasswordBox x:Name="CustomerPassword" Margin="80,148,25.6,-135.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
             <!--confirm button-->
             <Button  x:Name="Confirmbutton" Content="Confirm" Background="#fd0" Foreground="Red" Click="Confirmbutton_Click" Margin="80,195,82.6,-182.8" Grid.ColumnSpan="2"/>
             <Button x:Name="Registerbutton" Content="Register" BorderBrush="Yellow" Foreground="Yellow" Background="#f51"  Click="Registerbutton_Click" Margin="60.2,195,1.6,-182.8" Grid.Column="1" />
             <TextBlock Foreground="#cc1" FontWeight="Bold" TextWrapping="Wrap" Text="If you do not have a account please register first ." Grid.ColumnSpan="3" Margin="80,235,94.6,-235.8"/>
 
         </Grid>
+
+        <StackPanel.Background>
+            <LinearGradientBrush StartPoint="0 0" EndPoint="0 1">
+                <GradientStop Color="#f11" Offset="0.8" />
+                <GradientStop Color="#2d0" Offset="0" />
+            </LinearGradientBrush>
+            
+        </StackPanel.Background>
 
 
     </StackPanel>

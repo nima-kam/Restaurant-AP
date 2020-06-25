@@ -19,7 +19,7 @@
             <TextBox x:Name="userName" Margin="81,140,10.6,-127.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
             <!--password-->
             <TextBlock Text="Password " Margin="37,176,10.2,-164.8"/>
-            <TextBox x:Name="Password" Margin="81,199,9.6,-186.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <PasswordBox PasswordChar="Y" x:Name="ManagerPassword" Margin="81,199,9.6,-186.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
             <Button x:Name="loginbutton" Content="sign in" Background="OldLace" Click="loginbutton_Click" Margin="16.8,267,21.6,-254.8" Grid.Column="1"/>
 
         </Grid>

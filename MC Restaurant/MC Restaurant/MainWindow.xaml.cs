@@ -82,7 +82,6 @@ namespace MC_Restaurant
         string PhoneNum { get;}
         string Address { get;}
         string Email { get; }
-        string Password { set; }
 
     }
     class Customers : Buy,Person
@@ -193,7 +192,7 @@ namespace MC_Restaurant
 
         public string Address { get ; set; }
 
-        protected void CalculateDiscount()
+        protected void CalculateProfit()
         {
             
         }
@@ -218,11 +217,12 @@ namespace MC_Restaurant
     {
 
         public string FullName { get ; set ; }
-        public string PhoneNum { get => ; set; }
-        public string Address { get; set ; }
+        public string PhoneNum { get ; set; }
+        public string Address { get;  }
         public string Email { get ; set ; }
-        public string Password { set => throw new NotImplementedException(); }
-
+        private string Password {  get; set; }
+        public int LoginTimes { get; } = 0;
+        
         public void SaveInfo()//**
         {
             StreamReader streamReader;
