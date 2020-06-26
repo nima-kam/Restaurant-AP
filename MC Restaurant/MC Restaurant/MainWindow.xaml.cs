@@ -16,6 +16,8 @@ using System.Data.SQLite;
 using System.IO; 
 
 using System.Text.RegularExpressions;
+using System.Net.Http.Headers;
+
 namespace MC_Restaurant
 {
     static class IDcodeSet
@@ -196,7 +198,7 @@ namespace MC_Restaurant
         {
             
         }
-        public void SaveInfo()
+        public void SaveInfo()//**
         {
             StreamReader streamReader;
             if (!File.Exists("CustomersInfo.txt"))
@@ -222,8 +224,110 @@ namespace MC_Restaurant
         public string Email { get ; set ; }
         private string Password {  get; set; }
         public int LoginTimes { get; } = 0;
-        
-        public void SaveInfo()//**
+
+        public Manager(string FullName, string PassWord, int LoginTimes = 0)
+        {
+            if (ManagerNameCheck(FullName))
+            {
+                if (FindManager(FullName) == 0)
+                {
+                    this.FullName = FullName;
+                    
+                }
+            }
+            else
+            {
+                throw new Exception("Username is not in correct format.");
+            }
+            
+        }
+        string ShowPassword(string Name,int logintime)
+        {
+            int sound = 0;
+            foreach(char c in Name)
+            {
+                switch (c)
+                {
+                    case 'i':
+                    case 'o':
+                    case 'a':
+                    case 'u':
+                    case 'e':
+                        ++sound;
+                        break;
+                }
+            }
+            int one = this.LoginTimes%10;
+            List<char> pass = new List<char>();
+            while (one > 0)
+            {
+                --one;
+                pass.Add('1');
+            }
+            while (sound > 0)
+            {
+                pass.Add('0');
+                --sound;
+            }
+            var arr= pass.ToArray();
+            return new string(arr);
+        }
+
+        /// <summary>
+        /// check if a username is in correct format
+        /// </summary>
+        /// <param name="InName"></param>
+        /// <returns></returns>
+        public static bool ManagerNameCheck(string UserName)
+        {
+            Regex Name = new Regex(@"\b(?:[a-zA-Z])+admin*\d\z");
+            return Name.IsMatch(UserName);
+        }
+        struct NameLog
+        {
+            public string Name;
+            public int LoginNum;
+            public NameLog(string name,int loginNum)
+            {
+                this.Name = name;
+                this.LoginNum = loginNum;
+            }
+        }
+        /// <summary>
+        /// find a manager info from File
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns>
+        /// Return the manager loginTimes.
+        /// </returns>
+        public static int FindManager(string Name)
+        {
+            
+            var streamReader = new StreamReader("managerInfo.txt");
+            List<string> lines = new List<string>();
+            while (!streamReader.EndOfStream)
+            {
+                lines.Add(streamReader.ReadLine());
+            }
+            streamReader.Close();
+            var nameLog = new List<NameLog>();
+            for(int i = 1; i < lines.Count; ++i)
+            {
+                var ss = lines[i].Split(' ');
+                nameLog.Add(new NameLog(ss[0], int.Parse(ss[1])));
+            }
+            var log = nameLog.Where(x => x.Name == Name).Select(x => x.LoginNum);
+            if (log.Count() >= 1)
+            {
+                return log.First();
+
+            }
+            return 0;
+        }
+        /// <summary>
+        /// Saving data on a File
+        /// </summary>
+        public void SaveInfo()
         {
             StreamReader streamReader;
             if (!File.Exists("managerInfo.txt"))
@@ -231,13 +335,43 @@ namespace MC_Restaurant
                 StreamWriter writer = new StreamWriter("managerInfo.txt");
                 writer.Close();
             }
+
             streamReader = new StreamReader("managerInfo.txt");
             List<string> lines = new List<string>();
             while (!streamReader.EndOfStream)
             {
                 lines.Add(streamReader.ReadLine());
             }
+            string FirstLine = "UserName LoginTimes";
+            lines[0] = FirstLine;
             streamReader.Close();
+            if (this.LoginTimes == 0 || this.LoginTimes == 1)
+            {
+                string thisInfo = $"{this.FullName} {this.LoginTimes}";
+                lines.Add(thisInfo);
+            }
+            else
+            {
+                var nameLog = new List<NameLog>();
+                for (int i = 1; i < lines.Count; ++i)
+                {
+                    var ss = lines[i].Split(' ');
+                    nameLog.Add(new NameLog(ss[0], int.Parse(ss[1])));
+                }
+                for(int i = 0; i < nameLog.Count; i++)
+                { 
+                    if (nameLog[i].Name == this.FullName)
+                    {
+                        lines[i + 1] = $"{this.FullName} {this.LoginTimes}";
+                    }
+                }
+            }
+            StreamWriter writer1 = new StreamWriter("managerInfo.txt");
+            foreach (var item in lines)
+            {
+                writer1.WriteLine(item);
+            }
+            writer1.Close();
         }
     }
 
