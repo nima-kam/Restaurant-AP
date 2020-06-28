@@ -589,9 +589,49 @@ namespace MC_Restaurant
             RemainingNumber += x;
         }
     }
+
+    class Restaurant
+    {
+        public string Name { get; private set; }
+        public string Region { get; private set; }
+        public string Address { get; private set; }
+        public double RestaurantProfit { get; }
+        string _PhoneNum;
+        public string PhoneNum
+        {
+            get
+            {
+                return _PhoneNum;
+            }
+            private set
+            {
+                Regex Phone = new Regex(@"\A*\++\A[09]{9-12}\d\z");
+                if (Phone.IsMatch(value))
+                {
+                    _PhoneNum = value;
+                }
+                else
+                {
+                    throw new Exception("Phone number is not correct.");
+                }
+            }
+
+        }
+        List<Food> ReservedOrder = new List<Food>();
+        List<Food> PayedOrder = new List<Food>();
+        public Restaurant(string Name,string Address,string Region ,string PhoneNum)
+        {
+            this.Name = Name;
+            this.Region = Region;
+            this.Address = Address;
+            this.PhoneNum = PhoneNum;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
         public MainWindow()
