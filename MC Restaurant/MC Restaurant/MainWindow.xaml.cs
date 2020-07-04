@@ -388,9 +388,14 @@ namespace MC_Restaurant
                 this.FoodNumber = N;
 
             } 
+            /// <summary>
+            /// add or delete a number of foods.
+            /// </summary>
+            /// <param name="x"></param>
             public void ChangeFoodNum(int x)
             {
                 if (x + this.FoodNumber > food.RemainingNumber)
+
                 {
                     throw new Exception("Not enough food available to order.");
                 }
@@ -406,7 +411,12 @@ namespace MC_Restaurant
         }
         public List<FoodList> OrderedFood = new List<FoodList>();        
         public double TotalPrice { get; protected set; }
-        public void AddFood(Food NewOrder, int Amount)//***
+        /// <summary>
+        /// adding food to ordered food
+        /// </summary>
+        /// <param name="NewOrder">the food is going be add.</param>
+        /// <param name="Amount">amount of food to be add.</param>
+        public void AddFood(Food NewOrder, int Amount)
         {
             if (OrderedFood.Count == 0)
             {
@@ -415,11 +425,18 @@ namespace MC_Restaurant
             }
             else
             {
-                if (OrderedFood.Where(x => x.food == NewOrder).Count() == 1)
+                if (OrderedFood.Where(x => x.food == NewOrder).Count() >= 1)
                 {
-                    var foods =  OrderedFood.Where(x => x.food == NewOrder).Select(x => x) ;
-                    
+                    var foods =  OrderedFood.Where(x => x.food == NewOrder).Select(x => x).ToList() ;
+                    foods[0].ChangeFoodNum(Amount);
+                    MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
                 }                 
+                else
+                {
+                    OrderedFood.Add(new FoodList(NewOrder, Amount));
+                    MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
+
+                }
             }
         }
     }
