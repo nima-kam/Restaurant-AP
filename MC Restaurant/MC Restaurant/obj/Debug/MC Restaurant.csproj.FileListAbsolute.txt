@@ -25,3 +25,4 @@ D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\customers login.baml
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\manager login.baml
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Managment.g.cs
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Managment.baml
