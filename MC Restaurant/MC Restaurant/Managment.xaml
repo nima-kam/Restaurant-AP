@@ -14,13 +14,5 @@
                 <GradientStop Color="YellowGreen" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Calendar x:Name="manageCalendar" DisplayMode="Month" SelectionMode="SingleDate" BorderThickness="2" Margin="-1,-4,273.8,264" >            
-            <Calendar.BorderBrush>                
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="Red" Offset="0" />
-                    <GradientStop Color="Purple" Offset="1.0" />
-                </LinearGradientBrush>
-            </Calendar.BorderBrush>
-        </Calendar>
     </Grid>
 </Window>

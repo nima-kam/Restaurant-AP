@@ -469,6 +469,11 @@ namespace MC_Restaurant
             PrintInfo();
             FoodsMenu.Add(this);
         }
+        /// <summary>
+        /// check if there are food with same name.
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns></returns>
         static bool IsMatchFoodName(string Name)
         {
             foreach(var item in FoodsMenu)
@@ -485,18 +490,25 @@ namespace MC_Restaurant
             string[] items = line.Split(' ');
             //ID, Name, Type,ingrediant, Remaining Number, Price
             int i = 0;
+            Food food=null;
             while (true) 
             {
                 FoodType foodType = (FoodType)i;
                 if (foodType.ToString() == items[2])
                 {
-                    Food food = new Food(items[1], foodType, double.Parse(items[5]), items[3], int.Parse(items[0]));
+                     food = new Food(items[1], foodType, double.Parse(items[5]), items[3], int.Parse(items[0]));
                     food.RemainingNumber = int.Parse(items[4]);
                     return food;
                 }
                 ++i;
-            }           
+                if (i >= 6) break;
+            }
+            return food;
+            
         }
+        /// <summary>
+        /// initialize the foods info in a list.
+        /// </summary>
         public static void IntializeFoods()
         {
             StreamReader streamReader;
