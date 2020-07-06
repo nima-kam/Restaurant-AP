@@ -222,18 +222,24 @@ namespace MC_Restaurant
         public string PhoneNum { get ; set; }
         public string Address { get;  }
         public string Email { get ; set ; }
-        private string Password {  get; set; }
-        public int LoginTimes { get; } = 0;
+        public int LoginTimes { get; } 
 
         public Manager(string FullName, string PassWord, int LoginTimes = 0)
         {
             if (ManagerNameCheck(FullName))
             {
-                if (FindManager(FullName) == 0)
+                if (ShowPassword(FullName, FindManager(FullName)) == PassWord)
                 {
                     this.FullName = FullName;
-                    
+                    this.LoginTimes = FindManager(FullName);
+                    this.LoginTimes++;
+                    SaveInfo();
                 }
+                else
+                {
+                    throw new Exception("Password is wrong.");
+                }
+
             }
             else
             {
@@ -241,7 +247,7 @@ namespace MC_Restaurant
             }
             
         }
-        string ShowPassword(string Name,int logintime)
+        static string ShowPassword(string Name,int logintime)
         {
             int sound = 0;
             foreach(char c in Name)
@@ -257,7 +263,7 @@ namespace MC_Restaurant
                         break;
                 }
             }
-            int one = this.LoginTimes%10;
+            int one = logintime%10;
             List<char> pass = new List<char>();
             while (one > 0)
             {
@@ -395,7 +401,6 @@ namespace MC_Restaurant
             public void ChangeFoodNum(int x)
             {
                 if (x + this.FoodNumber > food.RemainingNumber)
-
                 {
                     throw new Exception("Not enough food available to order.");
                 }
