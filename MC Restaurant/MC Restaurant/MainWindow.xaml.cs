@@ -216,8 +216,8 @@ namespace MC_Restaurant
         }
     }
     class Manager : Person
-    {
-
+    {         
+        static public Manager logedInManager=null;
         public string FullName { get ; set ; }
         public string PhoneNum { get ; set; }
         public string Address { get;  }
@@ -239,7 +239,6 @@ namespace MC_Restaurant
                 {
                     throw new Exception("Password is wrong.");
                 }
-
             }
             else
             {
@@ -286,7 +285,7 @@ namespace MC_Restaurant
         /// <returns></returns>
         public static bool ManagerNameCheck(string UserName)
         {
-            Regex Name = new Regex(@"\b(?:[a-zA-Z])+admin*\d\z");
+            Regex Name = new Regex(@"\b(?:[a-zA-Z])+a+d+m+i+n*\d\z");
             return Name.IsMatch(UserName);
         }
         struct NameLog
@@ -308,7 +307,12 @@ namespace MC_Restaurant
         /// </returns>
         public static int FindManager(string Name)
         {
-            
+            if (!File.Exists("managerInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("managerInfo.txt");
+                writer.WriteLine();
+                writer.Close();
+            }
             var streamReader = new StreamReader("managerInfo.txt");
             List<string> lines = new List<string>();
             while (!streamReader.EndOfStream)
@@ -339,6 +343,7 @@ namespace MC_Restaurant
             if (!File.Exists("managerInfo.txt"))
             {
                 StreamWriter writer = new StreamWriter("managerInfo.txt");
+                writer.WriteLine();
                 writer.Close();
             }
 

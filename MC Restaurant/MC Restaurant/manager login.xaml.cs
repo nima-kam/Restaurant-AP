@@ -26,7 +26,29 @@ namespace MC_Restaurant
 
         private void loginbutton_Click(object sender, RoutedEventArgs e)
         {
+            string Name = ManagerName.Text;
+            string Pass = ManagerPassword.Password;
+            try
+            {
+                var manager = new Manager(Name, Pass);
+                Manager.logedInManager = manager;
+                Managment manager_Login = new Managment();
+                this.Visibility = Visibility.Collapsed;
+                manager_Login.Show();
 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Collapsed;
+            main.Show();
         }
     }
 }
