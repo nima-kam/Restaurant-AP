@@ -23,7 +23,6 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
-
         private void loginbutton_Click(object sender, RoutedEventArgs e)
         {
             string Name = ManagerName.Text;
@@ -39,11 +38,9 @@ namespace MC_Restaurant
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();

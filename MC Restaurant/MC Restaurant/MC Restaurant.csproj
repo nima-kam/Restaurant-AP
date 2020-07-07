@@ -70,6 +70,9 @@
     <Compile Include="Managment.xaml.cs">
       <DependentUpon>Managment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Register User.xaml.cs">
+      <DependentUpon>Register User.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registeration.xaml.cs">
       <DependentUpon>Registeration.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Managment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Register User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
