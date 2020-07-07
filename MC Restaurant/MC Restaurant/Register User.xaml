@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Register_User" Height="500" Width="450">
+        Title="Register_User" Height="472" Width="441.2">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="1 0" EndPoint=" 1 1" >
@@ -13,5 +13,30 @@
                 <GradientStop Color="Gold" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
+        
+        <Label Content="Registeration" FontWeight="DemiBold" FontSize="15" Foreground="DarkBlue" Margin="13,11,303.2,378.4"/>
+        <TextBlock x:Name="UserAlarmBlock" FontSize="13" FontWeight="DemiBold" TextWrapping="Wrap" Margin="277,59,4.2,311.4"/>
+        <!--user name-->
+        <TextBlock Foreground="Yellow" FontSize="13" FontWeight="DemiBold" Text="UserName:" Margin="30,63,273.2,314.4"/>
+        <TextBox x:Name="userNameBox" Margin="109,61,183.2,0" Height="27" VerticalAlignment="Top" />
+        <!--PhoneNumber-->
+        <TextBlock Foreground="GreenYellow" FontSize="13" FontWeight="DemiBold" Text="PhoneNumber:" Margin="8,115,295.2,293.4"/>
+        <TextBox x:Name="PhonenumberBox" Margin="109,112,183.2,0" Height="27" VerticalAlignment="Top" />
+        <!--Email-->
+        <TextBlock Foreground="MediumPurple" FontSize="13" FontWeight="DemiBold" Text="E-mail:" Margin="57,173,246.2,235.4"/>
+        <TextBox x:Name="EmailBox" Margin="109,168,183.2,0" Height="27" VerticalAlignment="Top" />
+        <!--ID-->
+        <TextBlock Foreground="Cyan" FontSize="13" FontWeight="DemiBold" Text="ID:" Margin="79,226,224.2,179.4"/>
+        <TextBox x:Name="IDBox" Margin="109,222,183.2,0" Height="27" VerticalAlignment="Top" />
+        <!--Password-->
+        <TextBlock Foreground="PaleVioletRed" FontSize="13" FontWeight="DemiBold" Text="Password:" Margin="37,279,266.2,136.4"/>
+        <PasswordBox x:Name="Passwordbox" Margin="108,274,183.2,0" Height="27" VerticalAlignment="Top" />
+        <!--Password confirm-->
+        <TextBlock Foreground="OrangeRed" FontSize="13" FontWeight="DemiBold" Text="Password repeat:" Margin="1,326,302.2,86.4"/>
+        <PasswordBox x:Name="Passwordbox_Copy" Margin="108,322,183.2,0" Height="27" VerticalAlignment="Top" />
+        <!--pass not match alarm-->
+        <TextBlock x:Name="PassMatchingBlock" FontSize="13" FontWeight="DemiBold" Foreground="DarkRed" TextWrapping="Wrap" Margin="275,274,6.2,92.4"/>
+        <Button Background="LawnGreen" ClickMode="Release" Click="RegisterButton_Click" BorderBrush="DarkBlue" FontWeight="DemiBold" Foreground="DarkBlue" ForceCursor="True" x:Name="RegisterButton" Content="Register" Margin="178,371,181.2,0" Height="26" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
