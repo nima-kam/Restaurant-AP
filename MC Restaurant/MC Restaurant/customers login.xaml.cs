@@ -28,12 +28,21 @@ namespace MC_Restaurant
 
         private void Registerbutton_Click(object sender, RoutedEventArgs e)
         {
-
+            Register_User user = new Register_User();
+            this.Visibility = Visibility.Collapsed;
+            user.Show(); 
         }      
 
         private void Confirmbutton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Collapsed;
+            main.Show();
         }
     }
 }

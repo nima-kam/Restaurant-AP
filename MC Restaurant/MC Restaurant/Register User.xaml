@@ -37,6 +37,7 @@
         <!--pass not match alarm-->
         <TextBlock x:Name="PassMatchingBlock" FontSize="13" FontWeight="DemiBold" Foreground="DarkRed" TextWrapping="Wrap" Margin="275,274,6.2,92.4"/>
         <Button Background="LawnGreen" ClickMode="Release" Click="RegisterButton_Click" BorderBrush="DarkBlue" FontWeight="DemiBold" Foreground="DarkBlue" ForceCursor="True" x:Name="RegisterButton" Content="Register" Margin="178,371,181.2,0" Height="26" VerticalAlignment="Top"/>
+        <Button x:Name="BackButton" FontWeight="DemiBold" Content="back" Background="Crimson" Click="BackButton_Click" Margin="107,370,261.2,44.4"/>
 
     </Grid>
 </Window>

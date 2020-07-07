@@ -27,6 +27,7 @@
             <Button  x:Name="Confirmbutton" Content="Confirm" Background="#fd0" Foreground="Red" Click="Confirmbutton_Click" Margin="80,195,82.6,-182.8" Grid.ColumnSpan="2"/>
             <Button x:Name="Registerbutton" Content="Register" BorderBrush="Yellow" Foreground="Yellow" Background="#f51"  Click="Registerbutton_Click" Margin="60.2,195,1.6,-182.8" Grid.Column="1" />
             <TextBlock Foreground="#cc1" FontWeight="Bold" TextWrapping="Wrap" Text="If you do not have a account please register first ." Grid.ColumnSpan="3" Margin="80,235,94.6,-235.8"/>
+            <Button x:Name="BackButton"  MinWidth="50" FontWeight="DemiBold" Content="back" Background="Crimson" Click="BackButton_Click" Margin="48.4,11,16.6,-0.8" Grid.Column="2"/>
 
         </Grid>
 
