@@ -6,13 +6,24 @@
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
         Title="Managment" Height="450" Width="450.976">
-    <Grid >
+
+    <Grid Margin="0,0,-0.2,-1" Height="421" VerticalAlignment="Top" >
         <Grid.Background>
             <LinearGradientBrush StartPoint="1 0" EndPoint=" 1 1" >
                 <GradientStop Color="Beige" Offset="0" />
                 <GradientStop Color="Khaki" Offset="0.5" />
+
                 <GradientStop Color="YellowGreen" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
+        <ListBox x:Name="list" Margin="25,55,259,188">
+        </ListBox>
+        <ScrollBar Margin="427,1,0.8,0"/>
+
+
+
+
+
+
     </Grid>
 </Window>

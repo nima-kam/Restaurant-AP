@@ -22,7 +22,6 @@ namespace MC_Restaurant
         public Managment()
         {
             InitializeComponent();
-
         }
     }
 }

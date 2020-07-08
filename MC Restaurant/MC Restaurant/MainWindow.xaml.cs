@@ -631,11 +631,16 @@ namespace MC_Restaurant
 
     class Restaurant
     {
+        Dictionary<DateTime, List<Food>> CalanderFood = new Dictionary<DateTime, List<Food>>();
         public string Name { get; private set; }
         public string Region { get; private set; }
         public string Address { get; private set; }
         public double RestaurantProfit { get; }
         string _PhoneNum;
+        /// <summary>
+        /// has restaurant started working.
+        /// </summary>
+        public static bool IsStablished { get; private set; } = false;
         public string PhoneNum
         {
             get
@@ -663,9 +668,44 @@ namespace MC_Restaurant
             this.Name = Name;
             this.Region = Region;
             this.Address = Address;
-            this.PhoneNum = PhoneNum;
+            this.PhoneNum = PhoneNum; 
         }
+        public void ShowRestaurantInfo()
+        {
+            MessageBox.Show($"Restaurant Info \n Name: {this.Name} \n" +
+                $" Address: {this.Address} \n Region: {this.Region} \n" +
+                $" Phone number: {this.PhoneNum} \n");
+        }
+        /// <summary>
+        /// Gets a date and return its food list.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public List<Food> ReadDateFood(DateTime date)
+        {
+            if (DateTime.Today.CompareTo(date) >= 0)
+            {
+                List<Food> foods=null;
+                if(CalanderFood.TryGetValue(date,out foods))
+                {
+                    MessageBox.Show("Food list found succussfully.");
+                    return foods;
+                }
+                else
+                {
+                    MessageBox.Show("No food added yet.");
+                    return foods;
+                }
+            }
+            else
+            {
+                throw new Exception("Entered date is no longer accessable.");
+            }
+        }
+
+
     }
+
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
