@@ -631,7 +631,7 @@ namespace MC_Restaurant
 
     class Restaurant
     {
-        Dictionary<DateTime, List<Food>> CalanderFood = new Dictionary<DateTime, List<Food>>();
+        static Dictionary<DateTime, List<Food>> CalanderFood = new Dictionary<DateTime, List<Food>>();
         public string Name { get; private set; }
         public string Region { get; private set; }
         public string Address { get; private set; }
@@ -695,6 +695,71 @@ namespace MC_Restaurant
                 {
                     MessageBox.Show("No food added yet.");
                     return foods;
+                }
+            }
+            else
+            {
+                throw new Exception("Entered date is no longer accessable.");
+            }
+        }
+        public void SaveCalander()//***
+        {
+            if (!File.Exists(@"Calander.txt"))
+            {
+                StreamWriter writer = new StreamWriter(@"Calander.txt");
+                writer.Close();
+            }
+            List<string> filestr = new List<string>();
+            foreach(var item in CalanderFood)//reading from dictionary and convert to string
+
+            {
+                string date = $"*{item.Key.Year}/{item.Key.Month}/{item.Key.Day}";
+                filestr.Add(date);
+                foreach(var T in item.Value)
+                {
+                    string str = $"{T.Name} {T.RemainingNumber}";
+                    filestr.Add(str);
+                }
+            }//**
+
+
+        }
+        /// <summary>
+        /// adding a food to a specific date.
+        /// </summary>
+        /// <param name="food"></param>
+        /// <param name="date"></param>
+        public void AddFood(Food food, DateTime date)
+        {
+            if (DateTime.Today.CompareTo(date) >= 0)
+            {
+                List<Food> foods = null;
+                if (CalanderFood.TryGetValue(date, out foods))
+                {
+                    if (foods.Any(x => x.Name == food.Name))
+                    {
+                        for (int i=0; i < foods.Count; ++i)
+                        {
+                            if(foods[i].Name == food.Name)
+                            {
+                                foods[i].ChangeRemainingNumber(food.RemainingNumber);
+                                CalanderFood[date] = foods;
+                                MessageBox.Show($"food added to {date}.");
+                            }
+                        }
+                    }
+                    else
+                    {                        
+                        foods.Add(food);
+                        CalanderFood[date] = foods;
+                        MessageBox.Show($"food added to {date}.");
+                    }
+                }
+                else
+                {
+                    foods.Add(food);
+                    CalanderFood.Add(date, foods);
+                    MessageBox.Show($"food added to {date}.");
                 }
             }
             else
