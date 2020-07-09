@@ -478,7 +478,33 @@ namespace MC_Restaurant
             ProfitPercent = 24;
             this.ingredients = this.Ex_ingredients = Ingredient;
             this.ID = ID;
+            if (ID >= foodNumbers)
+            {
+                foodNumbers = ID + 1;
+            }
             SetFinalPrice();            
+        }
+        public static Food findFoodByName(string Name, int availableNum)
+        {
+            if (!IsMatchFoodName(Name))
+            {
+                throw new Exception($"No food named {Name} found.");
+            }
+            else
+            {
+                for (int i = 0; i < FoodsMenu.Count; ++i)
+                {
+                    if (FoodsMenu[i].Name == Name)
+                    {
+                        var ff = new Food(FoodsMenu[i].Name, FoodsMenu[i].FoodType, FoodsMenu[i].Price, FoodsMenu[i].ingredients, FoodsMenu[i].ID);
+                        ff.RemainingNumber = availableNum;
+                        return ff;
+
+                    }
+                }
+                throw new Exception($"No food named {Name} found.");
+            }
+
         }
         public Food (string Name,FoodType type,double Price,string Ingredient)//making new food
         {
@@ -512,6 +538,7 @@ namespace MC_Restaurant
             }
             return false;
         }
+
         static Food ReadFood(string line)//**
         {
             string[] items = line.Split(' ');
@@ -702,7 +729,7 @@ namespace MC_Restaurant
                 throw new Exception("Entered date is no longer accessable.");
             }
         }
-        public void SaveCalander()//***
+        public static void SaveCalander()//***
         {
             if (!File.Exists(@"Calander.txt"))
             {
@@ -711,18 +738,64 @@ namespace MC_Restaurant
             }
             List<string> filestr = new List<string>();
             foreach(var item in CalanderFood)//reading from dictionary and convert to string
-
             {
-                string date = $"*{item.Key.Year}/{item.Key.Month}/{item.Key.Day}";
+                string date = $"*/{item.Key.Year}/{item.Key.Month}/{item.Key.Day}";
                 filestr.Add(date);
                 foreach(var T in item.Value)
                 {
                     string str = $"{T.Name} {T.RemainingNumber}";
                     filestr.Add(str);
                 }
-            }//**
+            }
+            StreamWriter writer1 = new StreamWriter(@"Calander.txt");
+            foreach (var item in filestr)
+            {
+                writer1.WriteLine(item);
+            }
+            writer1.Close();
+        }
+        /// <summary>
+        /// in the begining of program reads calander from file.
+        /// </summary>
+        public static void InitializeCalander()
+        {
+            if (!File.Exists(@"Calander.txt"))
+            {
+                IsStablished = false;
+            }
+            else
+            {
+                IsStablished = true;
+                List<string> lines = new List<string>();
+                StreamReader reader = new StreamReader(@"Calander.txt");
+                while (!reader.EndOfStream)
+                {
+                    lines.Add(reader.ReadLine());
 
+                }
+                reader.Close();
+                for (int i = 0; i < lines.Count;++i) 
+                {
+                    DateTime date ;
+                    List<Food> foods = new List<Food>();
+                    if (lines[i][0] == '*')
+                    {
+                        var datestr = lines[i].Split('/');
+                        date = new DateTime(int.Parse(datestr[1]), int.Parse(datestr[2]), int.Parse(datestr[3]));
+                        int j = i + 1;
+                        while (j < lines.Count || lines[j][0] != '*')
+                        {
+                           var s= lines[j].Split(' ');
+                            foods.Add(Food.findFoodByName(s[0], int.Parse(s[1])));
+                        }
+                        if (date.CompareTo(DateTime.Today) <= 0)
+                        {
+                            CalanderFood.Add(date, foods);
+                        }
+                    }
+                }
 
+            }
         }
         /// <summary>
         /// adding a food to a specific date.
@@ -782,6 +855,7 @@ namespace MC_Restaurant
         {
             InitializeComponent();
             Food.IntializeFoods();
+            Restaurant.InitializeCalander();
         }       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {

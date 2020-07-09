@@ -16,8 +16,9 @@
                 <GradientStop Color="YellowGreen" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <ListBox x:Name="list" Margin="25,55,259,188">
-        </ListBox>
+        
+        <ListBox x:Name="list" Margin="241,37,34,206"/>
+
         <ScrollBar Margin="427,1,0.8,0"/>
 
 
