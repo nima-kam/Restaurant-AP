@@ -23,5 +23,25 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
+
+        private void AddFoodButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowDateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
