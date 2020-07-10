@@ -450,7 +450,7 @@ namespace MC_Restaurant
             }
         }
     }
-    enum FooType
+    enum FoodType
     {
         SeaFood ,Chickenfries,Hamborgar,Pizza,Salad,Sandwich
     }
@@ -562,15 +562,14 @@ namespace MC_Restaurant
     }
     
     class Food
-    {
-        
+    {        
         static List<Food> FoodsMenu = new List<Food>();
         static int foodNumbers = 1;
         public int ID ;
         public string Name { get; private set; }
         public string Ex_Name { get; private set; }
         public Image FoodImage { get; protected set; }
-        public FoodType FoodType; 
+        public int FoodType; 
         public double Price { get; set; }
         public double Ex_Price { get; set; }
         public double FinalPrice { get; protected set; }
@@ -578,10 +577,10 @@ namespace MC_Restaurant
         int _RemainingNumber;
         public string ingredients { get; protected set; }
         public string Ex_ingredients { get; protected set; }
-        Food(string Name, FoodType type, double Price, string Ingredient,int ID)//reading from file food
+        Food(string Name, string type, double Price, string Ingredient,int ID)//reading from file food
         {
             this.Name = this.Ex_Name = Name;
-            this.FoodType = type;
+            this.FoodType = FooDType.FindKey( type);
             this.Price = this.Ex_Price = Price;
             ProfitPercent = 24;
             this.ingredients = this.Ex_ingredients = Ingredient;
@@ -592,6 +591,7 @@ namespace MC_Restaurant
             }
             SetFinalPrice();            
         }
+        
         public static Food findFoodByName(string Name, int availableNum)
         {
             if (!IsMatchFoodName(Name))
@@ -604,7 +604,7 @@ namespace MC_Restaurant
                 {
                     if (FoodsMenu[i].Name == Name)
                     {
-                        var ff = new Food(FoodsMenu[i].Name, FoodsMenu[i].FoodType, FoodsMenu[i].Price, FoodsMenu[i].ingredients, FoodsMenu[i].ID);
+                        var ff = new Food(FoodsMenu[i].Name, FooDType.Foodtype[FoodsMenu[i].FoodType], FoodsMenu[i].Price, FoodsMenu[i].ingredients, FoodsMenu[i].ID);
                         ff.RemainingNumber = availableNum;
                         return ff;
 
@@ -614,14 +614,14 @@ namespace MC_Restaurant
             }
 
         }
-        public Food (string Name,FoodType type,double Price,string Ingredient)//making new food
+        public Food (string Name,string type,double Price,string Ingredient)//making new food
         {
             if (IsMatchFoodName(Name))
             {
                 throw new Exception("Name already exists.");
             }
             this.Name =this.Ex_Name= Name;
-            this.FoodType = type;
+            this.FoodType =FooDType.FindKey( type);
             this.Price = this.Ex_Price = Price;
             ProfitPercent = 24;
             this.ingredients = this.Ex_ingredients = Ingredient;
@@ -647,26 +647,15 @@ namespace MC_Restaurant
             return false;
         }
 
-        static Food ReadFood(string line)//**
+        static Food ReadFood(string line)
         {
             string[] items = line.Split(' ');
-            //ID, Name, Type,ingrediant, Remaining Number, Price
-            int i = 0;
-            Food food=null;
-            while (true) 
-            {
-                FoodType foodType = (FoodType)i;
-                if (foodType.ToString() == items[2])
-                {
-                     food = new Food(items[1], foodType, double.Parse(items[5]), items[3], int.Parse(items[0]));
-                    food.RemainingNumber = int.Parse(items[4]);
-                    return food;
-                }
-                ++i;
-                if (i >= 6) break;
-            }
-            return food;
-            
+            //ID, Name, Type,ingrediant, Remaining Number, Price            
+            Food food = null;
+            food = new Food(items[1], FooDType.Foodtype[int.Parse(items[2])], double.Parse(items[5]), items[3], int.Parse(items[0]));
+            food.RemainingNumber = int.Parse(items[4]);
+            return food;           
+
         }
         /// <summary>
         /// initialize the foods info in a list.
@@ -816,7 +805,7 @@ namespace MC_Restaurant
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public List<Food> ReadDateFood(DateTime date)
+        public static List<Food> ReadDateFood(DateTime date)
         {
             if (DateTime.Today.CompareTo(date) >= 0)
             {
@@ -962,9 +951,10 @@ namespace MC_Restaurant
         public MainWindow()
         {
             InitializeComponent();
+            FooDType.intializefoodType();
             Food.IntializeFoods();
             Restaurant.InitializeCalander();
-            FooDType.intializefoodType();
+            
         }       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
