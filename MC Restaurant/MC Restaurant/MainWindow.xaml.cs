@@ -450,12 +450,120 @@ namespace MC_Restaurant
             }
         }
     }
-    enum FoodType
+    enum FooType
     {
         SeaFood ,Chickenfries,Hamborgar,Pizza,Salad,Sandwich
     }
+    class FooDType
+    {
+        public static Dictionary<int, string> Foodtype = new Dictionary<int, string>();
+        public int key { get; set; }
+        public string Value { get { return this[this.key]; } }
+        public static int FindKey(string Value)
+        {
+            if (IsFoodType(Value))
+            {
+                foreach (var item in Foodtype)
+                {
+                    if (item.Value == Value)
+                    {
+                        return item.Key;
+                    }
+                }
+            }
+            throw new Exception("No match type found.");
+        }
+        public static bool IsFoodType(int i)
+        {
+            return (Foodtype.ContainsKey(i));
+        }
+        public static bool IsFoodType(string s)
+        {
+            foreach (var item in Foodtype)
+            {
+                if (item.Value == s)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public string this[int i]
+        {
+            get
+            {
+                if (Foodtype.ContainsKey(i))
+                {
+                    return Foodtype[i];
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
+        }
+        public static void add(string type)
+        {
+            if (File.Exists("food type.txt"))
+            {
+                StreamWriter writer = new StreamWriter("food type.txt");
+                writer.Close();
+            }
+            StreamReader reader = new StreamReader("food type.txt");
+            List<string> line = new List<string>();
+            while (!reader.EndOfStream)
+            {
+                line.Add(reader.ReadLine());
+            }
+            reader.Close();
+            Foodtype.Add(Foodtype.Count, type);
+            line.Add($"{Foodtype.Count - 1} {type}");
+            StreamWriter stream = new StreamWriter("food type.txt");
+            foreach (var it in line)
+            {
+                stream.WriteLine(it);
+
+            }
+            stream.Close();
+        }
+        static void save()
+        {
+            StreamWriter stream = new StreamWriter("food type.txt");
+            foreach (var it in Foodtype)
+            {
+                stream.WriteLine($"{it.Key} {it.Value}");                
+            }
+        }
+        public static void intializefoodType()
+        {
+            if (File.Exists("food type.txt"))
+            {
+                StreamWriter writer = new StreamWriter("food type.txt");
+                writer.Close();
+            }
+            else
+            {
+                StreamReader reader = new StreamReader("food type.txt");
+                List<string> line = new List<string>();
+                while (!reader.EndOfStream)
+                {
+                    line.Add(reader.ReadLine());
+                }
+                reader.Close();
+                foreach(var it in line)
+                {
+                    var str = it.Split(' ');
+                    Foodtype.Add(int.Parse(str[0]), str[1]);
+                }
+
+            }
+        }
+    }
+    
     class Food
     {
+        
         static List<Food> FoodsMenu = new List<Food>();
         static int foodNumbers = 1;
         public int ID ;
@@ -856,6 +964,7 @@ namespace MC_Restaurant
             InitializeComponent();
             Food.IntializeFoods();
             Restaurant.InitializeCalander();
+            FooDType.intializefoodType();
         }       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {

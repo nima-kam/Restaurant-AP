@@ -22,6 +22,7 @@ namespace MC_Restaurant
         public Managment()
         {
             InitializeComponent();
+            TypefoodCombo.ItemsSource = FooDType.Foodtype.Values;
         }
 
         private void AddFoodButton_Click(object sender, RoutedEventArgs e)
