@@ -77,8 +77,7 @@ namespace MC_Restaurant
         private void NewFoodButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                
+            {                
                 if (!Food.IsMatchFoodName(NameFoodBox.Text))
                 {
                     if (FooDType.Foodtype.Any(x => x.Value == TypefoodCombo.Text))
@@ -95,7 +94,6 @@ namespace MC_Restaurant
                     {
                         FooDType.add(TypefoodCombo.Text);
                         var newFood = new Food(NameFoodBox.Text, TypefoodCombo.Text, double.Parse(PriceBox.Text), ingredientBox.Text);
-
                     }
                 }
             }
@@ -104,7 +102,6 @@ namespace MC_Restaurant
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void OpenFileButton_Click(object sender, RoutedEventArgs e)
         {
             try
