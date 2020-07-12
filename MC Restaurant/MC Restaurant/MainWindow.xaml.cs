@@ -203,7 +203,8 @@ namespace MC_Restaurant
         {
             
         }
-        public void SaveInfo()//**
+
+        public void SaveInfo()
         {
             StreamReader streamReader;
             if (!File.Exists("CustomersInfo.txt"))
@@ -801,7 +802,6 @@ namespace MC_Restaurant
                     throw new Exception("Phone number is not correct.");
                 }
             }
-
         }
         List<Food> ReservedOrder = new List<Food>();
         List<Food> PayedOrder = new List<Food>();
@@ -814,12 +814,15 @@ namespace MC_Restaurant
             IsStablished = true;
             save();
         }
-        void Initialize()
+        public static void Initialize()
         {
             if (File.Exists("Restaurant.txt"))
             {
                 IsStablished = true;
-                Manager.
+                StreamReader stream = new StreamReader("Restaurant.txt");
+                var str = stream.ReadLine().Split(' ');
+                stream.Close();
+                Manager.restaurant = new Restaurant(str[0] ,str[2],str[1],str[3]);
             }
         }
         void save()
@@ -986,6 +989,7 @@ namespace MC_Restaurant
         public MainWindow()
         {
             InitializeComponent();
+            Restaurant.Initialize();
             FooDType.intializefoodType();
             Food.IntializeFoods();
             Restaurant.InitializeCalander();

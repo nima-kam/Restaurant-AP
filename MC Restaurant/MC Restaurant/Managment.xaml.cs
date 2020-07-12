@@ -78,7 +78,7 @@ namespace MC_Restaurant
         {
             try
             {
-                Restaurant.IsStablished = true;
+                
                 if (!Food.IsMatchFoodName(NameFoodBox.Text))
                 {
                     if (FooDType.Foodtype.Any(x => x.Value == TypefoodCombo.Text))
