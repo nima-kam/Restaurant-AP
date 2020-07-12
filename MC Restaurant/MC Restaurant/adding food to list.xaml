@@ -28,7 +28,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBlock Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" x:Name="Title" Margin="3,3,240.4,108.6" />
+        <TextBlock  Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" x:Name="Title" Margin="3,3,240.4,108.6" />
 
         <Label Content="select Food" Margin="10,70,334.4,59.6"  />
 

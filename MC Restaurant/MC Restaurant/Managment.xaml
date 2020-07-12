@@ -23,10 +23,9 @@
 
         </Border>
         
-        <Button x:Name="EditButton" Content="Edit " Margin="16,146,363,592" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="EditButton" Content="Edit " Margin="18,159,362,579" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5">
 
         </Button>
-        <Button x:Name="DeleteButton" Content="Delete" Margin="16,210,363,526" Click="DeleteButton_Click"/>
 
         <ListBox x:Name="ChangeFoodList" Margin="99,86,32,500"/>
         <ScrollBar Margin="427,1,0.8,0"/>

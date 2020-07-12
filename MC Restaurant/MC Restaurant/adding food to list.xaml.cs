@@ -34,24 +34,39 @@ namespace MC_Restaurant
             }
             else
             {
+
                 var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
-                if (listOfFood.Text != "")
+                if (listOfFood.Text != "" && menu != null)
                 {
+
                     var te = menu.Where(x => x.Name == listOfFood.Text).First();
                     NumberOfFood.Text = $"{te.RemainingNumber}";
+                }
+                else
+                {
+                    NumberOfFood.Text = 0.ToString();
                 }
 
             }
         }
-
         private void plus_Click(object sender, RoutedEventArgs e)
         {
+            if (Title.Text == "manager add" )
+            {
 
+            }
         }
-
         private void mines_Click(object sender, RoutedEventArgs e)
         {
-
+            if (NumberOfFood.Text == "1")
+            {
+                mines.IsEnabled = false;
+                NumberOfFood.Text = "0";
+            }
+            else
+            {
+                NumberOfFood.Text = (int.Parse(NumberOfFood.Text) - 1).ToString();
+            }
         }
     }
 }

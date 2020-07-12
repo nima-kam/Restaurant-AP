@@ -30,7 +30,9 @@ namespace MC_Restaurant
 
         private void AddFoodButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            adding_food_to_list adding_Food_To_List = new adding_food_to_list();
+            adding_Food_To_List.Title.Text = "manager add";
+
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
