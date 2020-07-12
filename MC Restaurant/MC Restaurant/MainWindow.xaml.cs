@@ -79,6 +79,9 @@ namespace MC_Restaurant
     }
     interface Person
     {
+        /// <summary>
+        /// saving information in a file
+        /// </summary>
         void SaveInfo();
         string FullName { get; }
         string PhoneNum { get;}
@@ -172,7 +175,10 @@ namespace MC_Restaurant
         }
         string _Password;
         Regex PasswordAlg = new Regex(@"\b({8-32}[a-z0-9!#$%&\-*+/?^_~-])\z");
-        public string Password//***
+        Regex passnum = new Regex(@"[0-9]");
+        Regex passAlpha = new Regex(@"[a-zA-Z]");
+        Regex PassSign = new Regex(@"[!@#$%&*\-_?]");
+        public string Password
         {
             protected get
             {
@@ -180,7 +186,7 @@ namespace MC_Restaurant
             }
             set
             {
-                if (PasswordAlg.IsMatch(value))
+                if (PasswordAlg.IsMatch(value)&&passAlpha.IsMatch(value)&&passnum.IsMatch(value)&&PassSign.IsMatch(value))
                     _Password = value;
                 else
                 {
@@ -191,7 +197,6 @@ namespace MC_Restaurant
         public static Customers CurrentCusomer;
         public long TotalBuy { get; protected set; }
         public double Tax{ get; protected set; }
-
         public string Address { get ; set; }
 
         protected void CalculateProfit()
@@ -213,10 +218,21 @@ namespace MC_Restaurant
                 lines.Add(streamReader.ReadLine());
             }
             streamReader.Close();
+            //Name address email password Phonenum id
+            string Newcustomer = $"{this.FullName} {this.Address} {this.Email} {this.Password} {this.PhoneNum} {this._ID}";
+            lines.Add(Newcustomer);
+            StreamWriter stream = new StreamWriter("CustomersInfo.txt");
+            foreach(var item in lines)
+            {
+                stream.WriteLine(item);
+
+            }
+            stream.Close();
         }
     }
     class Manager : Person
     {         
+        public static Restaurant restaurant;
         static public Manager logedInManager=null;
         public string FullName { get ; set ; }
         public string PhoneNum { get ; set; }
@@ -562,13 +578,15 @@ namespace MC_Restaurant
     }
     
     class Food
-    {        
+    {
+        public bool HaveImage;
+        public string ImagePath;
         static List<Food> FoodsMenu = new List<Food>();
         static int foodNumbers = 1;
         public int ID ;
         public string Name { get; private set; }
         public string Ex_Name { get; private set; }
-        public Image FoodImage { get; protected set; }
+        public Image FoodImage { get; set; }
         public int FoodType; 
         public double Price { get; set; }
         public double Ex_Price { get; set; }
@@ -635,7 +653,7 @@ namespace MC_Restaurant
         /// </summary>
         /// <param name="Name"></param>
         /// <returns></returns>
-        static bool IsMatchFoodName(string Name)
+        public static bool IsMatchFoodName(string Name)
         {
             foreach(var item in FoodsMenu)
             {
@@ -792,7 +810,23 @@ namespace MC_Restaurant
             this.Name = Name;
             this.Region = Region;
             this.Address = Address;
-            this.PhoneNum = PhoneNum; 
+            this.PhoneNum = PhoneNum;
+            IsStablished = true;
+            save();
+        }
+        void Initialize()
+        {
+            if (File.Exists("Restaurant.txt"))
+            {
+                IsStablished = true;
+                Manager.
+            }
+        }
+        void save()
+        {
+            StreamWriter writer = new StreamWriter("Restaurant.txt");
+            writer.WriteLine($"{Name} {Region} {Address} {PhoneNum}");
+            writer.Close();
         }
         public void ShowRestaurantInfo()
         {
@@ -800,6 +834,7 @@ namespace MC_Restaurant
                 $" Address: {this.Address} \n Region: {this.Region} \n" +
                 $" Phone number: {this.PhoneNum} \n");
         }
+
         /// <summary>
         /// Gets a date and return its food list.
         /// </summary>

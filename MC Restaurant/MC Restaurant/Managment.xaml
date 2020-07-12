@@ -42,8 +42,9 @@
                 <TextBlock Text="Name:" FontSize="12" FontWeight="Medium" Margin="6,35,372,132"/>
                 <TextBox x:Name="NameFoodBox" Margin="50,33,0,159" HorizontalAlignment="Left" Width="130" />
                 
-                <CheckBox Content="photo" x:Name="PhotoCheck" Margin="238,68,113,123" />
-                <Image Stretch="Fill" Drop="Image_Drop" DragEnter="foodPhoto_DragEnter" x:Name="foodPhoto" AllowDrop="True" DragDrop.DragOver="foodPhoto_DragOver" Width="75" Height="100" Margin="241,93,108,23"/>
+                <CheckBox Checked="PhotoCheck_Checked" Content="photo" x:Name="PhotoCheck" Margin="352,82,-1,109" />
+                <Button IsEnabled="False" x:Name="OpenFileButton" Click="OpenFileButton_Click" Margin="271,77,90,115">Open files</Button>
+                <Image x:Name="NewFoodImage" Margin="287,106,62,10" />
                 <!--type-->
                 <TextBlock Text="type:" FontSize="12" FontWeight="Medium" Margin="235,31,143,161"/>
                 <ComboBox x:Name="TypefoodCombo" Margin="271,29,90,163" IsEditable="True" />
@@ -53,7 +54,7 @@
                 <!--ingridient-->
                 <TextBlock Text="ingredient:" FontSize="12" FontWeight="Medium" Margin="4,130,351,37"/>
                 <TextBox x:Name="ingredientBox" TextWrapping="Wrap"  Margin="65,132,0,27" HorizontalAlignment="Left" Width="116" />
-                <Button x:Name="NewFoodButton" Content="New" Margin="345,163,12,25" Click="NewFoodButton_Click"/>
+                <Button x:Name="NewFoodButton" Content="New" Margin="195,178,162,10" Click="NewFoodButton_Click"/>
 
 
 

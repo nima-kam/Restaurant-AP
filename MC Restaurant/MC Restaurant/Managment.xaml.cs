@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 namespace MC_Restaurant
 {
@@ -19,6 +21,7 @@ namespace MC_Restaurant
     /// </summary>
     public partial class Managment : Window
     {
+        public static string ImagePath;
         public Managment()
         {
             InitializeComponent();
@@ -42,42 +45,95 @@ namespace MC_Restaurant
 
         private void ShowDateButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Food> datelist;
-            if (MenuDate.SelectedDate != null)
+            try
             {
-                datelist= Restaurant.ReadDateFood(MenuDate.SelectedDate ?? default);
-                foreach(var f in datelist)
+                List<Food> datelist;
+                if (MenuDate.SelectedDate != null)
                 {
-                    var text = new TextBlock();
-                    text.Text = $"Food name:{f.Name}  Amount:{f.RemainingNumber}";
-                    text.FontWeight = FontWeight.FromOpenTypeWeight(3);
-                    ChangeFoodList.Items.Add(text);
+                    datelist = Restaurant.ReadDateFood(MenuDate.SelectedDate ?? default);
+                    foreach (var f in datelist)
+                    {
+                        if (f.RemainingNumber != 0)
+                        {
+                            var text = new TextBlock();
+                            text.Text = $"Food name:{f.Name}  Amount:{f.RemainingNumber}";
+                            text.FontWeight = FontWeight.FromOpenTypeWeight(3);
+                            ChangeFoodList.Items.Add(text);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please enter the date first.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please enter the date first.");
+                MessageBox.Show(ex.Message);
             }
-        }
 
-        private void foodPhoto_DragOver(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void foodPhoto_DragEnter(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void Image_Drop(object sender, DragEventArgs e)
-        {
-
-        }
+        }      
 
         private void NewFoodButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Restaurant.IsStablished = true;
+                if (!Food.IsMatchFoodName(NameFoodBox.Text))
+                {
+                    if (FooDType.Foodtype.Any(x => x.Value == TypefoodCombo.Text))
+                    {
+                        var newFood = new Food(NameFoodBox.Text, TypefoodCombo.Text, double.Parse(PriceBox.Text), ingredientBox.Text);
+                        if (PhotoCheck.IsChecked == true)
+                        {
+                            newFood.HaveImage = true;
+                            newFood.ImagePath = ImagePath;
+                            newFood.FoodImage = NewFoodImage;
+                        }
+                    }
+                    else
+                    {
+                        FooDType.add(TypefoodCombo.Text);
+                        var newFood = new Food(NameFoodBox.Text, TypefoodCombo.Text, double.Parse(PriceBox.Text), ingredientBox.Text);
 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = false;
+                openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                Uri imageUri = new Uri(openFileDialog.FileName, UriKind.Relative);
+                BitmapImage imageBitmap = new BitmapImage(imageUri);
+                ImagePath = openFileDialog.FileName;
+                NewFoodImage.Source = imageBitmap;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void PhotoCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            if (PhotoCheck.IsChecked == true)
+            {
+                OpenFileButton.IsEnabled = true;
+            }
+            else
+            {
+                OpenFileButton.IsEnabled = false;
+            }
         }
     }
 }
