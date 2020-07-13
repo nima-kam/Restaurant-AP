@@ -65,6 +65,14 @@ namespace MC_Restaurant {
         #line hidden
         
         
+        #line 31 "..\..\manager login.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button restaurant;
+        
+        #line default
+        #line hidden
+        
+        
         #line 33 "..\..\manager login.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BackButton;
@@ -118,6 +126,15 @@ namespace MC_Restaurant {
             #line hidden
             return;
             case 4:
+            this.restaurant = ((System.Windows.Controls.Button)(target));
+            
+            #line 31 "..\..\manager login.xaml"
+            this.restaurant.Click += new System.Windows.RoutedEventHandler(this.restaurant_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 5:
             this.BackButton = ((System.Windows.Controls.Button)(target));
             
             #line 33 "..\..\manager login.xaml"

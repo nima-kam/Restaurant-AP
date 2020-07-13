@@ -18,9 +18,7 @@
         </Grid.Background>
         <!--change food menu-->
         <Border BorderThickness="2" BorderBrush="Black" Margin="0,0,18,485" RenderTransformOrigin="0.501,0.501">
-
             <Button x:Name="AddFoodButton" Content="New" Margin="15.4,87.4,342,161.4" Click="AddFoodButton_Click"/>
-
         </Border>
         
         <Button x:Name="EditButton" Content="Edit " Margin="18,159,362,579" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5">

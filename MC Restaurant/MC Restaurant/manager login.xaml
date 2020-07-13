@@ -23,12 +23,12 @@
             <TextBlock Text="Login" Margin="36,61,111.6,-54" Foreground="SeaGreen" FontSize="22" Grid.ColumnSpan="2"/>
             <!--user name-->
             <TextBlock Text="Username " Margin="38,122,3.2,-122.8"/>
-            <TextBox x:Name="ManagerName" Margin="81,140,10.6,-127.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
+            <TextBox x:Name="ManagerName" Margin="81,140,9.6,-127.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
             <!--password-->
             <TextBlock Text="Password " Margin="37,176,10.2,-164.8"/>
             <PasswordBox PasswordChar="Y" x:Name="ManagerPassword" Margin="81,199,9.6,-186.8" Height="27" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.679,0.598"/>
-            <Button x:Name="loginbutton" Content="sign in" Background="OldLace" Click="loginbutton_Click" Margin="16.8,267,21.6,-254.8" Grid.Column="1" IsDefault="True"/>
-
+            <Button x:Name="loginbutton" Content="sign in" Background="OldLace" Click="loginbutton_Click" Margin="29.2,267,9.6,-254.8" Grid.Column="1" IsDefault="True"/>
+            <Button Background="Lavender" x:Name="restaurant" Content="Restaurant" Click="restaurant_Click" Grid.ColumnSpan="2" Margin="63,267,92.6,-254.8"/>
         </Grid>
         <Button x:Name="BackButton" FontWeight="DemiBold" Content="back" Background="Azure" Click="BackButton_Click" Margin="266,0,16.6,0" Height="28" IsCancel="True"/>
 
