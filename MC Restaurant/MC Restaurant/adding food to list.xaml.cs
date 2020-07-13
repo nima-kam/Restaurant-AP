@@ -53,6 +53,14 @@ namespace MC_Restaurant
         {
             if (Title.Text == "manager add" )
             {
+                if (listOfFood.Text != "" && DateList.SelectedDate != null)
+                {
+                    NumberOfFood.Text = (int.Parse(NumberOfFood.Text) + 1).ToString();
+                }
+                else
+                {
+                   MessageBox.Show("Please select date and food first.");
+                }
 
             }
         }
@@ -66,6 +74,21 @@ namespace MC_Restaurant
             else
             {
                 NumberOfFood.Text = (int.Parse(NumberOfFood.Text) - 1).ToString();
+            }
+        }
+
+        private void changeFoodNumber_Click(object sender, RoutedEventArgs e)
+        {
+            if (listOfFood.Text != "" && DateList.SelectedDate != null)
+            {
+                if (Title.Text == "manager add")
+                {                    
+                    Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int .Parse (NumberOfFood.Text)), DateList.SelectedDate ?? default);
+                    MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
+                }
+            else
+            {
+                MessageBox.Show("Please select date and food first.");
             }
         }
     }

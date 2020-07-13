@@ -35,5 +35,6 @@
         <ComboBox x:Name="listOfFood" Margin="87,71,238.4,64.6" SelectionChanged="listOfFood_SelectionChanged" />
 
         <DatePicker x:Name="DateList" Margin="292,13,38.4,117.6" RenderTransformOrigin="0.544,0.8" />
+        <Button x:Name="changeFoodNumber" Content="Confirm" Click="changeFoodNumber_Click" Margin="174,120,204.4,15.6"/>
     </Grid>
 </Window>

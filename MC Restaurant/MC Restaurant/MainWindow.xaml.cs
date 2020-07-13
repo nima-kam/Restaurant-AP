@@ -610,7 +610,12 @@ namespace MC_Restaurant
             }
             SetFinalPrice();            
         }
-        
+        /// <summary>
+        /// Find and return a food by its name
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="availableNum"></param>
+        /// <returns></returns>
         public static Food findFoodByName(string Name, int availableNum)
         {
             if (!IsMatchFoodName(Name))
@@ -856,6 +861,7 @@ namespace MC_Restaurant
                 else
                 {
                     MessageBox.Show("No food added yet.");
+                    CalanderFood.Add(date, foods);
                     return foods;
                 }
             }
@@ -933,11 +939,11 @@ namespace MC_Restaurant
             }
         }
         /// <summary>
-        /// adding a food to a specific date.
+        /// Adding an amount of food to a specific date.
         /// </summary>
         /// <param name="food"></param>
         /// <param name="date"></param>
-        public void AddFood(Food food, DateTime date)
+        public static void AddFood(Food food, DateTime date)
         {
             if (DateTime.Today.CompareTo(date) >= 0)
             {
