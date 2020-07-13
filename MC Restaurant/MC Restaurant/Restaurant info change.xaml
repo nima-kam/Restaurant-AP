@@ -23,7 +23,7 @@
                 </Run.Background>
             </Run></TextBlock>
         <!--Name-->
-        <CheckBox x:Name="ResNameCheck" Content="Change Name" Margin="280,67,42.8,192.4" Foreground="#FFFFED01"/>
+        <CheckBox x:Name="ResNameCheck" Content="Change Name" Margin="280,67,42.8,219" Foreground="#FFFFED01"/>
         <TextBlock Foreground="Yellow" FontSize="13" FontWeight="DemiBold" Text="Name:" Margin="60,63,325.8,214.4"/>
         <TextBox x:Name="RestaurantNameBox" Margin="109,61,183.2,0" Height="27" VerticalAlignment="Top" />
         <!--PhoneNumber-->
@@ -35,9 +35,9 @@
         <!--Address-->
         <TextBlock Foreground="Cyan" FontSize="13" FontWeight="DemiBold" Text="Address:" Margin="48,226,338.8,59.6"/>
         <TextBox x:Name="ResAddressBox" Margin="109,222,183.2,0" Height="27" VerticalAlignment="Top" />
-        <CheckBox x:Name="ResNameCheck_Copy" Content="Change Number" Margin="280,117,31.8,179.4" Foreground="GreenYellow"/>
-        <CheckBox x:Name="ResNameCheck_Copy1" Content="Change region" Margin="280,173,31.8,99.4" Foreground="#FF5706CD"/>
-        <CheckBox x:Name="ResNameCheck_Copy2" Content="Change Address" Margin="279,228,32.8,33.4" Foreground="#FF2CEAFF"/>
+        <CheckBox x:Name="ResNumberCheck" Content="Change Number" Margin="280,117,31.8,171" Foreground="GreenYellow"/>
+        <CheckBox x:Name="ResRegionCheck" Content="Change region" Margin="280,173,31.8,109" Foreground="#FF5706CD"/>
+        <CheckBox x:Name="ResAddressCheck" Content="Change Address" Margin="279,228,32.8,49" Foreground="#FF2CEAFF"/>
         <Button x:Name="loginbutton" Content="sign in" Background="#FFFFC65B" Click="loginbutton_Click" Margin="0,273,219.8,16" IsDefault="True" HorizontalAlignment="Right" Width="78"/>
 
     </Grid>
