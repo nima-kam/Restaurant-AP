@@ -32,13 +32,16 @@ namespace MC_Restaurant
         {
             adding_food_to_list adding_Food_To_List = new adding_food_to_list();
             adding_Food_To_List.Title.Text = "Manager add";
+           var source =  Food.FoodsMenu.Select(x => x.Name);
+            adding_Food_To_List.listOfFood.ItemsSource = source;
             adding_Food_To_List.Show();
         }       
-
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             adding_food_to_list adding_Food_To_List = new adding_food_to_list();
             adding_Food_To_List.Title.Text = "Manager edit";
+            var source = Food.FoodsMenu.Select(x => x.Name);
+            adding_Food_To_List.listOfFood.ItemsSource = source;
             adding_Food_To_List.Show();
 
         }

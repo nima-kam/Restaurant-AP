@@ -582,7 +582,7 @@ namespace MC_Restaurant
     {
         public bool HaveImage;
         public string ImagePath;
-        static List<Food> FoodsMenu = new List<Food>();
+        public static List<Food> FoodsMenu = new List<Food>();
         static int foodNumbers = 1;
         public int ID ;
         public string Name { get; private set; }
@@ -870,7 +870,7 @@ namespace MC_Restaurant
                 throw new Exception("Entered date is no longer accessable.");
             }
         }
-        public static void SaveCalander()//***
+        public static void SaveCalander()
         {
             if (!File.Exists(@"Calander.txt"))
             {
