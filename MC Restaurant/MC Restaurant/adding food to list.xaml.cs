@@ -97,13 +97,22 @@ namespace MC_Restaurant
             {
                 if (Title.Text == "manager add")
                 {
-                    Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text)), DateList.SelectedDate ?? default);
+
+                    var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                    var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                    
+                    Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text)-te.RemainingNumber), DateList.SelectedDate ?? default);
                     MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
 
                 }
-                else
+                else//for the deleting numbers of food***.
                 {
-
+                    var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                    if (menu.Any(x => x.Name == listOfFood.Text))
+                    {
+                        var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                        te.RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
+                    }
                 }
             }
             else
