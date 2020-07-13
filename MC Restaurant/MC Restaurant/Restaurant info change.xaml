@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Restaurant_info_change" Height="547.159" Width="450.994">
-    <Grid>
+        Title="Restaurant_info_change" Height="349.293" Width="450.994">
+    <Grid >
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0"/>
@@ -14,7 +14,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <TextBlock Margin="13,13,171.8,467.6" Foreground="#fc1" FontSize="22"><Run Text="Restaurant inforamation">
+        <TextBlock Margin="13,13,171.8,220.4" Foreground="#fc1" FontSize="22"><Run Text="Restaurant inforamation">
                 <Run.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>
@@ -23,22 +23,22 @@
                 </Run.Background>
             </Run></TextBlock>
         <!--Name-->
-        <CheckBox x:Name="ResNameCheck" Content="Change Name" Margin="280,67,42.8,426.6" Foreground="#FFFFED01"/>
-        <TextBlock Foreground="Yellow" FontSize="13" FontWeight="DemiBold" Text="Name:" Margin="60,63,325.8,362.6"/>
-        <TextBox x:Name="RstaurantNameBox" Margin="109,61,183.2,0" Height="27" VerticalAlignment="Top" />
+        <CheckBox x:Name="ResNameCheck" Content="Change Name" Margin="280,67,42.8,192.4" Foreground="#FFFFED01"/>
+        <TextBlock Foreground="Yellow" FontSize="13" FontWeight="DemiBold" Text="Name:" Margin="60,63,325.8,214.4"/>
+        <TextBox x:Name="RestaurantNameBox" Margin="109,61,183.2,0" Height="27" VerticalAlignment="Top" />
         <!--PhoneNumber-->
-        <TextBlock Foreground="GreenYellow" FontSize="13" FontWeight="DemiBold" Text="PhoneNumber:" Margin="8,115,339.8,327.6"/>
+        <TextBlock Foreground="GreenYellow" FontSize="13" FontWeight="DemiBold" Text="PhoneNumber:" Margin="8,115,339.8,177.4"/>
         <TextBox x:Name="ResPhonenumberBox" Margin="109,112,183.2,0" Height="27" VerticalAlignment="Top" />
         <!--Email-->
-        <TextBlock Foreground="MediumPurple" FontSize="13" FontWeight="DemiBold" Text="E-mail:" Margin="57,173,339.8,264.6"/>
-        <TextBox x:Name="ResEmailBox" Margin="109,168,183.2,0" Height="27" VerticalAlignment="Top" />
+        <TextBlock Foreground="MediumPurple" FontSize="13" FontWeight="DemiBold" Text="region:" Margin="57,173,339.8,98.6"/>
+        <TextBox x:Name="ResRegionBox" Margin="109,168,183.2,0" Height="27" VerticalAlignment="Top" />
         <!--Address-->
-        <TextBlock Foreground="Cyan" FontSize="13" FontWeight="DemiBold" Text="Address:" Margin="48,226,338.8,179.6"/>
-        <TextBox x:Name="AddressBox" Margin="109,222,183.2,0" Height="27" VerticalAlignment="Top" />
-        <CheckBox x:Name="ResNameCheck_Copy" Content="Change Number" Margin="280,117,31.8,376.6" Foreground="GreenYellow"/>
-        <CheckBox x:Name="ResNameCheck_Copy1" Content="Change Email" Margin="280,173,31.8,320.6" Foreground="#FF5706CD"/>
-        <CheckBox x:Name="ResNameCheck_Copy2" Content="Change Address" Margin="279,228,32.8,265.6" Foreground="#FF2CEAFF"/>
-        <Button x:Name="loginbutton" Content="sign in" Background="#FFFFC65B" Click="loginbutton_Click" Margin="0,281,219.8,209.6" IsDefault="True" HorizontalAlignment="Right" Width="78"/>
+        <TextBlock Foreground="Cyan" FontSize="13" FontWeight="DemiBold" Text="Address:" Margin="48,226,338.8,59.6"/>
+        <TextBox x:Name="ResAddressBox" Margin="109,222,183.2,0" Height="27" VerticalAlignment="Top" />
+        <CheckBox x:Name="ResNameCheck_Copy" Content="Change Number" Margin="280,117,31.8,179.4" Foreground="GreenYellow"/>
+        <CheckBox x:Name="ResNameCheck_Copy1" Content="Change region" Margin="280,173,31.8,99.4" Foreground="#FF5706CD"/>
+        <CheckBox x:Name="ResNameCheck_Copy2" Content="Change Address" Margin="279,228,32.8,33.4" Foreground="#FF2CEAFF"/>
+        <Button x:Name="loginbutton" Content="sign in" Background="#FFFFC65B" Click="loginbutton_Click" Margin="0,273,219.8,16" IsDefault="True" HorizontalAlignment="Right" Width="78"/>
 
     </Grid>
 </Window>

@@ -808,8 +808,8 @@ namespace MC_Restaurant
                 }
             }
         }
-        List<Food> ReservedOrder = new List<Food>();
-        List<Food> PayedOrder = new List<Food>();
+        static List<Food> ReservedOrder = new List<Food>();
+        static List<Food> PayedOrder = new List<Food>();
         public Restaurant(string Name,string Address,string Region ,string PhoneNum)
         {
             this.Name = Name;

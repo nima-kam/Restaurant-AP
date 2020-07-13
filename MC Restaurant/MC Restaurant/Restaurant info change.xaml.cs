@@ -26,10 +26,21 @@ namespace MC_Restaurant
 
         private void loginbutton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Manager.restaurant = new Restaurant(RestaurantNameBox.Text,ResAddressBox.Text,ResRegionBox.Text,ResPhonenumberBox.Text);
+                Managment manager_Login = new Managment();
+                this.Visibility = Visibility.Collapsed;
+                manager_Login.Show();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
 
-            
         }
     }
 }
