@@ -80,7 +80,7 @@ namespace MC_Restaurant
         }
         private void mines_Click(object sender, RoutedEventArgs e)
         {
-            if (NumberOfFood.Text == "1")
+            if (NumberOfFood.Text == "1" || NumberOfFood.Text == "0") 
             {
                 mines.IsEnabled = false;
                 NumberOfFood.Text = "0";
@@ -97,11 +97,9 @@ namespace MC_Restaurant
             {
                 if (Title.Text == "manager add")
                 {
-
                     var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
                     var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                    
-                    Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text)-te.RemainingNumber), DateList.SelectedDate ?? default);
+                    Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text) - te.RemainingNumber), DateList.SelectedDate ?? default);
                     MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
 
                 }
