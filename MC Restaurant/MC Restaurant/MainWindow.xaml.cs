@@ -302,7 +302,7 @@ namespace MC_Restaurant
         /// <returns></returns>
         public static bool ManagerNameCheck(string UserName)
         {
-            Regex Name = new Regex(@"\b(?:[a-zA-Z])+a+d+m+i+n*\d\z");
+            Regex Name = new Regex(@"\b(?:[a-zA-Z])+a+d+m+i+n*\d");
             return Name.IsMatch(UserName);
         }
         struct NameLog
@@ -554,9 +554,9 @@ namespace MC_Restaurant
         }
         public static void intializefoodType()
         {
-            if (File.Exists("food type.txt"))
+            if (!File.Exists("food type.txt"))
             {
-                StreamWriter writer = new StreamWriter("food type.txt");
+                StreamWriter writer = new StreamWriter("food type.txt");                
                 writer.Close();
             }
             else
@@ -823,11 +823,16 @@ namespace MC_Restaurant
         {
             if (File.Exists("Restaurant.txt"))
             {
+                
                 IsStablished = true;
                 StreamReader stream = new StreamReader("Restaurant.txt");
                 var str = stream.ReadLine().Split(' ');
                 stream.Close();
                 Manager.restaurant = new Restaurant(str[0] ,str[2],str[1],str[3]);
+            }
+            else
+            {
+                MessageBox.Show("restaurant not stablished.");
             }
         }
         void save()
@@ -835,6 +840,7 @@ namespace MC_Restaurant
             StreamWriter writer = new StreamWriter("Restaurant.txt");
             writer.WriteLine($"{Name} {Region} {Address} {PhoneNum}");
             writer.Close();
+            MessageBox.Show("saved restaurant.");
         }
         public void ShowRestaurantInfo()
         {
@@ -861,6 +867,7 @@ namespace MC_Restaurant
                 else
                 {
                     MessageBox.Show("No food added yet.");
+                    foods = new List<Food>();
                     CalanderFood.Add(date, foods);
                     return foods;
                 }

@@ -6,57 +6,58 @@
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
         Title="Managment" Height="500" Width="450.976">
+    <StackPanel Margin="0,0,-0.2,-294.6">
+        <Grid Margin="0,0,-0.2,-294.6" >
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="1 0" EndPoint=" 1 1" >
+                    <GradientStop Color="Beige" Offset="0" />
+                    <GradientStop Color="Khaki" Offset="0.33" />
+                    <GradientStop Color="YellowGreen" Offset="0.66" />
+                    <GradientStop Color="Green" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <!--change food menu-->
+            <Border BorderThickness="2" BorderBrush="Black" Margin="0,0,18,485" RenderTransformOrigin="0.501,0.501">
+                <Grid>
+                    <Label Content="Changing food menu"  HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" VerticalAlignment="Top" Margin="2,1,0,0" Width="159" Height="52"/>
+                    <Button x:Name="AddFoodButton" Content="New" Margin="15,87,342,159.8" Click="AddFoodButton_Click"/>
+                    <Button x:Name="EditButton" Content="Edit " Margin="15,159,344,87.8" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5"/>
+                    <ListBox x:Name="ChangeFoodList" Margin="99,86,32,9.8"/>
+                    <Button x:Name="ShowDateButton" Content="show" Margin="345,48,33,194.8" Click="ShowDateButton_Click"/>
+                    <!--Date-->
+                    <DatePicker Margin="144,52,148,192.8" x:Name="MenuDate" />
+                    <TextBlock FontSize="12" FontWeight="Medium" Text="Date :" Margin="101,52,255,186.8"/>
 
-    <Grid Margin="0,0,-0.2,-294.6" >
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="1 0" EndPoint=" 1 1" >
-                <GradientStop Color="Beige" Offset="0" />
-                <GradientStop Color="Khaki" Offset="0.33" />
-                <GradientStop Color="YellowGreen" Offset="0.66" />
-                <GradientStop Color="Green" Offset="1.0" />
-            </LinearGradientBrush>
-        </Grid.Background>
-        <!--change food menu-->
-        <Border BorderThickness="2" BorderBrush="Black" Margin="0,0,18,485" RenderTransformOrigin="0.501,0.501">
-            <Button x:Name="AddFoodButton" Content="New" Margin="15.4,87.4,342,161.4" Click="AddFoodButton_Click"/>
-        </Border>
-        
-        <Button x:Name="EditButton" Content="Edit " Margin="18,159,362,579" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5">
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="2"  Margin="0,278,18,268">
+                <Grid>
+                    <Label Content="new food menu"  HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" VerticalAlignment="Top" Margin="2,1,0,0" Width="159" Height="34"/>
+                    <!--Name-->
+                    <TextBlock Text="Name:" FontSize="12" FontWeight="Medium" Margin="6,35,372,132"/>
+                    <TextBox x:Name="NameFoodBox" Margin="50,33,0,159" HorizontalAlignment="Left" Width="130" />
 
-        </Button>
-
-        <ListBox x:Name="ChangeFoodList" Margin="99,86,32,500"/>
-        <ScrollBar Margin="427,1,0.8,0"/>
-        <Label Content="Changing food menu"  HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" VerticalAlignment="Top" Margin="2,1,0,0" Width="159" Height="52"/>
-        <Button x:Name="ShowDateButton" Content="show" Margin="345,48,33,689" Click="ShowDateButton_Click"/>
-        <!--Date-->
-        <DatePicker Margin="144,52,148,689" x:Name="MenuDate" />
-        <TextBlock FontSize="12" FontWeight="Medium" Text="Date :" Margin="101,52,255,682"/>
-        <Border BorderBrush="Black" BorderThickness="2"  Margin="0,278,18,268">
-            <Grid>
-                <Label Content="new food menu"  HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" VerticalAlignment="Top" Margin="2,1,0,0" Width="159" Height="34"/>
-                <!--Name-->
-                <TextBlock Text="Name:" FontSize="12" FontWeight="Medium" Margin="6,35,372,132"/>
-                <TextBox x:Name="NameFoodBox" Margin="50,33,0,159" HorizontalAlignment="Left" Width="130" />
-                
-                <CheckBox Checked="PhotoCheck_Checked" Content="photo" x:Name="PhotoCheck" Margin="352,82,-1,109" />
-                <Button IsEnabled="False" x:Name="OpenFileButton" Click="OpenFileButton_Click" Margin="271,77,90,115">Open files</Button>
-                <Image x:Name="NewFoodImage" Margin="287,106,62,10" />
-                <!--type-->
-                <TextBlock Text="type:" FontSize="12" FontWeight="Medium" Margin="235,31,143,161"/>
-                <ComboBox x:Name="TypefoodCombo" Margin="271,29,90,163" IsEditable="True" />
-                <!--price-->
-                <TextBlock Text="Price:" FontSize="12" FontWeight="Medium" Margin="6,83,372,84"/>
-                <TextBox x:Name="PriceBox" Margin="50,82,0,111" HorizontalAlignment="Left" Width="130" />
-                <!--ingridient-->
-                <TextBlock Text="ingredient:" FontSize="12" FontWeight="Medium" Margin="4,130,351,37"/>
-                <TextBox x:Name="ingredientBox" TextWrapping="Wrap"  Margin="65,132,0,27" HorizontalAlignment="Left" Width="116" />
-                <Button x:Name="NewFoodButton" Content="New" Margin="195,178,162,10" Click="NewFoodButton_Click"/>
+                    <CheckBox Checked="PhotoCheck_Checked" Content="photo" x:Name="PhotoCheck" Margin="352,82,-1,109" />
+                    <Button IsEnabled="False" x:Name="OpenFileButton" Click="OpenFileButton_Click" Margin="271,77,90,115">Open files</Button>
+                    <Image x:Name="NewFoodImage" Margin="287,106,62,10" />
+                    <!--type-->
+                    <TextBlock Text="type:" FontSize="12" FontWeight="Medium" Margin="235,31,143,161"/>
+                    <ComboBox x:Name="TypefoodCombo" Margin="271,29,90,163" IsEditable="True" />
+                    <!--price-->
+                    <TextBlock Text="Price:" FontSize="12" FontWeight="Medium" Margin="6,83,372,84"/>
+                    <TextBox x:Name="PriceBox" Margin="50,82,0,111" HorizontalAlignment="Left" Width="130" />
+                    <!--ingridient-->
+                    <TextBlock Text="ingredient:" FontSize="12" FontWeight="Medium" Margin="4,130,351,37"/>
+                    <TextBox x:Name="ingredientBox" TextWrapping="Wrap"  Margin="65,132,0,27" HorizontalAlignment="Left" Width="116" />
+                    <Button x:Name="NewFoodButton" Content="New" Margin="195,178,162,10" Click="NewFoodButton_Click"/>
 
 
 
-            </Grid>
-        </Border>
-
-    </Grid>
+                </Grid>
+            </Border>
+            <ScrollBar Height="auto"  Margin="427,4,1,295.6"/>
+        </Grid>
+       
+    </StackPanel>
+    
 </Window>

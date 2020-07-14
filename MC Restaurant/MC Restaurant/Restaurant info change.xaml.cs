@@ -32,6 +32,7 @@ namespace MC_Restaurant
                 {
                     if (RestaurantNameBox.Text == "" || ResAddressBox.Text == "" || ResRegionBox.Text == "" || ResPhonenumberBox.Text == "") 
                     Manager.restaurant = new Restaurant(RestaurantNameBox.Text, ResAddressBox.Text, ResRegionBox.Text, ResPhonenumberBox.Text);
+                    MessageBox.Show("restaurant stablisted");
                 }
                 else
                 {
@@ -43,8 +44,7 @@ namespace MC_Restaurant
                        Name =  RestaurantNameBox.Text;
                     }
                     else
-                    {
-                       
+                    {                       
                         Name = Manager.restaurant.Name;
                     }
                     string address;
@@ -83,21 +83,16 @@ namespace MC_Restaurant
                     {
                         Phone = Manager.restaurant.PhoneNum;
                     }
-                    Manager.restaurant = new Restaurant(Name,address,region, Phone);
-                    
+                    Manager.restaurant = new Restaurant(Name,address,region, Phone);                    
                 }
                 Managment manager_Login = new Managment();
                 this.Visibility = Visibility.Collapsed;
                 manager_Login.Show();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-
         }
     }
 }
