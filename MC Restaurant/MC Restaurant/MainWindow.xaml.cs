@@ -91,9 +91,9 @@ namespace MC_Restaurant
     }
     class Customers : Buy,Person
     {
+        #region Properties
         string _FullName;
-        Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");
-        
+        Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");        
         public string FullName
         {
             get
@@ -110,10 +110,8 @@ namespace MC_Restaurant
                 {
                     throw new Exception("Name not valid.");
                 }
-
             }
         }
-
         string _phoneNum;
         Regex phoneAlg = new Regex(@"{8-12}((?:\+)+\d[0-9])");
         public string PhoneNum
@@ -198,6 +196,16 @@ namespace MC_Restaurant
         public long TotalBuy { get; protected set; }
         public double Tax{ get; protected set; }
         public string Address { get ; set; }
+        #endregion
+
+        public Customers(string name, string Phone , string Email,string ID)
+        {
+            this.FullName = name;
+            this.PhoneNum = Phone;
+            this.Email = Email;
+            this.IDataObject = ID;
+        }
+
 
         protected void CalculateProfit()
         {
@@ -232,7 +240,8 @@ namespace MC_Restaurant
         }
     }
     class Manager : Person
-    {         
+    {
+        public static bool isInitialized = false;
         public static Restaurant restaurant;
         static public Manager logedInManager=null;
         public string FullName { get ; set ; }
@@ -816,7 +825,7 @@ namespace MC_Restaurant
             this.Region = Region;
             this.Address = Address;
             this.PhoneNum = PhoneNum;
-            IsStablished = true;
+            Restaurant.IsStablished = true;
             this.save();
         }
         public static void Initialize()
@@ -990,25 +999,24 @@ namespace MC_Restaurant
                 throw new Exception("Entered date is no longer accessable.");
             }
         }
-
-
     }
-
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
+    /// </summary> 
     public partial class MainWindow : Window
     {
+        public static bool isInitialized = false;
         public MainWindow()
         {
             InitializeComponent();
-            Restaurant.Initialize();
-            FooDType.intializefoodType();
-            Food.IntializeFoods();
-            Restaurant.InitializeCalander();
-            
+            if (Manager.isInitialized == false)
+            {
+                Restaurant.Initialize();
+                FooDType.intializefoodType();
+                Food.IntializeFoods();
+                Restaurant.InitializeCalander();
+                Manager.isInitialized = true;
+            }            
         }       
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Registeration" Height="450" Width="300" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
-    <StackPanel >
+        Title="Registeration" Height="397.2" Width="300" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
+    <StackPanel Margin="0,0,-0.4,0.6" >
         <StackPanel.Background>
             <LinearGradientBrush StartPoint="1 0" EndPoint=" 1 1" >
                 <GradientStop Color="LightBlue" Offset="0.05" />
@@ -77,13 +77,7 @@
             <TextBox x:Name="EmailBox" Grid.ColumnSpan="2" Margin="120,5,14.6,11"/>
 
         </Grid>
-        <Grid Height="61" Margin="0,0,-0.4,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            
-        </Grid>
+        
         <!--confirm button-->
         <Grid Height="51" Margin="0,0,0,0">
             <Button Background="#1f5"  Click="ConfirmButton_Click" x:Name="ConfirmButton" Content="Confirm" Margin="50,49,156.6,-24"/>
