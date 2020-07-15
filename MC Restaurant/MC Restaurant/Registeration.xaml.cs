@@ -28,5 +28,12 @@ namespace MC_Restaurant
         {
 
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Collapsed;
+            main.Show();
+        }
     }
 }

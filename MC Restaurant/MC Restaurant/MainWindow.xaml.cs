@@ -797,7 +797,7 @@ namespace MC_Restaurant
             }
             private set
             {
-                Regex Phone = new Regex(@"\A*\++\A[09]{9-12}\d\z");
+                Regex Phone = new Regex(@"^\+?(9|0){0,2}\d{9,12}");
                 if (Phone.IsMatch(value))
                 {
                     _PhoneNum = value;
@@ -817,7 +817,7 @@ namespace MC_Restaurant
             this.Address = Address;
             this.PhoneNum = PhoneNum;
             IsStablished = true;
-            save();
+            this.save();
         }
         public static void Initialize()
         {
@@ -828,7 +828,7 @@ namespace MC_Restaurant
                 StreamReader stream = new StreamReader("Restaurant.txt");
                 var str = stream.ReadLine().Split(' ');
                 stream.Close();
-                Manager.restaurant = new Restaurant(str[0] ,str[2],str[1],str[3]);
+                Manager.restaurant = new Restaurant(str[0], str[str.Length-2], str[1], str[str.Length - 1]);
             }
             else
             {
@@ -837,6 +837,8 @@ namespace MC_Restaurant
         }
         void save()
         {
+            this.Name = this.Name.Replace(' ', '_');
+            this.Address = this.Address.Replace(' ', '_');
             StreamWriter writer = new StreamWriter("Restaurant.txt");
             writer.WriteLine($"{Name} {Region} {Address} {PhoneNum}");
             writer.Close();

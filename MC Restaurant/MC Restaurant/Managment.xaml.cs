@@ -110,13 +110,18 @@ namespace MC_Restaurant
             try
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.CheckFileExists = true;
+                openFileDialog.CheckPathExists = true;  
                 openFileDialog.Multiselect = false;
                 openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                openFileDialog.ShowDialog();
+                MessageBox.Show(openFileDialog.FileName);
                 Uri imageUri = new Uri(openFileDialog.FileName, UriKind.Relative);
                 BitmapImage imageBitmap = new BitmapImage(imageUri);
                 ImagePath = openFileDialog.FileName;
                 NewFoodImage.Source = imageBitmap;
+                
             }
             catch (Exception ex)
             {

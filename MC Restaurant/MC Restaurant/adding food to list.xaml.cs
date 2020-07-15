@@ -54,7 +54,7 @@ namespace MC_Restaurant
         }
         private void plus_Click(object sender, RoutedEventArgs e)
         {
-            if (Title.Text == "manager add" )
+            if (Title.Text == "Manager add" )
             {
                 if (listOfFood.Text != "" && DateList.SelectedDate != null)
                 {
@@ -70,11 +70,15 @@ namespace MC_Restaurant
                 if (listOfFood.Text != "" && DateList.SelectedDate != null)
                 {
                     var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
-                    var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                    if (NumberOfFood.Text == te.RemainingNumber.ToString()) 
+                    if (menu.Any(x => x.Name == listOfFood.Text))
                     {
-                        MessageBox.Show($"The max number of the specified date is {NumberOfFood.Text} and no more food can be deleted.");
+                        var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                        if (NumberOfFood.Text == te.RemainingNumber.ToString())
+                        {
+                            MessageBox.Show($"The max number of the specified date is {NumberOfFood.Text} and no more food can be deleted.");
+                        }
                     }
+                    
                 }
             }
         }
@@ -95,9 +99,10 @@ namespace MC_Restaurant
         {
             if (listOfFood.Text != "" && DateList.SelectedDate != null)
             {
-                if (Title.Text == "manager add")
+                if (Title.Text == "Manager add")
                 {
                     var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+
                     var te = menu.Where(x => x.Name == listOfFood.Text).First();
                     Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text) - te.RemainingNumber), DateList.SelectedDate ?? default);
                     MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");

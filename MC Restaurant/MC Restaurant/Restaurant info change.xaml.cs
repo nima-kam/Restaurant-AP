@@ -30,9 +30,15 @@ namespace MC_Restaurant
             {
                 if (Restaurant.IsStablished == false)
                 {
-                    if (RestaurantNameBox.Text == "" || ResAddressBox.Text == "" || ResRegionBox.Text == "" || ResPhonenumberBox.Text == "") 
-                    Manager.restaurant = new Restaurant(RestaurantNameBox.Text, ResAddressBox.Text, ResRegionBox.Text, ResPhonenumberBox.Text);
-                    MessageBox.Show("restaurant stablisted");
+                    if (RestaurantNameBox.Text != "" && ResAddressBox.Text != "" && ResRegionBox.Text != "" &&  ResPhonenumberBox.Text != "")
+                    {
+                        Manager.restaurant = new Restaurant(RestaurantNameBox.Text, ResAddressBox.Text, ResRegionBox.Text, ResPhonenumberBox.Text);
+                        MessageBox.Show("restaurant stablisted");
+                    }
+                    else
+                    {
+                        throw new Exception("please fill the blank.");
+                    }
                 }
                 else
                 {
@@ -57,7 +63,6 @@ namespace MC_Restaurant
                     }
                     else
                     {
-
                         address = Manager.restaurant.Address;
                     }
                     string region;

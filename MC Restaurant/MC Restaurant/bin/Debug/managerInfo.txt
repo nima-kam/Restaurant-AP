@@ -1,4 +1,4 @@
 UserName LoginTimes
 Nimaadmin1 2
 nimaadmin1 1
-nimaadmin123 2
+nimaadmin123 10

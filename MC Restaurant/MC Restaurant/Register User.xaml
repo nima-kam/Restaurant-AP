@@ -13,7 +13,7 @@
                 <GradientStop Color="Gold" Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
-        
+
         <Label Content="Registeration" FontWeight="DemiBold" FontSize="15" Foreground="DarkBlue" Margin="13,11,303.2,378.4"/>
         <TextBlock x:Name="UserAlarmBlock" FontSize="13" FontWeight="DemiBold" TextWrapping="Wrap" Margin="277,59,4.2,311.4"/>
         <!--user name-->
@@ -36,8 +36,8 @@
         <PasswordBox x:Name="Passwordbox_Copy" Margin="108,322,183.2,0" Height="27" VerticalAlignment="Top" />
         <!--pass not match alarm-->
         <TextBlock x:Name="PassMatchingBlock" FontSize="13" FontWeight="DemiBold" Foreground="DarkRed" TextWrapping="Wrap" Margin="275,274,6.2,92.4"/>
-        <Button Background="LawnGreen" ClickMode="Release" Click="RegisterButton_Click" BorderBrush="DarkBlue" FontWeight="DemiBold" Foreground="DarkBlue" ForceCursor="True" x:Name="RegisterButton" Content="Register" Margin="178,371,181.2,0" Height="26" VerticalAlignment="Top" IsDefault="True"/>
-        <Button x:Name="BackButton" FontWeight="DemiBold" Content="back" Background="Crimson" Click="BackButton_Click" Margin="107,370,261.2,44.4" IsCancel="True"/>
+        <Button Background="LawnGreen" ClickMode="Release" Click="RegisterButton_Click" BorderBrush="DarkBlue" FontWeight="DemiBold" Foreground="DarkBlue" ForceCursor="True" x:Name="RegisterButton" Content="Register" Margin="178,368,181.2,0" Height="30" VerticalAlignment="Top" IsDefault="True"/>
+        <Button x:Name="BackButton" FontWeight="DemiBold" Content="back" Background="Crimson" Click="BackButton_Click" Margin="107,368,261.2,44.4" IsCancel="True"/>
 
     </Grid>
 </Window>

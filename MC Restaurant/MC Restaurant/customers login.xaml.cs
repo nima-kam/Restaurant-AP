@@ -28,7 +28,7 @@ namespace MC_Restaurant
 
         private void Registerbutton_Click(object sender, RoutedEventArgs e)
         {
-            Register_User user = new Register_User();
+            Registeration user = new Registeration();
             this.Visibility = Visibility.Collapsed;
             user.Show(); 
         }      
