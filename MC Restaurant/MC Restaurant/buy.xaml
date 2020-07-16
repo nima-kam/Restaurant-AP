@@ -5,20 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="buy" Height="470" Width="450" Background="OldLace" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
-    <Border Background="#f99" BorderThickness="2" BorderBrush="AliceBlue" Margin="0,0,0.2,303.8">
-        <Grid  >
-            <!--filtering food-->
-            <TextBlock Text="Filter foods by:" FontWeight="DemiBold" Margin="13,7,339,98.6"/>
-            <ComboBox x:Name="filter_combo" Margin="105,4,235,102.6">
-                <ComboBoxItem x:Name="namefilter" Content="Food Name"/>
-                <ComboBoxItem x:Name="typefilter" Content="Food type"/>
-            </ComboBox>
-            <Button x:Name="ShowItemButton" Content="Show Food" Background="Beige" FontWeight="DemiBold" Click="ShowItemButton_Click" Margin="305,44,26,57.6" />
+        Title="buy" Height="470" Width="589" Background="OldLace" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
+    <StackPanel>
+        <StackPanel.Background>
+            <RadialGradientBrush  GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.6" RadiusY="0.5">
+                <RadialGradientBrush.GradientStops>
+                    <GradientStop Color="Orange" Offset="0" />
+                    <GradientStop Color="Honeydew" Offset="1.2" />
+                </RadialGradientBrush.GradientStops>
+            </RadialGradientBrush>
+
+        </StackPanel.Background>
+        <Border  BorderThickness="2" BorderBrush="AliceBlue" Margin="0,0,0,303.8" Height="348">
+
+            <Grid Margin="0,0,0,0"  >
+
+                <Label BorderBrush="Green" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Order Menu" Margin="-3,-4,321.2,230.8"  />
+                <Button x:Name="AddFoodButton" Content="Add to order" Margin="11,45,483.2,272.8" Click="AddFoodButton_Click"/>
+                <Button x:Name="EditButton" Content="Edit order" Margin="11,82,483.2,236.8" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5"/>
+                <ListBox x:Name="ChangeFoodList" Margin="11,114,14.2,9.8"/>
+                <CheckBox x:Name="FilterNameCheck" FontWeight="DemiBold" Content="Filter By Name" Margin="122,50,349.2,269.8" />
+                <!--Date-->
+                <Label BorderBrush="Green" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Show order Menu" Margin="258,-3,-1.8,230.8" />
+                <DatePicker Margin="351,50,116.2,266.8" x:Name="MenuDate" />
+                <TextBlock FontSize="12" FontWeight="Medium" Text="Date :" Margin="302,50,198.2,266.8"/>
+                <Button x:Name="ShowItemButton" Content="Show Order" Background="Beige" FontWeight="DemiBold" Click="ShowItemButton_Click" Margin="480,50,20.2,266.8" />
+                <CheckBox x:Name="FilterTypeCheck" FontWeight="DemiBold" Content="Filter By Type" Margin="122,85,349.2,234.8" />
+                <CheckBox x:Name="AllOrderCheck" FontWeight="DemiBold" Content="Show all orders" Margin="455,89,16.2,230.8" Checked="CheckBox_Checked" />
 
 
-        </Grid>
-        
-        
-    </Border>
+            </Grid>
+
+
+        </Border>
+    </StackPanel>
+
 </Window>
