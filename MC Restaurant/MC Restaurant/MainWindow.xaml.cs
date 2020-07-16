@@ -84,15 +84,15 @@ namespace MC_Restaurant
         /// </summary>
         void SaveInfo();
         string FullName { get; }
-        string PhoneNum { get;}
-        string Address { get;}
+        string PhoneNum { get; }
+        string Address { get; }
         string Email { get; }
     }
-    class Customers : Buy,Person
+    class Customers : Buy, Person
     {
         #region Properties
         string _FullName;
-        Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");        
+        Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");
         public string FullName
         {
             get
@@ -183,7 +183,7 @@ namespace MC_Restaurant
             }
             set
             {
-                if (PasswordAlg.IsMatch(value)&&passAlpha.IsMatch(value)&&passnum.IsMatch(value)&&PassSign.IsMatch(value))
+                if (PasswordAlg.IsMatch(value) && passAlpha.IsMatch(value) && passnum.IsMatch(value) && PassSign.IsMatch(value))
                     _Password = value;
                 else
                 {
@@ -193,13 +193,13 @@ namespace MC_Restaurant
         }
         public static Customers CurrentCusomer;
         public long TotalBuy { get; protected set; }
-        public double Tax{ get; protected set; }
-        public string Address { get ; set; }
+        public double Tax { get; protected set; }
+        public string Address { get; set; }
         #endregion
-        
+
         public static Customers FindCustomers(string UserEN, string Password)
         {
-            if(checkPass(UserEN, Password))
+            if (checkPass(UserEN, Password))
             {
                 StreamReader reader = new StreamReader("CustomersInfo.txt");
                 List<string[]> lines = new List<string[]>();
@@ -210,12 +210,12 @@ namespace MC_Restaurant
                 reader.Close();
                 //Name address email password Phonenum id
                 var te = lines.Where(x => (x[2] == UserEN || x[4] == UserEN) && x[3] == Password).First();
-                var cus = new Customers(te[0],te[1], te[4], te[2], te[5],te[3],true);
+                var cus = new Customers(te[0], te[1], te[4], te[2], te[5], te[3], true);
                 return cus;
             }
             throw new Exception("Email and Phone number or Password not correct.");
         }
-        private Customers(string name, string address, string Phone, string Email, string ID, string Password,bool savefile)
+        private Customers(string name, string address, string Phone, string Email, string ID, string Password, bool savefile)
         {
             this.Address = address;
             this.FullName = name;
@@ -225,7 +225,7 @@ namespace MC_Restaurant
             this.Password = Password;
         }
 
-        public Customers(string name,string address, string Phone , string Email,string ID,string Password)
+        public Customers(string name, string address, string Phone, string Email, string ID, string Password)
         {
             if (Customers.CheckEmail_Phone(Email, Phone))
             {
@@ -237,10 +237,10 @@ namespace MC_Restaurant
             this.Email = Email;
             this.IDataObject = ID;
             this.Password = Password;
-            SaveInfo();             
+            SaveInfo();
         }
-        
-        public static bool checkPass(string UserEN,string Password)
+
+        public static bool checkPass(string UserEN, string Password)
         {
             if (!File.Exists("CustomersInfo.txt"))
             {
@@ -267,7 +267,7 @@ namespace MC_Restaurant
                 }
                 return false;
             }
-        } 
+        }
 
 
 
@@ -277,7 +277,7 @@ namespace MC_Restaurant
         /// <param name="Email"></param>
         /// <param name="Phone"></param>
         /// <returns>If finds the same Email or phone number, return True, Otherwise, return false.</returns>
-        public static bool CheckEmail_Phone(string Email,string Phone)
+        public static bool CheckEmail_Phone(string Email, string Phone)
         {
             if (!File.Exists("CustomersInfo.txt"))
             {
@@ -304,7 +304,7 @@ namespace MC_Restaurant
         }
         protected void CalculateProfit()//**
         {
-            
+
         }
         /// <summary>
         /// save customers info on file.
@@ -332,7 +332,7 @@ namespace MC_Restaurant
             string Newcustomer = $"{this.FullName} {this.Address} {this.Email} {this.Password} {this.PhoneNum} {this._ID}";
             lines.Add(Newcustomer);
             StreamWriter stream = new StreamWriter("CustomersInfo.txt");
-            foreach(var item in lines)
+            foreach (var item in lines)
             {
                 stream.WriteLine(item);
             }
@@ -343,12 +343,12 @@ namespace MC_Restaurant
     {
         public static bool isInitialized = false;
         public static Restaurant restaurant;
-        static public Manager logedInManager=null;
-        public string FullName { get ; set ; }
-        public string PhoneNum { get ; set; }
-        public string Address { get;  }
-        public string Email { get ; set ; }
-        public int LoginTimes { get; } 
+        static public Manager logedInManager = null;
+        public string FullName { get; set; }
+        public string PhoneNum { get; set; }
+        public string Address { get; }
+        public string Email { get; set; }
+        public int LoginTimes { get; }
         public Manager(string FullName, string PassWord, int LoginTimes = 0)
         {
             if (ManagerNameCheck(FullName))
@@ -369,12 +369,12 @@ namespace MC_Restaurant
             {
                 throw new Exception("Username is not in correct format.");
             }
-            
+
         }
-        static string ShowPassword(string Name,int logintime)
+        static string ShowPassword(string Name, int logintime)
         {
             int sound = 0;
-            foreach(char c in Name)
+            foreach (char c in Name)
             {
                 switch (c)
                 {
@@ -387,7 +387,7 @@ namespace MC_Restaurant
                         break;
                 }
             }
-            int one = logintime%10;
+            int one = logintime % 10;
             List<char> pass = new List<char>();
             while (one > 0)
             {
@@ -399,7 +399,7 @@ namespace MC_Restaurant
                 pass.Add('0');
                 --sound;
             }
-            var arr= pass.ToArray();
+            var arr = pass.ToArray();
             return new string(arr);
         }
 
@@ -417,7 +417,7 @@ namespace MC_Restaurant
         {
             public string Name;
             public int LoginNum;
-            public NameLog(string name,int loginNum)
+            public NameLog(string name, int loginNum)
             {
                 this.Name = name;
                 this.LoginNum = loginNum;
@@ -446,7 +446,7 @@ namespace MC_Restaurant
             }
             streamReader.Close();
             var nameLog = new List<NameLog>();
-            for(int i = 1; i < lines.Count; ++i)
+            for (int i = 1; i < lines.Count; ++i)
             {
                 var ss = lines[i].Split(' ');
                 nameLog.Add(new NameLog(ss[0], int.Parse(ss[1])));
@@ -494,8 +494,8 @@ namespace MC_Restaurant
                     var ss = lines[i].Split(' ');
                     nameLog.Add(new NameLog(ss[0], int.Parse(ss[1])));
                 }
-                for(int i = 0; i < nameLog.Count; i++)
-                { 
+                for (int i = 0; i < nameLog.Count; i++)
+                {
                     if (nameLog[i].Name == this.FullName)
                     {
                         lines[i + 1] = $"{this.FullName} {this.LoginTimes}";
@@ -513,17 +513,19 @@ namespace MC_Restaurant
 
     abstract class Buy
     {
+        #region foodList
         public struct FoodList
         {
             public Food food { get; private set; }
             public int FoodNumber { get; private set; }
+            public DateTime Date { get; set; }
 
-            public FoodList(Food food,int N)
+            public FoodList(Food food, int N , DateTime date)
             {
                 this.food = food;
                 this.FoodNumber = N;
-
-            } 
+                this.Date = date;
+            }
             /// <summary>
             /// add or delete a number of foods.
             /// </summary>
@@ -539,45 +541,47 @@ namespace MC_Restaurant
                     throw new Exception("Not enough food available in your list.");
                 }
                 else
-                { 
+                {
                     this.FoodNumber += x;
                 }
             }
         }
-        public List<FoodList> OrderedFood = new List<FoodList>();        
+        #endregion
+
+        public List<FoodList> OrderedFood = new List<FoodList>();
         public double TotalPrice { get; protected set; }
         /// <summary>
-        /// adding food to ordered food
+        /// Adding food to ordered food
         /// </summary>
         /// <param name="NewOrder">the food is going be add.</param>
         /// <param name="Amount">amount of food to be add.</param>
-        public void AddFood(Food NewOrder, int Amount)
+        
+        public void AddFood(Food NewOrder, int Amount,DateTime date)
         {
             if (OrderedFood.Count == 0)
             {
-                OrderedFood.Add(new FoodList(NewOrder, Amount));
+                OrderedFood.Add(new FoodList(NewOrder, Amount,date));
                 MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
             }
             else
             {
-                if (OrderedFood.Where(x => x.food == NewOrder).Count() >= 1)
+                if (OrderedFood.Any(x => x.food == NewOrder && x.Date == date))
                 {
-                    var foods =  OrderedFood.Where(x => x.food == NewOrder).Select(x => x).ToList() ;
+                    var foods = OrderedFood.Where(x => x.food == NewOrder && x.Date == date).Select(x => x).ToList();
                     foods[0].ChangeFoodNum(Amount);
-                    MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
-                }                 
+                    MessageBox.Show($"{NewOrder.FoodType} ordered for date {date} successfully.");
+                }
                 else
                 {
-                    OrderedFood.Add(new FoodList(NewOrder, Amount));
-                    MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
-
+                    OrderedFood.Add(new FoodList(NewOrder, Amount,date));
+                    MessageBox.Show($"{NewOrder.Name} ordered for date {date} successfully.");
                 }
             }
         }
     }
     enum FoodType
     {
-        SeaFood ,Chickenfries,Hamborgar,Pizza,Salad,Sandwich
+        SeaFood, Chickenfries, Hamborgar, Pizza, Salad, Sandwich
     }
     class FooDType
     {
@@ -657,14 +661,14 @@ namespace MC_Restaurant
             StreamWriter stream = new StreamWriter("food type.txt");
             foreach (var it in Foodtype)
             {
-                stream.WriteLine($"{it.Key} {it.Value}");                
+                stream.WriteLine($"{it.Key} {it.Value}");
             }
         }
         public static void intializefoodType()
         {
             if (!File.Exists("food type.txt"))
             {
-                StreamWriter writer = new StreamWriter("food type.txt");                
+                StreamWriter writer = new StreamWriter("food type.txt");
                 writer.Close();
             }
             else
@@ -676,7 +680,7 @@ namespace MC_Restaurant
                     line.Add(reader.ReadLine());
                 }
                 reader.Close();
-                foreach(var it in line)
+                foreach (var it in line)
                 {
                     var str = it.Split(' ');
                     Foodtype.Add(int.Parse(str[0]), str[1]);
@@ -685,29 +689,29 @@ namespace MC_Restaurant
             }
         }
     }
-    
+
     class Food
     {
         public bool HaveImage;
         public string ImagePath;
         public static List<Food> FoodsMenu = new List<Food>();
         static int foodNumbers = 1;
-        public int ID ;
+        public int ID;
         public string Name { get; private set; }
         public string Ex_Name { get; private set; }
         public Image FoodImage { get; set; }
-        public int FoodType; 
+        public int FoodType;
         public double Price { get; set; }
         public double Ex_Price { get; set; }
         public double FinalPrice { get; protected set; }
-        public double ProfitPercent  { get; set; }
+        public double ProfitPercent { get; set; }
         int _RemainingNumber;
         public string ingredients { get; protected set; }
         public string Ex_ingredients { get; protected set; }
-        Food(string Name, string type, double Price, string Ingredient,int ID)//reading from file food
+        Food(string Name, string type, double Price, string Ingredient, int ID)//reading from file food
         {
             this.Name = this.Ex_Name = Name;
-            this.FoodType = FooDType.FindKey( type);
+            this.FoodType = FooDType.FindKey(type);
             this.Price = this.Ex_Price = Price;
             ProfitPercent = 24;
             this.ingredients = this.Ex_ingredients = Ingredient;
@@ -716,7 +720,7 @@ namespace MC_Restaurant
             {
                 foodNumbers = ID + 1;
             }
-            SetFinalPrice();            
+            SetFinalPrice();
         }
         /// <summary>
         /// Find and return a food by its name
@@ -746,14 +750,14 @@ namespace MC_Restaurant
             }
 
         }
-        public Food (string Name,string type,double Price,string Ingredient)//making new food
+        public Food(string Name, string type, double Price, string Ingredient)//making new food
         {
             if (IsMatchFoodName(Name))
             {
                 throw new Exception("Name already exists.");
             }
-            this.Name =this.Ex_Name= Name;
-            this.FoodType =FooDType.FindKey( type);
+            this.Name = this.Ex_Name = Name;
+            this.FoodType = FooDType.FindKey(type);
             this.Price = this.Ex_Price = Price;
             ProfitPercent = 24;
             this.ingredients = this.Ex_ingredients = Ingredient;
@@ -769,7 +773,7 @@ namespace MC_Restaurant
         /// <returns></returns>
         public static bool IsMatchFoodName(string Name)
         {
-            foreach(var item in FoodsMenu)
+            foreach (var item in FoodsMenu)
             {
                 if (item.Name == Name || item.Ex_Name == Name)
                 {
@@ -786,7 +790,7 @@ namespace MC_Restaurant
             Food food = null;
             food = new Food(items[1], FooDType.Foodtype[int.Parse(items[2])], double.Parse(items[5]), items[3], int.Parse(items[0]));
             food.RemainingNumber = int.Parse(items[4]);
-            return food;           
+            return food;
 
         }
         /// <summary>
@@ -811,7 +815,7 @@ namespace MC_Restaurant
                         lines.Add(streamReader.ReadLine());
                     }
                     streamReader.Close();
-                    for(int i = 1; i < lines.Count; ++i)
+                    for (int i = 1; i < lines.Count; ++i)
                     {
                         FoodsMenu.Add(ReadFood(lines[i]));
                         foodNumbers++;
@@ -819,10 +823,10 @@ namespace MC_Restaurant
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }            
+            }
         }
         public void SetFinalPrice()
         {
@@ -841,7 +845,7 @@ namespace MC_Restaurant
                 StreamWriter writer = new StreamWriter("FoodInfo.txt");
                 writer.Close();
             }
-            streamReader = new StreamReader("FoodInfo.txt");       
+            streamReader = new StreamReader("FoodInfo.txt");
             List<string> lines = new List<string>();
             while (!streamReader.EndOfStream)
             {
@@ -856,7 +860,7 @@ namespace MC_Restaurant
             }
             string info = $"{this.ID} {this.Name} {this.FoodType.ToString()} {this.ingredients} {this.RemainingNumber} {this.Price}";
             lines.Add(info);
-            foreach(var s in lines)
+            foreach (var s in lines)
             {
                 streamWriter.WriteLine(s);
             }
@@ -918,7 +922,7 @@ namespace MC_Restaurant
         }
         static List<Food> ReservedOrder = new List<Food>();
         static List<Food> PayedOrder = new List<Food>();
-        public Restaurant(string Name,string Address,string Region ,string PhoneNum)
+        public Restaurant(string Name, string Address, string Region, string PhoneNum)
         {
             this.Name = Name;
             this.Region = Region;
@@ -931,12 +935,12 @@ namespace MC_Restaurant
         {
             if (File.Exists("Restaurant.txt"))
             {
-                
+
                 IsStablished = true;
                 StreamReader stream = new StreamReader("Restaurant.txt");
                 var str = stream.ReadLine().Split(' ');
                 stream.Close();
-                Manager.restaurant = new Restaurant(str[0], str[str.Length-2], str[1], str[str.Length - 1]);
+                Manager.restaurant = new Restaurant(str[0], str[str.Length - 2], str[1], str[str.Length - 1]);
             }
             else
             {
@@ -968,8 +972,8 @@ namespace MC_Restaurant
         {
             if (DateTime.Today.CompareTo(date) >= 0)
             {
-                List<Food> foods=null;
-                if(CalanderFood.TryGetValue(date,out foods))
+                List<Food> foods = null;
+                if (CalanderFood.TryGetValue(date, out foods))
                 {
                     MessageBox.Show("Food list found succussfully.");
                     return foods;
@@ -995,11 +999,11 @@ namespace MC_Restaurant
                 writer.Close();
             }
             List<string> filestr = new List<string>();
-            foreach(var item in CalanderFood)//reading from dictionary and convert to string
+            foreach (var item in CalanderFood)//reading from dictionary and convert to string
             {
                 string date = $"*/{item.Key.Year}/{item.Key.Month}/{item.Key.Day}";
                 filestr.Add(date);
-                foreach(var T in item.Value)
+                foreach (var T in item.Value)
                 {
                     string str = $"{T.Name} {T.RemainingNumber}";
                     filestr.Add(str);
@@ -1032,9 +1036,9 @@ namespace MC_Restaurant
 
                 }
                 reader.Close();
-                for (int i = 0; i < lines.Count;++i) 
+                for (int i = 0; i < lines.Count; ++i)
                 {
-                    DateTime date ;
+                    DateTime date;
                     List<Food> foods = new List<Food>();
                     if (lines[i][0] == '*')
                     {
@@ -1043,7 +1047,7 @@ namespace MC_Restaurant
                         int j = i + 1;
                         while (j < lines.Count || lines[j][0] != '*')
                         {
-                           var s= lines[j].Split(' ');
+                            var s = lines[j].Split(' ');
                             foods.Add(Food.findFoodByName(s[0], int.Parse(s[1])));
                         }
                         if (date.CompareTo(DateTime.Today) <= 0)
@@ -1069,9 +1073,9 @@ namespace MC_Restaurant
                 {
                     if (foods.Any(x => x.Name == food.Name))
                     {
-                        for (int i=0; i < foods.Count; ++i)
+                        for (int i = 0; i < foods.Count; ++i)
                         {
-                            if(foods[i].Name == food.Name)
+                            if (foods[i].Name == food.Name)
                             {
                                 foods[i].ChangeRemainingNumber(food.RemainingNumber);
                                 CalanderFood[date] = foods;
@@ -1080,7 +1084,7 @@ namespace MC_Restaurant
                         }
                     }
                     else
-                    {                        
+                    {
                         foods.Add(food);
                         CalanderFood[date] = foods;
                         MessageBox.Show($"food added to {date}.");
@@ -1115,13 +1119,13 @@ namespace MC_Restaurant
                 Food.IntializeFoods();
                 Restaurant.InitializeCalander();
                 Manager.isInitialized = true;
-            }            
-        }       
+            }
+        }
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
             customers_login customers_Login = new customers_login();
             this.Visibility = Visibility.Collapsed;
-            customers_Login.Show();            
+            customers_Login.Show();
         }
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
