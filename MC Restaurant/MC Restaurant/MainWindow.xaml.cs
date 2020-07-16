@@ -196,13 +196,42 @@ namespace MC_Restaurant
         public double Tax{ get; protected set; }
         public string Address { get ; set; }
         #endregion
+        
+        public static Customers FindCustomers(string UserEN, string Password)
+        {
+            if(checkPass(UserEN, Password))
+            {
+                StreamReader reader = new StreamReader("CustomersInfo.txt");
+                List<string[]> lines = new List<string[]>();
+                while (!reader.EndOfStream)
+                {
+                    lines.Add(reader.ReadLine().Split(' '));
+                }
+                reader.Close();
+                //Name address email password Phonenum id
+                var te = lines.Where(x => (x[2] == UserEN || x[4] == UserEN) && x[3] == Password).First();
+                var cus = new Customers(te[0],te[1], te[4], te[2], te[5],te[3],true);
+                return cus;
+            }
+            throw new Exception("Email and Phone number or Password not correct.");
+        }
+        private Customers(string name, string address, string Phone, string Email, string ID, string Password,bool savefile)
+        {
+            this.Address = address;
+            this.FullName = name;
+            this.PhoneNum = Phone;
+            this.Email = Email;
+            this.IDataObject = ID;
+            this.Password = Password;
+        }
 
-        public Customers(string name, string Phone , string Email,string ID,string Password)
+        public Customers(string name,string address, string Phone , string Email,string ID,string Password)
         {
             if (Customers.CheckEmail_Phone(Email, Phone))
             {
                 throw new Exception("The email or phone Number has been used before.");
             }
+            this.Address = address;
             this.FullName = name;
             this.PhoneNum = Phone;
             this.Email = Email;
@@ -210,6 +239,7 @@ namespace MC_Restaurant
             this.Password = Password;
             SaveInfo();             
         }
+        
         public static bool checkPass(string UserEN,string Password)
         {
             if (!File.Exists("CustomersInfo.txt"))
@@ -297,6 +327,8 @@ namespace MC_Restaurant
             //Name address email password Phonenum id
             this.FullName = this.FullName.Replace(' ', '_');
             this.Email = Email.Replace(' ', '\0');
+            this.IDataObject = this.IDataObject.Replace(' ', '\0');
+            this.Address = this.Address.Replace(' ', '-');
             string Newcustomer = $"{this.FullName} {this.Address} {this.Email} {this.Password} {this.PhoneNum} {this._ID}";
             lines.Add(Newcustomer);
             StreamWriter stream = new StreamWriter("CustomersInfo.txt");

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Registeration" Height="397.2" Width="300" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
+        Title="Registeration" Height="459.067" Width="300" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
     <StackPanel Margin="0,0,-0.4,0.6" >
         <StackPanel.Background>
             <LinearGradientBrush StartPoint="1 0" EndPoint=" 1 1" >
@@ -63,7 +63,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Password-->
-            <TextBlock Text="Repeat password :" Margin="9,2,21.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
+            <TextBlock Text="Repeat password :" Margin="11,2,19.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
             <PasswordBox x:Name="RepeatPasswordBox" Grid.ColumnSpan="2" Margin="120,4,14.6,16"/>
 
         </Grid>
@@ -74,15 +74,18 @@
             </Grid.ColumnDefinitions>
             <!--Email-->
             <TextBlock Text="Email :" Margin="11,6,17.2,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
-            <TextBox x:Name="EmailBox" Grid.ColumnSpan="2" Margin="120,5,14.6,11"/>
+            <TextBox x:Name="EmailBox" Grid.ColumnSpan="2" Margin="120,4,14.6,12"/>
 
         </Grid>
         
         <!--confirm button-->
         <Grid Height="51" Margin="0,0,0,0">
-            <Button Background="#1f5"  Click="ConfirmButton_Click" x:Name="ConfirmButton" Content="Confirm" Margin="50,49,156.6,-24"/>
-            <Button x:Name="BackButton" FontWeight="DemiBold" Content="back" Background="LightBlue" Click="BackButton_Click" Margin="170,49,51.6,-24" IsCancel="True"/>
-            <TextBlock x:Name="PassMatchingBlock" FontSize="13" FontWeight="DemiBold" Foreground="Red" TextWrapping="Wrap" Margin="5,1,132.6,5"/>
+            <TextBlock Text="Address :" Margin="11,4,17.6,0" FontSize="13" Foreground="DarkRed" FontWeight="DemiBold" Height="34" VerticalAlignment="Top"/>
+
+            <TextBox x:Name="AddressBox" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap" Margin="120,4,14.6,0"/>
+            <Button Background="#1f8"  Click="ConfirmButton_Click" x:Name="ConfirmButton" Content="Confirm" Margin="50,100,156.6,-75"/>
+            <Button x:Name="BackButton" FontWeight="DemiBold" Content="back" Background="LightBlue" Click="BackButton_Click" Margin="170,100,51.6,-75" IsCancel="True"/>
+            <TextBlock x:Name="PassMatchingBlock" FontSize="13" FontWeight="DemiBold" Foreground="Red" TextWrapping="Wrap" Margin="11,53,126.6,-47"/>
 
         </Grid>
     </StackPanel>

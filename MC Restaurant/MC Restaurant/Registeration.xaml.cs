@@ -26,7 +26,33 @@ namespace MC_Restaurant
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PassMatchingBlock.Text = "";
+            try
+            {
+                if (PasswordBox.Password == RepeatPasswordBox.Password)
+                {
+                    if (UserNameBox.Text != "" && AddressBox.Text != "" && RepeatPasswordBox.Password != "" && MobileNumBox.Text != "" && EmailBox.Text != "" && IDBox.Text != "" && PasswordBox.Password != "")
+                    {
+                        PassMatchingBlock.Text = "";
+                        Customers.CurrentCusomer = new Customers(UserNameBox.Text, AddressBox.Text, MobileNumBox.Text, EmailBox.Text, IDBox.Text, PasswordBox.Password);
+                        buy buy = new buy();
+                        this.Visibility = Visibility.Collapsed;
+                        buy.Show();
+                    }
+                    else
+                    {
+                        throw new Exception ("Please fill the empty boxes");
+                    }
+                }
+                else
+                {
+                    throw new Exception ( "Password repeat is not match");
+                }
+            }
+            catch(Exception ex)
+            {
+                PassMatchingBlock.Text += ex.Message+"\n";
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
