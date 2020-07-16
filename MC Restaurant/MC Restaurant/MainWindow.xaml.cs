@@ -87,7 +87,6 @@ namespace MC_Restaurant
         string PhoneNum { get;}
         string Address { get;}
         string Email { get; }
-
     }
     class Customers : Buy,Person
     {
@@ -198,20 +197,88 @@ namespace MC_Restaurant
         public string Address { get ; set; }
         #endregion
 
-        public Customers(string name, string Phone , string Email,string ID)
+        public Customers(string name, string Phone , string Email,string ID,string Password)
         {
+            if (Customers.CheckEmail_Phone(Email, Phone))
+            {
+                throw new Exception("The email or phone Number has been used before.");
+            }
             this.FullName = name;
             this.PhoneNum = Phone;
             this.Email = Email;
             this.IDataObject = ID;
+            this.Password = Password;
+            SaveInfo();             
         }
+        public static bool checkPass(string UserEN,string Password)
+        {
+            if (!File.Exists("CustomersInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("CustomersInfo.txt");
+                writer.Close();
+                return false;
+            }
+            else
+            {
+                StreamReader reader = new StreamReader("CustomersInfo.txt");
+                List<string[]> lines = new List<string[]>();
+                while (!reader.EndOfStream)
+                {
+                    lines.Add(reader.ReadLine().Split(' '));
+                }
+                reader.Close();
+                //Name address email password Phonenum id
+                if (lines.Any(x => x[2] == UserEN || x[4] == UserEN))
+                {
+                    if (lines.Where(x => x[2] == UserEN || x[4] == UserEN).First()[3] == Password)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        } 
 
 
-        protected void CalculateProfit()
+
+        /// <summary>
+        /// check the file for same email and phone number.
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="Phone"></param>
+        /// <returns>If finds the same Email or phone number, return True, Otherwise, return false.</returns>
+        public static bool CheckEmail_Phone(string Email,string Phone)
+        {
+            if (!File.Exists("CustomersInfo.txt"))
+            {
+                StreamWriter writer = new StreamWriter("CustomersInfo.txt");
+                writer.Close();
+                return false;
+            }
+            else
+            {
+                StreamReader reader = new StreamReader("CustomersInfo.txt");
+                List<string[]> lines = new List<string[]>();
+                while (!reader.EndOfStream)
+                {
+                    lines.Add(reader.ReadLine().Split(' '));
+                }
+                reader.Close();
+                //Name address email password Phonenum id
+                if (lines.Any(x => x[2] == Email || x[4] == Phone))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        protected void CalculateProfit()//**
         {
             
         }
-
+        /// <summary>
+        /// save customers info on file.
+        /// </summary>
         public void SaveInfo()
         {
             StreamReader streamReader;
@@ -228,13 +295,14 @@ namespace MC_Restaurant
             }
             streamReader.Close();
             //Name address email password Phonenum id
+            this.FullName = this.FullName.Replace(' ', '_');
+            this.Email = Email.Replace(' ', '\0');
             string Newcustomer = $"{this.FullName} {this.Address} {this.Email} {this.Password} {this.PhoneNum} {this._ID}";
             lines.Add(Newcustomer);
             StreamWriter stream = new StreamWriter("CustomersInfo.txt");
             foreach(var item in lines)
             {
                 stream.WriteLine(item);
-
             }
             stream.Close();
         }
@@ -249,7 +317,6 @@ namespace MC_Restaurant
         public string Address { get;  }
         public string Email { get ; set ; }
         public int LoginTimes { get; } 
-
         public Manager(string FullName, string PassWord, int LoginTimes = 0)
         {
             if (ManagerNameCheck(FullName))
