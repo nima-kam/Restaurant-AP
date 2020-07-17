@@ -109,19 +109,22 @@ namespace MC_Restaurant
                     dateText.FontSize = 14;
                     ChangeFoodList.Items.Add(dateText);
                 }
-
             }
-                
-           
         }
 
         private void AddFoodButton_Click(object sender, RoutedEventArgs e)
         {
+            customers_ordering ordering = new customers_ordering();
+            ordering.Title.Text = "Order new food";
+            ordering.Show();
             
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            customers_ordering ordering = new customers_ordering();
+            ordering.Title.Text = "Edit order";
+            ordering.Show();
 
         }
         private void DiscountCheck_Checked(object sender, RoutedEventArgs e)
@@ -138,7 +141,7 @@ namespace MC_Restaurant
 
         private void AllOrderCheck_Checked(object sender, RoutedEventArgs e)
         {
-
+            MenuDate.IsEnabled = false;
         }
 
         private void ChangeFoodList_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -148,6 +151,11 @@ namespace MC_Restaurant
             {
 
             }
+        }
+
+        private void AllOrderCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MenuDate.IsEnabled = true;
         }
     }
 }

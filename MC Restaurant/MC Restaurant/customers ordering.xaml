@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="customers ordering" Height="230" Width="450">
+        Title="customers ordering" Height="230.6" Width="450">
     <StackPanel>
-        <Grid Height="199" Margin="0,0,0,0">
+        <Grid Height="199" >
             <Grid.Background>
                 <RadialGradientBrush  GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.6" RadiusY="0.5">
                     <RadialGradientBrush.GradientStops>
@@ -37,8 +37,8 @@
 
             <ComboBox x:Name="listOfFood" Margin="87,108,239,65" SelectionChanged="listOfFood_SelectionChanged" />
 
-            <DatePicker x:Name="DateList" Margin="292,13,39,159" RenderTransformOrigin="0.544,0.8" />
-            <Button x:Name="changeFoodNumber" Content="Confirm" Click="changeFoodNumber_Click" Margin="174,152,205,20"/>
+            <DatePicker x:Name="DateList" Margin="292,13,39,159" RenderTransformOrigin="0.544,0.8" FirstDayOfWeek="Saturday" />
+            <Button x:Name="ChangeOrderNumber" Content="Confirm" Click="ChangeOrderNumber_Click" Margin="174,152,205,20"/>
             <ComboBox x:Name="listOfFood_Copy" Margin="235,62,135.2,111" SelectionChanged="listOfFood_SelectionChanged" />
             <Label Content="Types :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="186,59,156.2,109" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>

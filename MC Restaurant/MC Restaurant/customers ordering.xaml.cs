@@ -23,5 +23,9 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
+        private void ChangeOrderNumber_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
