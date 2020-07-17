@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="adding_food_to_list" Height="194.934" Width="444.602">
+        Title="adding_food_to_list" Height="200" Width="463.002">
     <Grid>
         <Grid.Background>
             <RadialGradientBrush  GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.6" RadiusY="0.5">
@@ -15,10 +15,10 @@
                 </RadialGradientBrush.GradientStops>
             </RadialGradientBrush>
         </Grid.Background>
-        <TextBox FontSize="14" x:Name="NumberOfFood" IsEnabled="False" Margin="287,69,96.4,66.6" TextAlignment="Center" Text="0"/>
-        <Button Click="mines_Click" x:Name="mines" Margin="239,69,164.4,66.6" Content="-1"/>
-        <Button Click="plus_Click" x:Name="plus" Margin="355,69,48.4,67.6" Content="+1" />
-        <Label Content="Select Date:" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="211,10,132.4,117.6" RenderTransformOrigin="0.5,0.5">
+        <TextBox FontSize="14" x:Name="NumberOfFood" IsEnabled="False" Margin="311,69,95.8,69.4" TextAlignment="Center" Text="0"/>
+        <Button Click="mines_Click" x:Name="mines" Margin="250,69,161.8,69.4" Content="-1"/>
+        <Button Click="plus_Click" x:Name="plus" Margin="373,69,38.8,69.4" Content="+1" />
+        <Label Content="Select Date:" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="211,10,132.8,126.4" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -28,13 +28,13 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBlock  Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" x:Name="Title" Margin="3,3,240.4,108.6" />
+        <TextBlock  Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" x:Name="Title" Margin="3,3,240.8,125.4" />
 
         <Label Content="select Food" Margin="10,70,334.4,59.6"  />
 
-        <ComboBox x:Name="listOfFood" Margin="87,71,238.4,64.6" SelectionChanged="listOfFood_SelectionChanged" />
+        <ComboBox x:Name="listOfFood" Margin="87,71,238.8,67.4" SelectionChanged="listOfFood_SelectionChanged" />
 
-        <DatePicker x:Name="DateList" Margin="292,13,38.4,117.6" RenderTransformOrigin="0.544,0.8" />
-        <Button x:Name="changeFoodNumber" Content="Confirm" Click="changeFoodNumber_Click" Margin="174,120,204.4,15.6"/>
+        <DatePicker x:Name="DateList" Margin="292,13,38.8,124.4" RenderTransformOrigin="0.544,0.8" />
+        <Button x:Name="changeFoodNumber" Content="Confirm" Click="changeFoodNumber_Click" Margin="174,120,204.8,15.4"/>
     </Grid>
 </Window>

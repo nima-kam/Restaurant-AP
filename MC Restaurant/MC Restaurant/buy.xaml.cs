@@ -23,54 +23,95 @@ namespace MC_Restaurant
         {
             InitializeComponent();
         }
-        private void Filter_food_check_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Filter_food_check_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ShowItemButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MenuDate.SelectedDate != null)
+            if (AllOrderCheck.IsChecked == false)
             {
-                if (DateTime.Today.CompareTo(MenuDate.SelectedDate) < 0)
+                if (MenuDate.SelectedDate != null)
                 {
-                    MessageBox.Show("Selected date no longer accessable.\nPlease select another one.");
+                    if (DateTime.Today.CompareTo(MenuDate.SelectedDate) < 0)
+                    {
+                        MessageBox.Show("Selected date is no longer accessable.\nPlease select another one.");
+                    }
+                    else
+                    {
+                        ChangeFoodList.Items.Clear();
+                        var DateFood = Customers.CurrentCusomer.OrderedFood.Where(x => x.Date == MenuDate.SelectedDate);
+                        if (DateFood.Count() > 0)
+                        {
+                            int i = 0;
+                            var dateText = new TextBlock();
+                            var date = MenuDate.SelectedDate ?? default;
+                            dateText.Text = $"Orders for {date.Year}-{date.Month}-{date.Day} are : ";
+                            dateText.FontWeight = FontWeight.FromOpenTypeWeight(40);
+                            dateText.FontSize = 14;
+                            ChangeFoodList.Items.Add(dateText);
+
+                            foreach (var item in DateFood)
+                            {
+                                ++i;
+                                var str = new TextBlock();
+                                str.FontWeight = FontWeight.FromOpenTypeWeight(40);
+                                str.FontSize = 12;
+                                str.Text = $"{i}. Name : {item.food.Name} \nAmount : {item.FoodNumber} \nPrice : {item.FoodNumber * item.food.FinalPrice }\n";
+                                ChangeFoodList.Items.Add(str);
+                            }
+                        }
+                        else
+                        {
+                            var dateText = new TextBlock();
+                            var date = MenuDate.SelectedDate ?? default;
+                            dateText.Text = $"No order for {date.Year}-{date.Month}-{date.Day} is available. ";
+                            dateText.FontWeight = FontWeight.FromOpenTypeWeight(40);
+                            dateText.FontSize = 14;
+                            ChangeFoodList.Items.Add(dateText);
+                        }
+                    }
                 }
                 else
                 {
-                    ChangeFoodList.Items.Clear();
-                    var DateFood = Customers.CurrentCusomer.OrderedFood.Where(x => x.Date == MenuDate.SelectedDate);
-                    if (DateFood.Count() > 0)
+                    MessageBox.Show("Please select a date.");
+                }
+            }
+            else
+            {
+                var allorder = Customers.CurrentCusomer.OrderedFood.OrderBy(x => x.Date).GroupBy(x => x.Date).ToList();
+                if (allorder.Count() > 0)
+                {
+                    int j = 0;
+                    foreach (var item in allorder)
                     {
-                        int i = 0;
+                        j++;
                         var dateText = new TextBlock();
-                        var date = MenuDate.SelectedDate ?? default;
-                        dateText.Text = $"Orders for {date.Year}-{date.Month}-{date.Day} are : ";
+                        var date = item.Key;
+                        dateText.Text = $"{j}.Orders for {date.Year}-{date.Month}-{date.Day} are : ";
                         dateText.FontWeight = FontWeight.FromOpenTypeWeight(40);
                         dateText.FontSize = 14;
                         ChangeFoodList.Items.Add(dateText);
                         
-                        foreach (var item in DateFood)
+                        int i = 0;
+                        foreach (var val in item)
                         {
                             ++i;
                             var str = new TextBlock();
                             str.FontWeight = FontWeight.FromOpenTypeWeight(40);
                             str.FontSize = 12;
-                            str.Text = $"{i}. Name : {item.food.Name} \nAmount : {item.FoodNumber} \nPrice : {item.FoodNumber*item.food.FinalPrice }\n";
+                            str.Text = $"{i}. Name : {val.food.Name} \nAmount : {val.FoodNumber} \nPrice : {val.FoodNumber * val.food.FinalPrice }\n";
                             ChangeFoodList.Items.Add(str);
                         }
                     }
-
                 }
+                else
+                {
+                    var dateText = new TextBlock();
+                    dateText.Text = $"No order is available. ";
+                    dateText.FontWeight = FontWeight.FromOpenTypeWeight(40);
+                    dateText.FontSize = 14;
+                    ChangeFoodList.Items.Add(dateText);
+                }
+
             }
-            else
-            {
-                MessageBox.Show("Please select a date.");
-            }
+                
            
         }
 
