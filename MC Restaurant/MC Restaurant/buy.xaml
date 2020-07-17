@@ -5,39 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="buy" Height="470" Width="589" Background="OldLace" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
+        Title="buy" Height="624.8" Width="589" Background="OldLace" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
     <StackPanel>
         <StackPanel.Background>
             <RadialGradientBrush  GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.6" RadiusY="0.5">
                 <RadialGradientBrush.GradientStops>
-                    <GradientStop Color="Orange" Offset="0" />
-                    <GradientStop Color="Honeydew" Offset="1.2" />
+                    <GradientStop Color="Aquamarine" Offset="0" />
+                    <GradientStop Color="PaleVioletRed" Offset="1" />
                 </RadialGradientBrush.GradientStops>
             </RadialGradientBrush>
 
         </StackPanel.Background>
-        <Border  BorderThickness="2" BorderBrush="AliceBlue" Margin="0,0,0,303.8" Height="348">
+        <Border  BorderThickness="1" BorderBrush="Black" Margin="0,0,0,0" Height="348">
 
             <Grid Margin="0,0,0,0"  >
-
-                <Label BorderBrush="Green" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Order Menu" Margin="-3,-4,321.2,230.8"  />
-                <Button x:Name="AddFoodButton" Content="Add to order" Margin="11,45,483.2,272.8" Click="AddFoodButton_Click"/>
-                <Button x:Name="EditButton" Content="Edit order" Margin="11,82,483.2,236.8" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5"/>
-                <ListBox x:Name="ChangeFoodList" Margin="11,114,14.2,9.8"/>
+                <!--Order menu-->
+                <Label BorderBrush="Black" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Order Menu" Margin="-1,-1,320.8,231.4" Height="116" VerticalAlignment="Bottom"  />
+                <Button Background="Beige" x:Name="AddFoodButton" Content="Add to order" Margin="11,45,483.2,272.8" Click="AddFoodButton_Click"/>
+                <Button Background="Beige" x:Name="EditButton" Content="Edit order" Margin="11,82,483.2,236.8" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5"/>
+                <ListBox x:Name="ChangeFoodList" PreviewMouseDown="ChangeFoodList_PreviewMouseDown" BorderBrush="Black" BorderThickness="2"  Margin="11,114,14.2,9.8" SelectionChanged="ChangeFoodList_SelectionChanged"/>
                 <CheckBox x:Name="FilterNameCheck" FontWeight="DemiBold" Content="Filter By Name" Margin="122,50,349.2,269.8" />
                 <!--Date-->
-                <Label BorderBrush="Green" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Show order Menu" Margin="258,-3,-1.8,230.8" />
+                <Label BorderBrush="Black" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Show order Menu" Margin="258,-1,-2.2,232.4" />
                 <DatePicker Margin="351,50,116.2,266.8" x:Name="MenuDate" />
                 <TextBlock FontSize="12" FontWeight="Medium" Text="Date :" Margin="302,50,198.2,266.8"/>
                 <Button x:Name="ShowItemButton" Content="Show Order" Background="Beige" FontWeight="DemiBold" Click="ShowItemButton_Click" Margin="480,50,20.2,266.8" />
                 <CheckBox x:Name="FilterTypeCheck" FontWeight="DemiBold" Content="Filter By Type" Margin="122,85,349.2,234.8" />
-                <CheckBox x:Name="AllOrderCheck" FontWeight="DemiBold" Content="Show all orders" Margin="455,89,16.2,230.8" Checked="CheckBox_Checked" />
-
+                <CheckBox x:Name="AllOrderCheck" FontWeight="DemiBold" Content="Show all orders" Margin="302,89,169.2,230.8" Checked="AllOrderCheck_Checked" />
 
             </Grid>
-
-
         </Border>
+        <Grid Height="248" Margin="0,0,0.4,0" >
+            <!--discount Part-->
+            <TextBlock Text="Discount Code :" FontWeight="DemiBold" Margin="7,143,466,75"/>
+            <TextBox IsEnabled="False" x:Name="DiscountCodeBox" Margin="98,143,308,75" />
+            <CheckBox x:Name="DiscountCheck" Content="Discount" FontWeight="DemiBold" Margin="280,148,211,70" Checked="DiscountCheck_Checked"/>
+
+
+        </Grid>
     </StackPanel>
 
 </Window>

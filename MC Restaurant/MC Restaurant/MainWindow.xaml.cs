@@ -579,6 +579,13 @@ namespace MC_Restaurant
             }
         }
     }
+    static class foodExtention
+    {
+        public static void showinfo(this Food food)
+        {
+            MessageBox.Show($"Name : {food.Name} \ningredients : {food.ingredients}\nType : {FooDType.Foodtype[food.FoodType]} \nPrice : {food.FinalPrice}\n");
+        }
+    }
     enum FoodType
     {
         SeaFood, Chickenfries, Hamborgar, Pizza, Salad, Sandwich
@@ -864,6 +871,7 @@ namespace MC_Restaurant
             {
                 streamWriter.WriteLine(s);
             }
+            streamWriter.Close();
         }
         public int RemainingNumber
         {
