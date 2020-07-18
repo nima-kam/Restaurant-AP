@@ -55,7 +55,55 @@ namespace MC_Restaurant
 
         private void plus_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (DateList.SelectedDate != null)
+                {
+                    if (Title.Text == "Order new food")// for add to list.
+                    {
+                        if ("" != listOfFoodCombo.Text && "Names" != listOfFoodCombo.Text)
+                        {
+                            var listOfFood = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                            if (listOfFood.Count > 0)
+                            {
+                                var foo = listOfFood.Where(x => x.Name == listOfFoodCombo.Text).First();
+                                int Max = foo.RemainingNumber;
+                                if (Max > 0)
+                                {
+                                    if (int.Parse(NumberOfFood.Text) < Max) 
+                                    {
+                                        NumberOfFood.Text = (int.Parse(NumberOfFood.Text) + 1).ToString();
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("The Maximum limit of food is reached. No more availeble.");
+                                    }
+                                }
+                                else if (Max == 0)
+                                {
+                                    throw new Exception("This food is finished for the selected date.");
+                                }                                
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Please select a food.");
+                        }
+                    }
+                    else// for deleting from list.
+                    {
 
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a date.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "! Alart !");
+            }
         }
 
         private void mines_Click(object sender, RoutedEventArgs e)
@@ -106,6 +154,43 @@ namespace MC_Restaurant
                 MessageBox.Show(ex.Message,"! Alart !");
             }
             
+        }
+
+        private void listOfFoodCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NumberOfFood.Text = "0";
+        }
+
+        private void listOfTypesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (DateList.SelectedDate != null)
+                {
+                    if (listOfTypesCombo.Text != null)
+                    {
+                        int n=  FooDType.FindKey(listOfTypesCombo.Text);
+                        var source = Restaurant.ReadDateFood(DateList.SelectedDate ?? default).Where(y => y.FoodType == n).Select(x => x.Name);
+                        if (source.Count() > 0)
+                        {
+                            listOfFoodCombo.ItemsSource = source;
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No food with type of {listOfTypesCombo.Text} in Date {DateList.SelectedDate} is added.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a date.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "! Alart !");
+            }
         }
     }
 }

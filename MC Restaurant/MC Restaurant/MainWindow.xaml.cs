@@ -969,7 +969,7 @@ namespace MC_Restaurant
         {
             MessageBox.Show($"Restaurant Info \n Name: {this.Name} \n" +
                 $" Address: {this.Address} \n Region: {this.Region} \n" +
-                $" Phone number: {this.PhoneNum} \n","Restaurant information",);
+                $" Phone number: {this.PhoneNum} \n","Restaurant information");
         }
 
         /// <summary>

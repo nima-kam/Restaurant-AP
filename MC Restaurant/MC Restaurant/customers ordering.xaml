@@ -35,11 +35,11 @@
 
             <Label Content="select Food :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="13,108,328.2,64"  />
 
-            <ComboBox x:Name="listOfFoodCombo" Text="Names" IsEditable="False" Margin="100,108,226.2,65" SelectionChanged="listOfFood_SelectionChanged" />
+            <ComboBox x:Name="listOfFoodCombo"  Text="Names" IsEditable="False" Margin="100,108,226.2,65" SelectionChanged="listOfFoodCombo_SelectionChanged" />
 
             <DatePicker SelectedDateChanged="DateList_SelectedDateChanged" x:Name="DateList" Margin="254,13,66.8,159" RenderTransformOrigin="0.544,0.8" FirstDayOfWeek="Saturday" />
             <Button x:Name="ChangeOrderNumber" Content="Confirm" Click="ChangeOrderNumber_Click" Margin="185,152,194.2,20"/>
-            <ComboBox  x:Name="listOfTypesCombo"  IsEditable="False" Margin="224,62,139.2,111" SelectionChanged="listOfFood_SelectionChanged" />
+            <ComboBox  x:Name="listOfTypesCombo"  IsEditable="False" Margin="224,62,139.2,111" SelectionChanged="listOfTypesCombo_SelectionChanged" />
             <Label Content="Types :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="175,59,167.2,109" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>
                     <TransformGroup>
