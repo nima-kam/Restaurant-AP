@@ -32,3 +32,5 @@ D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Register User.baml
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\adding food to list.baml
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Restaurant info change.baml
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\customers ordering.g.cs
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Window1.g.cs

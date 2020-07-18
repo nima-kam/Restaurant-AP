@@ -9,16 +9,16 @@
     <Grid >
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="#FFFF0505" Offset="1"/>
+                <GradientStop Color="Gray" Offset="0"/>
+                <GradientStop Color="#FFFc3505" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
-        <TextBlock Margin="13,13,171.8,220.4" Foreground="#fc1" FontSize="22"><Run Text="Restaurant inforamation">
+        <TextBlock Margin="13,13,171.8,261" Foreground="#fc1" FontSize="22"><Run Text="Restaurant inforamation">
                 <Run.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFFC0E0E" Offset="0.9"/>
+                        <GradientStop Color="Gray" Offset="0"/>
+                        <GradientStop Color="#c69C0E0E" Offset="0.9"/>
                     </LinearGradientBrush>
                 </Run.Background>
             </Run></TextBlock>

@@ -944,7 +944,6 @@ namespace MC_Restaurant
         {
             if (File.Exists("Restaurant.txt"))
             {
-
                 IsStablished = true;
                 StreamReader stream = new StreamReader("Restaurant.txt");
                 var str = stream.ReadLine().Split(' ');

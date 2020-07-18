@@ -22,11 +22,53 @@ namespace MC_Restaurant
         public customers_ordering()
         {
             InitializeComponent();
-            listOfTypesCombo.ItemsSource = FooDType.Foodtype.Values;
+            if(Title.Text== "Order new food")
+            {
+                listOfTypesCombo.ItemsSource = FooDType.Foodtype.Values;
+            }
+            else
+            {
+                listOfTypesCombo.IsEnabled = false;
+                FilterTypeCheck.IsEnabled = false;
+            }
         }
-        private void ChangeOrderNumber_Click(object sender, RoutedEventArgs e)
+        private void ChangeOrderNumber_Click(object sender, RoutedEventArgs e)//**
         {
-            
+            try
+            {
+                if (DateList.SelectedDate != null)
+                {
+                    if (Title.Text == "Order new food")// for add to list.
+                    {
+                        if ("" != listOfFoodCombo.Text && "Names" != listOfFoodCombo.Text)
+                        {
+                            var listOfFood = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                            if (listOfFood.Count > 0)
+                            {
+                                var foo = listOfFood.Where(x => x.Name == listOfFoodCombo.Text).First();
+                                Customers.CurrentCusomer.AddFood
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Please select a food.");
+                        }
+                    }
+                    else// for deleting from list.
+                    {
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a date.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "! Alart !");
+            }
+                
         }
 
         private void FilterTypeCheck_Checked(object sender, RoutedEventArgs e)
@@ -43,8 +85,7 @@ namespace MC_Restaurant
                 if (source.Count() > 0)
                 {
                     listOfFoodCombo.ItemsSource = source;
-                }
-                
+                }               
 
             }
             else
@@ -70,7 +111,7 @@ namespace MC_Restaurant
                                 int Max = foo.RemainingNumber;
                                 if (Max > 0)
                                 {
-                                    if (int.Parse(NumberOfFood.Text) < Max) 
+                                    if (int.Parse(NumberOfFood.Text) < Max)
                                     {
                                         NumberOfFood.Text = (int.Parse(NumberOfFood.Text) + 1).ToString();
                                     }
@@ -82,7 +123,7 @@ namespace MC_Restaurant
                                 else if (Max == 0)
                                 {
                                     throw new Exception("This food is finished for the selected date.");
-                                }                                
+                                }
                             }
                         }
                         else
@@ -92,7 +133,35 @@ namespace MC_Restaurant
                     }
                     else// for deleting from list.
                     {
+                        var source = Customers.CurrentCusomer.OrderedFood.Where(x => x.Date == DateList.SelectedDate).Select(y => y.food.Name).ToList();
+                        if (source.Count() > 0)
+                        {
+                            if ("" != listOfFoodCombo.Text && "Names" != listOfFoodCombo.Text)
+                            {
+                                var foods = Customers.CurrentCusomer.OrderedFood.Where(x => x.food.Name == listOfFoodCombo.Text && x.Date == DateList.SelectedDate);
+                                int Max = foods.First().FoodNumber;
+                                if (Max > 0)
+                                {
+                                    if (int.Parse(NumberOfFood.Text) < Max)
+                                    {
+                                        NumberOfFood.Text = (int.Parse(NumberOfFood.Text) + 1).ToString();
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("The Maximum limit of food is reached. No more availeble.");
+                                    }
+                                }
+                                else if (Max == 0)
+                                {
+                                    throw new Exception("This food is not ordered.");
+                                }
+                            }
 
+                        }
+                        else
+                        {
+                            throw new Exception("Please select a food.");
+                        }
                     }
                 }
                 else
@@ -123,6 +192,7 @@ namespace MC_Restaurant
         {
             try
             {
+
                 if (DateTime.Today.CompareTo(DateList.SelectedDate) < 0)
                 {
                     DateList.SelectedDate = DateTime.Today;
@@ -132,35 +202,46 @@ namespace MC_Restaurant
                 {
                     if (DateList.SelectedDate != null)
                     {
-                        var source = Restaurant.ReadDateFood(DateList.SelectedDate ?? default).Select(x => x.Name);
-                        if (source.Count() > 0)
+                        if (Title.Text == "Order new food")// for add to list.
                         {
-                            listOfFoodCombo.ItemsSource = source;
+                            var source = Restaurant.ReadDateFood(DateList.SelectedDate ?? default).Select(x => x.Name);
+                            if (source.Count() > 0)
+                            {
+                                listOfFoodCombo.ItemsSource = source;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"No food for {DateList.SelectedDate} is added.");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show($"No food for {DateList.SelectedDate} is added.");
+                            var source = Customers.CurrentCusomer.OrderedFood.Where(x => x.Date == DateList.SelectedDate).Select(y => y.food.Name).ToList();
+                            if (source.Count() > 0)
+                            {
+                                listOfFoodCombo.ItemsSource = source;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"No food for {DateList.SelectedDate} is ordered.");
+                            }
                         }
-                        
                     }
                     else
                     {
-                        MessageBox.Show("Please select a date.");
+                        MessageBox.Show("Please select a date.", "! Alart !");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"! Alart !");
-            }
-            
+                MessageBox.Show(ex.Message, "! Alart !");
+            }            
         }
-
         private void listOfFoodCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NumberOfFood.Text = "0";
         }
-
         private void listOfTypesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try

@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="customers ordering" Height="230" Width="451">
     <StackPanel>
-        <Grid Height="199" >
+        <Grid Height="202" >
             <Grid.Background>
                 <RadialGradientBrush  GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.6" RadiusY="0.5">
                     <RadialGradientBrush.GradientStops>
                         <GradientStop Color="GreenYellow" Offset="0" />
-                        <GradientStop Color="Azure" Offset="1.2" />
+                        <GradientStop Color="Gray" Offset="1.2" />
                     </RadialGradientBrush.GradientStops>
                 </RadialGradientBrush>
             </Grid.Background>
