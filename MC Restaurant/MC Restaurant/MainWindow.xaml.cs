@@ -550,6 +550,7 @@ namespace MC_Restaurant
 
         public List<FoodList> OrderedFood = new List<FoodList>();
         public double TotalPrice { get; protected set; }
+        
         /// <summary>
         /// Adding food to ordered food
         /// </summary>
@@ -561,13 +562,13 @@ namespace MC_Restaurant
             if (OrderedFood.Count == 0)
             {
                 OrderedFood.Add(new FoodList(NewOrder, Amount,date));
-                MessageBox.Show($"{NewOrder.FoodType} ordered successfully.");
+                MessageBox.Show($"{NewOrder.FoodType} ordered for date {date} successfully.");
             }
             else
             {
                 if (OrderedFood.Any(x => x.food == NewOrder && x.Date == date))
                 {
-                    var foods = OrderedFood.Where(x => x.food == NewOrder && x.Date == date).Select(x => x).ToList();
+                    var foods = OrderedFood.Where(x => x.food.Name == NewOrder.Name && x.Date == date).Select(x => x).ToList();
                     foods[0].ChangeFoodNum(Amount);
                     MessageBox.Show($"{NewOrder.FoodType} ordered for date {date} successfully.");
                 }
@@ -735,7 +736,7 @@ namespace MC_Restaurant
         /// <param name="Name"></param>
         /// <param name="availableNum"></param>
         /// <returns></returns>
-        public static Food findFoodByName(string Name, int availableNum)
+        public static Food findFoodByName(string Name, int availableNum = 0)
         {
             if (!IsMatchFoodName(Name))
             {

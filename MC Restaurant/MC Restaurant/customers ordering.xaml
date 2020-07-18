@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="customers ordering" Height="230.6" Width="450">
+        Title="customers ordering" Height="230" Width="451">
     <StackPanel>
         <Grid Height="199" >
             <Grid.Background>
@@ -16,12 +16,12 @@
                     </RadialGradientBrush.GradientStops>
                 </RadialGradientBrush>
             </Grid.Background>
-            <CheckBox x:Name="FilterTypeCheck" FontWeight="DemiBold" Content="Filter By Type" Margin="313,69,28.2,107" />
+            <CheckBox x:Name="FilterTypeCheck" Unchecked="FilterTypeCheck_Unchecked" FontWeight="DemiBold" Content="Filter By Type" Margin="313,69,28.2,107" Checked="FilterTypeCheck_Checked" />
 
             <TextBox FontSize="14" x:Name="NumberOfFood" IsEnabled="False" Margin="310,105,93,67" TextAlignment="Center" Text="0"/>
             <Button Click="mines_Click" x:Name="mines" Margin="254,108,158,67" Content="-1"/>
             <Button Click="plus_Click" x:Name="plus" Margin="373,107,39,67" Content="+1" />
-            <Label Content="Select Date:" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="211,10,132,158" RenderTransformOrigin="0.5,0.5">
+            <Label Content="Select Date :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="174,10,168.8,158" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -31,16 +31,16 @@
                     </TransformGroup>
                 </Label.RenderTransform>
             </Label>
-            <TextBlock  Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" x:Name="Title" Margin="3,3,241,159" />
+            <TextBlock  Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" x:Name="Title" Margin="3,3,241.2,137" />
 
-            <Label Content="select Food" Margin="10,107,335,65"  />
+            <Label Content="select Food :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="13,108,328.2,64"  />
 
-            <ComboBox x:Name="listOfFood" Margin="87,108,239,65" SelectionChanged="listOfFood_SelectionChanged" />
+            <ComboBox x:Name="listOfFoodCombo" Text="Names" IsEditable="False" Margin="100,108,226.2,65" SelectionChanged="listOfFood_SelectionChanged" />
 
-            <DatePicker x:Name="DateList" Margin="292,13,39,159" RenderTransformOrigin="0.544,0.8" FirstDayOfWeek="Saturday" />
-            <Button x:Name="ChangeOrderNumber" Content="Confirm" Click="ChangeOrderNumber_Click" Margin="174,152,205,20"/>
-            <ComboBox x:Name="listOfFood_Copy" Margin="235,62,135.2,111" SelectionChanged="listOfFood_SelectionChanged" />
-            <Label Content="Types :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="186,59,156.2,109" RenderTransformOrigin="0.5,0.5">
+            <DatePicker SelectedDateChanged="DateList_SelectedDateChanged" x:Name="DateList" Margin="254,13,66.8,159" RenderTransformOrigin="0.544,0.8" FirstDayOfWeek="Saturday" />
+            <Button x:Name="ChangeOrderNumber" Content="Confirm" Click="ChangeOrderNumber_Click" Margin="185,152,194.2,20"/>
+            <ComboBox  x:Name="listOfTypesCombo"  IsEditable="False" Margin="224,62,139.2,111" SelectionChanged="listOfFood_SelectionChanged" />
+            <Label Content="Types :" Foreground="DarkBlue" FontWeight="DemiBold" FontSize="13" Margin="175,59,167.2,109" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
