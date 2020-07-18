@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
         Title="buy" Height="564" Width="589" Background="OldLace" Icon="D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\bin\Debug\MC.png">
-    <StackPanel>
+    <StackPanel Margin="0 0">
         <StackPanel.Background>
             <RadialGradientBrush  GradientOrigin="0.5,0.5" Center="0.5,0.8" RadiusX="0.6" RadiusY="0.6">
                 <RadialGradientBrush.GradientStops>
@@ -31,19 +31,22 @@
                 <Button x:Name="ShowItemButton" Content="Show Order" Background="Beige" FontWeight="DemiBold" Click="ShowItemButton_Click" Margin="300,79,199.8,237.4" />
                 <CheckBox x:Name="AllOrderCheck" Unchecked="AllOrderCheck_Unchecked" FontWeight="DemiBold" Content="Show all orders" Margin="186,83,284.8,236.4" Checked="AllOrderCheck_Checked" />
                 <Label BorderBrush="Black" BorderThickness="2" FontWeight="Bold" Content="Show Foods info" Margin="392,0,-0.2,231.4" />
-                <ComboBox Text="Name"  x:Name="FoodNamesCombo" Width="70" Height="30" Margin="502,31,8.8,285.4" />
-                <ComboBox Text="Type" x:Name="FoodTypesCombo" Width="70" Height="30" Margin="503,76,7.8,240.4" />
+                <ComboBox Text="Type"  x:Name="FoodTypesCombo" Width="70" Height="30" Margin="502,31,8.8,285.4" />
+                <ComboBox Text="Name" x:Name="FoodNamesCombo" Width="70" Height="30" Margin="503,76,7.8,240.4" />
                 <Button  x:Name="FoodInfoButton" FontWeight="DemiBold" Width="70" Height="30" Margin="411,76,99.8,240.4" Content="Info" />
-                <CheckBox Content="Filter by type" FontWeight="DemiBold" x:Name="FilterType" Margin="409,34,74.8,283.4" />
+                <CheckBox Checked="FilterType_Checked" Unchecked="FilterType_Unchecked" Content="Filter by type" FontWeight="DemiBold" x:Name="FilterType" Margin="409,34,74.8,283.4" />
             </Grid>
         </Border>
-        <Grid Height="187" Margin="0,0,0.4,0" >
+        <Grid Height="187" >
             <!--discount Part-->
             <TextBlock Text="Discount Code :" FontWeight="DemiBold" Margin="7,63,466,93"/>
             <TextBox IsEnabled="False" x:Name="DiscountCodeBox" Margin="98,62,308,92" />
             <CheckBox x:Name="DiscountCheck" Content="Discount" FontWeight="DemiBold" Margin="280,64,211,94" Checked="DiscountCheck_Checked"/>
             <Button FontWeight="DemiBold" Background="Azure" x:Name="AddFoodButton_Copy" Content="Buy the Order" Margin="155,126,340,32" Click="AddFoodButton_Click"/>
             <Label FontWeight="Bold" FontSize="13" Content="Finalize the Buy" Margin="-1,-1,441,144" Height="44" VerticalAlignment="Bottom"  />
+            <Button FontWeight="DemiBold" Background="Azure" x:Name="RestaurantInfoButton" Content="Restaurant info" Margin="443,24,45,133" Click="RestaurantInfoButton_Click"/>
+            <Button FontWeight="DemiBold" Background="Azure" x:Name="ResetOrderButton" Content="Reset Order" Margin="443,68,45,89" Click="ResetOrderButton_Click"/>
+            <Button FontWeight="DemiBold" Background="Azure" x:Name="Exit" Content="Exit" Margin="442,115,46,41" Click="Exit_Click"/>
 
 
         </Grid>

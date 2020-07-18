@@ -157,5 +157,31 @@ namespace MC_Restaurant
         {
             MenuDate.IsEnabled = true;
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ResetOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RestaurantInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.restaurant.ShowRestaurantInfo();
+        }
+
+        private void FilterType_Checked(object sender, RoutedEventArgs e)
+        {
+            FoodTypesCombo.IsEditable = true;
+            FoodTypesCombo.ItemsSource = FooDType.Foodtype.Values;
+        }
+
+        private void FilterType_Unchecked(object sender, RoutedEventArgs e)
+        {
+            FoodTypesCombo.IsEditable = false;
+        }
     }
 }
