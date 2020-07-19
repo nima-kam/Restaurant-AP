@@ -46,7 +46,8 @@ namespace MC_Restaurant
                             if (listOfFood.Count > 0)
                             {
                                 var foo = listOfFood.Where(x => x.Name == listOfFoodCombo.Text).First();
-                                Customers.CurrentCusomer.AddFood
+                                Customers.CurrentCusomer.AddFood(Food.findFoodByName(listOfFoodCombo.Text), int.Parse(NumberOfFood.Text), DateList.SelectedDate ?? default);
+                                foo.RemainingNumber -= int.Parse(NumberOfFood.Text);
                             }
                         }
                         else
@@ -156,7 +157,6 @@ namespace MC_Restaurant
                                     throw new Exception("This food is not ordered.");
                                 }
                             }
-
                         }
                         else
                         {

@@ -112,7 +112,7 @@ namespace MC_Restaurant
             }
         }
         string _phoneNum;
-        Regex phoneAlg = new Regex(@"{8-12}((?:\+)+\d[0-9])");
+        Regex phoneAlg = new Regex(@"^\+?(9|0){0,2}\d{9,12}");
         public string PhoneNum
         {
             get
@@ -510,44 +510,42 @@ namespace MC_Restaurant
             writer1.Close();
         }
     }
-
-    abstract class Buy
+    #region foodList
+    public struct FoodList
     {
-        #region foodList
-        public struct FoodList
-        {
-            public Food food { get; private set; }
-            public int FoodNumber { get; private set; }
-            public DateTime Date { get; set; }
+        public Food food { get;  set; }
+        public int FoodNumber { get; private set; }
+        public DateTime Date { get; set; }
 
-            public FoodList(Food food, int N , DateTime date)
+        public FoodList(Food food, int N, DateTime date)
+        {
+            this.food = food;
+            this.FoodNumber = N;
+            this.Date = date;
+        }
+        /// <summary>
+        /// add or delete a number of foods.
+        /// </summary>
+        /// <param name="x"></param>
+        public void ChangeFoodNum(int x)
+        {
+            if (x + this.FoodNumber > food.RemainingNumber)
             {
-                this.food = food;
-                this.FoodNumber = N;
-                this.Date = date;
+                throw new Exception("Not enough food available to order.");
             }
-            /// <summary>
-            /// add or delete a number of foods.
-            /// </summary>
-            /// <param name="x"></param>
-            public void ChangeFoodNum(int x)
+            else if (x + this.FoodNumber < 0)
             {
-                if (x + this.FoodNumber > food.RemainingNumber)
-                {
-                    throw new Exception("Not enough food available to order.");
-                }
-                else if (x + this.FoodNumber < 0)
-                {
-                    throw new Exception("Not enough food available in your list.");
-                }
-                else
-                {
-                    this.FoodNumber += x;
-                }
+                throw new Exception("Not enough food available in your list.");
+            }
+            else
+            {
+                this.FoodNumber += x;
             }
         }
-        #endregion
-
+    }
+    #endregion
+    abstract class Buy
+    {
         public List<FoodList> OrderedFood = new List<FoodList>();
         public double TotalPrice { get; protected set; }
         
@@ -698,7 +696,7 @@ namespace MC_Restaurant
         }
     }
 
-    class Food
+    public class Food
     {
         public bool HaveImage;
         public string ImagePath;
@@ -929,8 +927,8 @@ namespace MC_Restaurant
                 }
             }
         }
-        static List<Food> ReservedOrder = new List<Food>();
-        static List<Food> PayedOrder = new List<Food>();
+        static List<FoodList> ReservedOrder = new List<FoodList>();
+        static List<FoodList> PayedOrder = new List<FoodList>();
         public Restaurant(string Name, string Address, string Region, string PhoneNum)
         {
             this.Name = Name;
@@ -940,6 +938,7 @@ namespace MC_Restaurant
             Restaurant.IsStablished = true;
             this.save();
         }
+
         public static void Initialize()
         {
             if (File.Exists("Restaurant.txt"))

@@ -23,7 +23,7 @@
                 <Label BorderBrush="Black" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Order Menu" Margin="-1,-1,439.8,231.4" Height="116" VerticalAlignment="Bottom"  />
                 <Button Background="Beige" x:Name="AddFoodButton" Content="Add to order" Margin="29,39,464.8,278.4" Click="AddFoodButton_Click"/>
                 <Button Background="Beige" x:Name="EditButton" Content="Edit order" Margin="29,81,464.8,237.4" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5"/>
-                <ListBox x:Name="ChangeFoodList" PreviewMouseDown="ChangeFoodList_PreviewMouseDown" BorderBrush="Black" BorderThickness="2"  Margin="11,114,14.2,9.8" SelectionChanged="ChangeFoodList_SelectionChanged"/>
+                <ListBox x:Name="ChangeFoodList" PreviewMouseDown="ChangeFoodList_PreviewMouseDown" BorderBrush="Black" BorderThickness="2"  Margin="11,114,14.2,9.8" />
                 <!--Date-->
                 <Label BorderBrush="Black" BorderThickness="2"  FontWeight="Bold" FontSize="13" Content="Show order Menu" Margin="146,-1,192.8,231.4" />
                 <DatePicker  Margin="243,41,223.8,275.4" x:Name="MenuDate" />
@@ -44,9 +44,9 @@
             <CheckBox x:Name="DiscountCheck" Content="Discount" FontWeight="DemiBold" Margin="280,64,211,94" Checked="DiscountCheck_Checked"/>
             <Button FontWeight="DemiBold" Background="Azure" x:Name="AddFoodButton_Copy" Content="Buy the Order" Margin="155,126,340,32" Click="AddFoodButton_Click"/>
             <Label FontWeight="Bold" FontSize="13" Content="Finalize the Buy" Margin="-1,-1,441,144" Height="44" VerticalAlignment="Bottom"  />
-            <Button FontWeight="DemiBold" Background="Azure" x:Name="RestaurantInfoButton" Content="Restaurant info" Margin="408,24,80.4,133" Click="RestaurantInfoButton_Click"/>
-            <Button FontWeight="DemiBold" Background="Azure" x:Name="ResetOrderButton" Content="Reset Order" Margin="438,68,50.4,89" Click="ResetOrderButton_Click"/>
-            <Button FontWeight="DemiBold" Background="Azure" x:Name="Exit" Content="Exit" Margin="468,115,20.4,41" Click="Exit_Click"/>
+            <Button  x:Name="RestaurantInfoButton" FontWeight="DemiBold" Background="Azure" Content="Restaurant info" Margin="408,24,80.4,133" Click="RestaurantInfoButton_Click"/>
+            <Button  x:Name="ResetOrderButton" FontWeight="DemiBold" Background="Azure" Content="Reset Order" Margin="438,68,50.4,89" Click="ResetOrderButton_Click"/>
+            <Button  x:Name="Exit" Content="Exit" FontWeight="DemiBold" Background="Azure" Margin="468,115,20.4,41" Click="Exit_Click"/>
 
 
         </Grid>
