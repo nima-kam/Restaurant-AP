@@ -152,20 +152,65 @@ namespace MC_Restaurant
 
             }
         }
-
         private void AllOrderCheck_Unchecked(object sender, RoutedEventArgs e)
         {
             MenuDate.IsEnabled = true;
         }
-
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                foreach (var item in Customers.CurrentCusomer.OrderedFood)
+                {
+                    item.food.ChangeRemainingNumber(item.FoodNumber);
+                    Restaurant.AddFood(item.food, item.Date);
+                    var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == item.food.Name && x.Date == item.Date).First();
+                    temp.ChangeFoodNum(-1 * item.FoodNumber);
+                    item.ChangeFoodNum(item.FoodNumber * -1);
+                }
+                for (int i = Customers.CurrentCusomer.OrderedFood.Count - 1; i >= 0; --i)
+                {
+                    if (Customers.CurrentCusomer.OrderedFood[i].FoodNumber == 0)
+                    {
+                        Customers.CurrentCusomer.OrderedFood.RemoveAt(i);
+                    }
+                }
+                MainWindow main = new MainWindow();
+                this.Visibility = Visibility.Collapsed;
+                main.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ResetOrderButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                foreach (var item in Customers.CurrentCusomer.OrderedFood)
+                {
+                    item.food.ChangeRemainingNumber(item.FoodNumber);
+                    Restaurant.AddFood(item.food, item.Date);
+                    var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == item.food.Name && x.Date == item.Date).First();
+                    temp.ChangeFoodNum(-1 * item.FoodNumber);
+                    item.ChangeFoodNum(item.FoodNumber * -1);
+                }
+                for (int i = Customers.CurrentCusomer.OrderedFood.Count - 1; i >= 0; --i) 
+                {
+                    if(Customers.CurrentCusomer.OrderedFood[i].FoodNumber == 0)
+                    {
+                        Customers.CurrentCusomer.OrderedFood.RemoveAt(i);
+                    }
+                }
+                MessageBox.Show("Reseting Orders.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void RestaurantInfoButton_Click(object sender, RoutedEventArgs e)

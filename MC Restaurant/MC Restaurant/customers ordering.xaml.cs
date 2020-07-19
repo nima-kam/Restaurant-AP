@@ -48,6 +48,7 @@ namespace MC_Restaurant
                                 var foo = listOfFood.Where(x => x.Name == listOfFoodCombo.Text).First();
                                 Customers.CurrentCusomer.AddFood(Food.findFoodByName(listOfFoodCombo.Text), int.Parse(NumberOfFood.Text), DateList.SelectedDate ?? default);
                                 foo.RemainingNumber -= int.Parse(NumberOfFood.Text);
+                                Manager.restaurant.AddFoodReserved(Food.findFoodByName(listOfFoodCombo.Text), int.Parse(NumberOfFood.Text), DateList.SelectedDate ?? default);
                             }
                         }
                         else
@@ -57,7 +58,24 @@ namespace MC_Restaurant
                     }
                     else// for deleting from list.
                     {
-
+                        if ("" != listOfFoodCombo.Text && "Names" != listOfFoodCombo.Text)
+                        {
+                            var listOfFood = Customers.CurrentCusomer.OrderedFood.Where(x => x.Date == DateList.SelectedDate).ToList();
+                            var listOfFoodres = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                            if (listOfFood.Count > 0)
+                            {
+                                var food = listOfFoodres.Where(x => x.Name == listOfFoodCombo.Text).First();
+                                food.RemainingNumber += int.Parse(NumberOfFood.Text);
+                                var foo = listOfFood.Where(x => x.food.Name == listOfFoodCombo.Text).First();
+                                foo.ChangeFoodNum(-1 * int.Parse(NumberOfFood.Text));
+                                var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == listOfFoodCombo.Text && x.Date == DateList.SelectedDate).First();
+                                temp.ChangeFoodNum(-1 * int.Parse(NumberOfFood.Text));
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Please select a food.");
+                        }
                     }
                 }
                 else
@@ -68,8 +86,7 @@ namespace MC_Restaurant
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "! Alart !");
-            }
-                
+            }                
         }
 
         private void FilterTypeCheck_Checked(object sender, RoutedEventArgs e)

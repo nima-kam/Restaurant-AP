@@ -898,6 +898,7 @@ namespace MC_Restaurant
 
     class Restaurant
     {
+        #region Properties
         static Dictionary<DateTime, List<Food>> CalanderFood = new Dictionary<DateTime, List<Food>>();
         public string Name { get; private set; }
         public string Region { get; private set; }
@@ -927,8 +928,29 @@ namespace MC_Restaurant
                 }
             }
         }
-        static List<FoodList> ReservedOrder = new List<FoodList>();
-        static List<FoodList> PayedOrder = new List<FoodList>();
+        #endregion
+        public static List<FoodList> ReservedOrder = new List<FoodList>();
+        public static List<FoodList> PayedOrder = new List<FoodList>();
+        public void AddFoodReserved(Food NewOrder, int Amount, DateTime date)
+        {
+            if (ReservedOrder.Count == 0)
+            {
+                ReservedOrder.Add(new FoodList(NewOrder, Amount, date));
+            }
+            else
+            {
+                if (ReservedOrder.Any(x => x.food == NewOrder && x.Date == date))
+                {
+                    var foods = ReservedOrder.Where(x => x.food.Name == NewOrder.Name && x.Date == date).Select(x => x).ToList();
+                    foods[0].ChangeFoodNum(Amount);
+                }
+                else
+                {
+                    ReservedOrder.Add(new FoodList(NewOrder, Amount, date));
+                }
+            }
+        }
+
         public Restaurant(string Name, string Address, string Region, string PhoneNum)
         {
             this.Name = Name;
@@ -967,7 +989,7 @@ namespace MC_Restaurant
         {
             MessageBox.Show($"Restaurant Info \n Name: {this.Name} \n" +
                 $" Address: {this.Address} \n Region: {this.Region} \n" +
-                $" Phone number: {this.PhoneNum} \n","Restaurant information");
+                $" Phone number: {this.PhoneNum} \n", "Restaurant information");
         }
 
         /// <summary>
