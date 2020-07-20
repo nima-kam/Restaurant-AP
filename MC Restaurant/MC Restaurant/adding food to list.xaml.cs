@@ -19,7 +19,6 @@ namespace MC_Restaurant
     /// </summary>
     public partial class adding_food_to_list : Window
     {
-        static List<Food> sourceOfFood;
         public adding_food_to_list()
         {
             InitializeComponent();
@@ -47,6 +46,10 @@ namespace MC_Restaurant
                         NumberOfFood.Text = 0.ToString();
                     }
 
+                }
+                else
+                {
+                    NumberOfFood.Text = "0";
                 }
                
 
@@ -123,14 +126,18 @@ namespace MC_Restaurant
                         {
                             var te = menu.Where(x => x.Name == listOfFood.Text).First();
                             Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text) + te.RemainingNumber), DateList.SelectedDate ?? default);
+                            Restaurant.SaveCalander();
                             MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
 
+                            NumberOfFood.Text = "0";
                         }
                         else
                         {
                             Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text)), DateList.SelectedDate ?? default);
+                            Restaurant.SaveCalander();
                             MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
 
+                            NumberOfFood.Text = "0";
                         }
                         
                     }
@@ -142,6 +149,7 @@ namespace MC_Restaurant
                             var te = menu.Where(x => x.Name == listOfFood.Text).First();
                             te.RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
                         }
+                        NumberOfFood.Text = "0";
                     }
                 }
                 else
