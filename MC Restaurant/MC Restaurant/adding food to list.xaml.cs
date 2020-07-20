@@ -81,6 +81,10 @@ namespace MC_Restaurant
                         {
                             MessageBox.Show($"The max number of the specified date is {NumberOfFood.Text} and no more food can be deleted.");
                         }
+                        else
+                        {
+                            NumberOfFood.Text = (int.Parse(NumberOfFood.Text) + 1).ToString();
+                        }
                         if (int.Parse(NumberOfFood.Text) > 0)
                         {
                             mines.IsEnabled = true;
