@@ -143,7 +143,7 @@ namespace MC_Restaurant
             {
                 if (emailExpression.IsMatch(value))
                 {
-                    this.Email = value;
+                    _Email = value;
                 }
                 else
                 {
@@ -196,7 +196,12 @@ namespace MC_Restaurant
         public double Tax { get; protected set; }
         public string Address { get; set; }
         #endregion
-
+        /// <summary>
+        /// find a customers with the same name and password
+        /// </summary>
+        /// <param name="UserEN"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
         public static Customers FindCustomers(string UserEN, string Password)
         {
             if (checkPass(UserEN, Password))
@@ -208,14 +213,14 @@ namespace MC_Restaurant
                     lines.Add(reader.ReadLine().Split(' '));
                 }
                 reader.Close();
-                //Name address email password Phonenum id
+                //Name address email password Phonenum id buytimes
                 var te = lines.Where(x => (x[2] == UserEN || x[4] == UserEN) && x[3] == Password).First();
-                var cus = new Customers(te[0], te[1], te[4], te[2], te[5], te[3], true);
+                var cus = new Customers(te[0], te[1], te[4], te[2], te[5], te[3],int.Parse(te[6]), true);
                 return cus;
             }
             throw new Exception("Email and Phone number or Password not correct.");
         }
-        private Customers(string name, string address, string Phone, string Email, string ID, string Password, bool savefile)
+        private Customers(string name, string address, string Phone, string Email, string ID, string Password, int BuyTimes, bool savefile)
         {
             this.Address = address;
             this.FullName = name;
@@ -223,9 +228,10 @@ namespace MC_Restaurant
             this.Email = Email;
             this.IDataObject = ID;
             this.Password = Password;
+            this.buyTimes = BuyTimes;
         }
 
-        public Customers(string name, string address, string Phone, string Email, string ID, string Password)
+        public Customers(string name, string address, string Phone, string Email, string ID, string Password )
         {
             if (Customers.CheckEmail_Phone(Email, Phone))
             {
@@ -237,6 +243,7 @@ namespace MC_Restaurant
             this.Email = Email;
             this.IDataObject = ID;
             this.Password = Password;
+            this.buyTimes = 0;
             SaveInfo();
         }
 
@@ -268,9 +275,6 @@ namespace MC_Restaurant
                 return false;
             }
         }
-
-
-
         /// <summary>
         /// check the file for same email and phone number.
         /// </summary>
@@ -329,7 +333,7 @@ namespace MC_Restaurant
             this.Email = Email.Replace(' ', '\0');
             this.IDataObject = this.IDataObject.Replace(' ', '\0');
             this.Address = this.Address.Replace(' ', '-');
-            string Newcustomer = $"{this.FullName} {this.Address} {this.Email} {this.Password} {this.PhoneNum} {this._ID}";
+            string Newcustomer = $"{this.FullName} {this.Address} {this.Email} {this.Password} {this.PhoneNum} {this._ID} {this.buyTimes}";
             lines.Add(Newcustomer);
             StreamWriter stream = new StreamWriter("CustomersInfo.txt");
             foreach (var item in lines)
@@ -402,7 +406,6 @@ namespace MC_Restaurant
             var arr = pass.ToArray();
             return new string(arr);
         }
-
         /// <summary>
         /// check if a username is in correct format
         /// </summary>
@@ -546,6 +549,7 @@ namespace MC_Restaurant
     #endregion
     abstract class Buy
     {
+        public int buyTimes { get; protected set; }
         public List<FoodList> OrderedFood = new List<FoodList>();
         public double TotalPrice { get; protected set; }
         
@@ -908,7 +912,7 @@ namespace MC_Restaurant
         /// <summary>
         /// has restaurant started working.
         /// </summary>
-        public static bool IsStablished { get; private set; } = false;
+        public static bool IsStablished { get; private set; } 
         public string PhoneNum
         {
             get
@@ -950,30 +954,34 @@ namespace MC_Restaurant
                 }
             }
         }
-
+        static void stablish()
+        {
+            IsStablished = true;
+        }
         public Restaurant(string Name, string Address, string Region, string PhoneNum)
         {
             this.Name = Name;
             this.Region = Region;
             this.Address = Address;
             this.PhoneNum = PhoneNum;
-            Restaurant.IsStablished = true;
+            stablish();
             this.save();
         }
 
         public static void Initialize()
         {
             if (File.Exists("Restaurant.txt"))
-            {
-                IsStablished = true;
+            {                
                 StreamReader stream = new StreamReader("Restaurant.txt");
                 var str = stream.ReadLine().Split(' ');
                 stream.Close();
                 Manager.restaurant = new Restaurant(str[0], str[str.Length - 2], str[1], str[str.Length - 1]);
+                stablish();                
             }
             else
             {
                 MessageBox.Show("restaurant not stablished.");
+                IsStablished = false;
             }
         }
         void save()
@@ -983,7 +991,8 @@ namespace MC_Restaurant
             StreamWriter writer = new StreamWriter("Restaurant.txt");
             writer.WriteLine($"{Name} {Region} {Address} {PhoneNum}");
             writer.Close();
-            MessageBox.Show("saved restaurant.");
+            stablish();
+            MessageBox.Show("Restaurant info saved.");
         }
         public void ShowRestaurantInfo()
         {
@@ -1052,7 +1061,8 @@ namespace MC_Restaurant
         {
             if (!File.Exists(@"Calander.txt"))
             {
-                IsStablished = false;
+                StreamWriter stream = new StreamWriter(@"Calander.txt");
+                stream.Close();
             }
             else
             {

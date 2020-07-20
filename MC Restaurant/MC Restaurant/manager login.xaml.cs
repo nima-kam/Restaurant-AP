@@ -25,7 +25,8 @@ namespace MC_Restaurant
         }
         private void loginbutton_Click(object sender, RoutedEventArgs e)
         {
-            if (Restaurant.IsStablished==true)
+            
+            if (Restaurant.IsStablished == true) 
             {
                 string Name = ManagerName.Text;
                 string Pass = ManagerPassword.Password;

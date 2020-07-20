@@ -85,6 +85,9 @@
     <Compile Include="Restaurant info change.xaml.cs">
       <DependentUpon>Restaurant info change.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Show factor.xaml.cs">
+      <DependentUpon>Show factor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Restaurant info change.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Show factor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
