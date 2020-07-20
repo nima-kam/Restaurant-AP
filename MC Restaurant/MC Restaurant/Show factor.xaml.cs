@@ -111,13 +111,16 @@ namespace MC_Restaurant
 
         private void PayOnline_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show($"Your total buy is {Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))}.");
+            MessageBox.Show($"{Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))} Toman took from your account.\n Thank you for your shop. ");
 
         }
 
         private void PayHomeButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show($"Your total buy is {Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))}.");
 
+            MessageBox.Show($" Thank you for your shop. ");
 
 
         }

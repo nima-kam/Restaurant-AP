@@ -29,7 +29,7 @@ namespace MC_Restaurant
             {
                 if (MenuDate.SelectedDate != null)
                 {
-                    if (DateTime.Today.CompareTo(MenuDate.SelectedDate) < 0)
+                    if (DateTime.Today.CompareTo(MenuDate.SelectedDate) <= 0)
                     {
                         MessageBox.Show("Selected date is no longer accessable.\nPlease select another one.");
                     }

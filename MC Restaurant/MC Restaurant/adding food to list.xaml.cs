@@ -59,6 +59,10 @@ namespace MC_Restaurant
                 if (listOfFood.Text != "" && DateList.SelectedDate != null)
                 {
                     NumberOfFood.Text = (int.Parse(NumberOfFood.Text) + 1).ToString();
+                    if (int.Parse(NumberOfFood.Text) > 0)
+                    {
+                        mines.IsEnabled = true;
+                    }
                 }
                 else
                 {
@@ -77,8 +81,15 @@ namespace MC_Restaurant
                         {
                             MessageBox.Show($"The max number of the specified date is {NumberOfFood.Text} and no more food can be deleted.");
                         }
-                    }
-                    
+                        if (int.Parse(NumberOfFood.Text) > 0)
+                        {
+                            mines.IsEnabled = true;
+                        }
+                    }                    
+                }
+                else
+                {
+                    MessageBox.Show("Please select date and food first.");
                 }
             }
         }
@@ -97,31 +108,48 @@ namespace MC_Restaurant
 
         private void changeFoodNumber_Click(object sender, RoutedEventArgs e)
         {
-            if (listOfFood.Text != "" && DateList.SelectedDate != null)
+            try
             {
-                if (Title.Text == "Manager add")
+                if (listOfFood.Text != "" && DateList.SelectedDate != null)
                 {
-                    var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
-
-                    var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                    Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text) - te.RemainingNumber), DateList.SelectedDate ?? default);
-                    MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
-
-                }
-                else//for the deleting numbers of food***.
-                {
-                    var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
-                    if (menu.Any(x => x.Name == listOfFood.Text))
+                    if (Title.Text == "Manager add")
                     {
-                        var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                        te.RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
+                        var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                        if (menu.Any(x => x.Name == listOfFood.Text))
+                        {
+                            var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                            Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text) + te.RemainingNumber), DateList.SelectedDate ?? default);
+                            MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
+
+                        }
+                        else
+                        {
+                            Restaurant.AddFood(Food.findFoodByName(listOfFood.Text, int.Parse(NumberOfFood.Text)), DateList.SelectedDate ?? default);
+                            MessageBox.Show($"{listOfFood.Text} for {NumberOfFood} number added to Date {DateList.SelectedDate}. ");
+
+                        }
+                        
+                    }
+                    else//for the deleting numbers of food***.
+                    {
+                        var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
+                        if (menu.Any(x => x.Name == listOfFood.Text))
+                        {
+                            var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                            te.RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Please select date and food first.");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Please select date and food first.");
+                MessageBox.Show(ex.Message);
             }
+            
         }
     }
 }

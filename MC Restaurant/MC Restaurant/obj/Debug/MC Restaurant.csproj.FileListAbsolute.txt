@@ -36,3 +36,5 @@ D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Window1.g.cs
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\customers ordering.baml
 D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Window1.baml
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Show factor.g.cs
+D:\code\WPF (C#)\Restaurant\Restaurant-AP\MC Restaurant\MC Restaurant\obj\Debug\Show factor.baml

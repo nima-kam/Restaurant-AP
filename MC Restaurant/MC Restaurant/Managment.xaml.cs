@@ -96,6 +96,7 @@ namespace MC_Restaurant
                     else
                     {
                         FooDType.add(TypefoodCombo.Text);
+                        MessageBox.Show($"new foodtype {TypefoodCombo.Text} added.");
                         var newFood = new Food(NameFoodBox.Text, TypefoodCombo.Text, double.Parse(PriceBox.Text), ingredientBox.Text);
                     }
                 }
@@ -140,5 +141,7 @@ namespace MC_Restaurant
                 OpenFileButton.IsEnabled = false;
             }
         }
+
+        
     }
 }

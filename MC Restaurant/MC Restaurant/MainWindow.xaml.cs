@@ -609,15 +609,14 @@ namespace MC_Restaurant
             MessageBox.Show($"Name : {food.Name} \ningredients : {food.ingredients}\nType : {FooDType.Foodtype[food.FoodType]} \nPrice : {food.FinalPrice}\n");
         }
     }
-    enum FoodType
-    {
-        SeaFood, Chickenfries, Hamborgar, Pizza, Salad, Sandwich
-    }
+   
     class FooDType
     {
+
         public static Dictionary<int, string> Foodtype = new Dictionary<int, string>();
         public int key { get; set; }
         public string Value { get { return this[this.key]; } }
+        static int numberoftypes = 0;
         public static int FindKey(string Value)
         {
             if (IsFoodType(Value))
@@ -647,7 +646,6 @@ namespace MC_Restaurant
             }
             return false;
         }
-
         public string this[int i]
         {
             get
@@ -669,6 +667,7 @@ namespace MC_Restaurant
                 StreamWriter writer = new StreamWriter("food type.txt");
                 writer.Close();
             }
+            ++numberoftypes;
             StreamReader reader = new StreamReader("food type.txt");
             List<string> line = new List<string>();
             while (!reader.EndOfStream)
@@ -676,13 +675,12 @@ namespace MC_Restaurant
                 line.Add(reader.ReadLine());
             }
             reader.Close();
-            Foodtype.Add(Foodtype.Count, type);
-            line.Add($"{Foodtype.Count - 1} {type}");
+            Foodtype.Add(numberoftypes, type);
+            line.Add($"{numberoftypes} {type}");
             StreamWriter stream = new StreamWriter("food type.txt");
             foreach (var it in line)
             {
                 stream.WriteLine(it);
-
             }
             stream.Close();
         }
@@ -693,6 +691,7 @@ namespace MC_Restaurant
             {
                 stream.WriteLine($"{it.Key} {it.Value}");
             }
+            stream.Close();
         }
         public static void intializefoodType()
         {
@@ -712,14 +711,13 @@ namespace MC_Restaurant
                 reader.Close();
                 foreach (var it in line)
                 {
+                    ++numberoftypes;
                     var str = it.Split(' ');
-                    Foodtype.Add(int.Parse(str[0]), str[1]);
+                    Foodtype.Add(numberoftypes, str[1]);
                 }
-
             }
         }
     }
-
     public class Food
     {
         public bool HaveImage;
@@ -888,6 +886,8 @@ namespace MC_Restaurant
                 string firstline = "ID, Name, Type, ingridiants, Remaining Number, Price ";
                 lines.Add(firstline);
             }
+            this.Name = Name.Replace(' ', '_');
+            this.ingredients = ingredients.Replace(' ', '-');            
             string info = $"{this.ID} {this.Name} {this.FoodType.ToString()} {this.ingredients} {this.RemainingNumber} {this.Price}";
             lines.Add(info);
             foreach (var s in lines)
@@ -1028,18 +1028,16 @@ namespace MC_Restaurant
         /// <returns></returns>
         public static List<Food> ReadDateFood(DateTime date)
         {
-            if (DateTime.Today.CompareTo(date) >= 0)
+            if (DateTime.Today.CompareTo(date) <= 0)
             {
-                List<Food> foods = null;
+                List<Food> foods = new List<Food>();
                 if (CalanderFood.TryGetValue(date, out foods))
                 {
-                    MessageBox.Show("Food list found succussfully.");
-                    return foods;
+                     return foods;
                 }
                 else
                 {
-                    MessageBox.Show("No food added yet.");
-                    foods = new List<Food>();
+                    MessageBox.Show("No food added yet.");                    
                     CalanderFood.Add(date, foods);
                     return foods;
                 }
@@ -1125,9 +1123,9 @@ namespace MC_Restaurant
         /// <param name="date"></param>
         public static void AddFood(Food food, DateTime date)
         {
-            if (DateTime.Today.CompareTo(date) >= 0)
+            if (DateTime.Today.CompareTo(date) <= 0)
             {
-                List<Food> foods = null;
+                List<Food> foods = new List<Food>();
                 if (CalanderFood.TryGetValue(date, out foods))
                 {
                     if (foods.Any(x => x.Name == food.Name))
@@ -1173,10 +1171,11 @@ namespace MC_Restaurant
             InitializeComponent();
             if (Manager.isInitialized == false)
             {
-                Restaurant.Initialize();
                 FooDType.intializefoodType();
+                Restaurant.Initialize();
                 Food.IntializeFoods();
                 Restaurant.InitializeCalander();
+                
                 Manager.isInitialized = true;
             }
         }
