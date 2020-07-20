@@ -229,6 +229,8 @@ namespace MC_Restaurant
             this.IDataObject = ID;
             this.Password = Password;
             this.buyTimes = BuyTimes;
+            Tax = 0.09;
+            Discount = 0;
         }
 
         public Customers(string name, string address, string Phone, string Email, string ID, string Password )
@@ -244,6 +246,7 @@ namespace MC_Restaurant
             this.IDataObject = ID;
             this.Password = Password;
             this.buyTimes = 0;
+            Tax = 0.09;
             SaveInfo();
         }
 
@@ -552,7 +555,14 @@ namespace MC_Restaurant
         public int buyTimes { get; protected set; }
         public List<FoodList> OrderedFood = new List<FoodList>();
         public double TotalPrice { get; set; } = 0;
-        
+        public double Discount { get; protected set; }
+        public void SetDiscount(int d)
+        {
+            if (d < 0 || d >= 100)
+            {
+                throw new Exception("Discount is not qualified.");
+            }
+        }
         /// <summary>
         /// Adding food to ordered food
         /// </summary>

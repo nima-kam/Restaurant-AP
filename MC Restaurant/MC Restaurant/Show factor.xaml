@@ -26,6 +26,19 @@
                                     <Paragraph FontSize="24pt" FontWeight="Bold">Order Bill</Paragraph>
                                 </TableCell>
                             </TableRow>
+                            <!--Date and Time-->
+                            <TableRow Background="Gold">
+                                <TableCell ColumnSpan="2">
+                                    <Paragraph FontSize="14pt" FontWeight="Bold">Date-Time :</Paragraph>
+                                    <Paragraph FontSize="14pt" FontWeight="Bold">Customer name:</Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="2">
+                                    <Paragraph x:Name="DatePar" FontSize="14pt" FontWeight="Bold"></Paragraph>
+                                    <Paragraph x:Name="NamePar" FontSize="14pt" FontWeight="Bold"></Paragraph>
+                                
+                                </TableCell>
+                                
+                            </TableRow>
                             <!-- Header row for the table. -->
                             <TableRow Background="LightGoldenrodYellow">
                                 <TableCell>
@@ -39,7 +52,7 @@
                                     <Paragraph FontSize="14pt" FontWeight="Bold">Discount </Paragraph>
                                 </TableCell>
                                 <TableCell>
-                                    <Paragraph FontSize="14pt" FontWeight="Bold">Date Of Order</Paragraph>
+                                    <Paragraph FontSize="14pt" FontWeight="Bold">Delivery date</Paragraph>
                                 </TableCell>
                             </TableRow>
                             <!-- Sub-title row for the bill. -->
@@ -49,8 +62,9 @@
                     </Table>
                 </FlowDocument>
             </FlowDocumentReader>
-            <Button x:Name="PayOnlineButton" Background="Beige" FontWeight="DemiBold" Content="Pay online" Click="PayOnline_Click" Margin="140,695,350,35"/>
-            <Button x:Name="PayHomeButton" Background="Beige"  FontWeight="DemiBold" Content="Pay online" Click="PayHomeButton_Click" Margin="338,695,152,35"/>
+            <Button x:Name="PayOnlineButton" Background="Beige" FontWeight="DemiBold" Content="Pay online" Click="PayOnline_Click" Margin="72,697,418,33"/>
+            <Button x:Name="PayHomeButton" Background="Beige"  FontWeight="DemiBold" Content="Pay online" Click="PayHomeButton_Click" Margin="204,697,286,33"/>
+            <Button x:Name="DiscountCodeButton" Background="Beige"  FontWeight="DemiBold" Content="Show Discount code" Click="DiscountCodeButton_Click" Margin="425,694,28,36"/>
 
         </Grid>
 

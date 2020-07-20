@@ -22,7 +22,9 @@ namespace MC_Restaurant
         public Show_factor()
         {
             InitializeComponent();
-            
+            ShowFactor();
+            DatePar = new Paragraph(new Run($"{DateTime.Now}"));
+            NamePar = new Paragraph(new Run($"{Customers.CurrentCusomer.FullName}"));
         }
         private void ShowFactor()
         {
@@ -31,6 +33,7 @@ namespace MC_Restaurant
                 int i = 0;
                 var group = new TableRowGroup();
                 Customers.CurrentCusomer.TotalPrice = 0;
+                int numberOfItems = 0;
                 foreach(var item in Customers.CurrentCusomer.OrderedFood)
                 {
                     if (item.FoodNumber > 0)
@@ -43,29 +46,86 @@ namespace MC_Restaurant
                         }
                         row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.food.Name}"))));
                         row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.FoodNumber}"))));
+                        numberOfItems += item.FoodNumber;
                         row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.food.FinalPrice * item.FoodNumber}"))));
                         Customers.CurrentCusomer.TotalPrice += item.food.FinalPrice * item.FoodNumber;
                         row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.Date.Year}{item.Date.Month}-{item.Date.Day}"))));
                         group.Rows.Add(row);
-                    }  
+                    }
                 }
+                var Row = new TableRow();
+                Row.Background = Brushes.Bisque;
+                var cell = new TableCell(new Paragraph(new Run($"Total Price(including Tax):")));
+                cell.ColumnSpan = 2;
+                Row.Cells.Add(cell);
+                cell = new TableCell(new Paragraph(new Run($"{ Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1)}")));
+                cell.ColumnSpan = 2;
+                Row.Cells.Add(cell);
+                group.Rows.Add(Row);
+
+                Row = new TableRow();
+                cell = new TableCell(new Paragraph(new Run($"Total discount:")));
+                cell.ColumnSpan = 2;
+                Row.Background = Brushes.FloralWhite;
+                Row.Cells.Add(cell);
+                cell = new TableCell(new Paragraph(new Run($"{ Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount )}")));
+                cell.ColumnSpan = 2;
+                Row.Cells.Add(cell);
+                group.Rows.Add(Row);
+
+                Row = new TableRow();
+                var par = new Paragraph(new Run($"Number of all foods : {numberOfItems}"));
+                par.FontSize = 13;
+                par.FontWeight = FontWeights.DemiBold;
+                par.TextAlignment = TextAlignment.Center;
+                cell = new TableCell(par) ;
+                cell.ColumnSpan =4;
+                Row.Background = Brushes.Cornsilk;
+                Row.Cells.Add(cell);
+                group.Rows.Add(Row);
+
+                Row = new TableRow();
+                par = new Paragraph(new Run($"Final Price:"));
+                par.FontSize = 13;
+                par.FontWeight = FontWeights.DemiBold;
+                cell = new TableCell(par);
+                cell.ColumnSpan = 2;
+                Row.Background = Brushes.Beige;
+                Row.Cells.Add(cell);
+                par = new Paragraph(new Run($"{Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))}"));
+                par.FontSize = 13;
+                par.FontWeight = FontWeights.DemiBold;
+                cell = new TableCell(par);
+                cell.ColumnSpan = 2;
+                Row.Cells.Add(cell);
+                group.Rows.Add(Row);
                 TableOfFactor.RowGroups.Add(group);
+                
 
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message,"! Alart !");
             }
-
         }
 
         private void PayOnline_Click(object sender, RoutedEventArgs e)
         {
 
+
         }
 
         private void PayHomeButton_Click(object sender, RoutedEventArgs e)
         {
+
+
+
+        }
+
+        private void DiscountCodeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+
 
         }
     }
