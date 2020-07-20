@@ -8,7 +8,7 @@
         Title="Show_factor" Height="790" Width="586.781">
     <StackPanel Margin="0,0,0,0" Background="Azure">
         <Grid Height="760"   >
-            <FlowDocumentReader Height="760" VerticalAlignment="Top">
+            <FlowDocumentReader Height="667" VerticalAlignment="Top">
 
                 <FlowDocument>
                     <Table x:Name="TableOfFactor" CellSpacing="5">
@@ -26,7 +26,6 @@
                                     <Paragraph FontSize="24pt" FontWeight="Bold">Order Bill</Paragraph>
                                 </TableCell>
                             </TableRow>
-
                             <!-- Header row for the table. -->
                             <TableRow Background="LightGoldenrodYellow">
                                 <TableCell>
@@ -36,19 +35,22 @@
                                     <Paragraph FontSize="14pt" FontWeight="Bold">Amount</Paragraph>
                                 </TableCell>
                                 <TableCell>
-                                    <Paragraph FontSize="14pt" FontWeight="Bold">Total Price</Paragraph>
+                                    <Paragraph FontSize="14pt" FontWeight="Bold">Total Price </Paragraph>
+                                    <Paragraph FontSize="14pt" FontWeight="Bold">Discount </Paragraph>
                                 </TableCell>
                                 <TableCell>
                                     <Paragraph FontSize="14pt" FontWeight="Bold">Date Of Order</Paragraph>
                                 </TableCell>
                             </TableRow>
-                            <!-- Sub-title row for the inner planets. -->
+                            <!-- Sub-title row for the bill. -->
                            
 
                         </TableRowGroup>
                     </Table>
                 </FlowDocument>
             </FlowDocumentReader>
+            <Button x:Name="PayOnlineButton" Background="Beige" FontWeight="DemiBold" Content="Pay online" Click="PayOnline_Click" Margin="140,695,350,35"/>
+            <Button x:Name="PayHomeButton" Background="Beige"  FontWeight="DemiBold" Content="Pay online" Click="PayHomeButton_Click" Margin="338,695,152,35"/>
 
         </Grid>
 
