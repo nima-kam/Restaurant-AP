@@ -228,6 +228,7 @@ namespace MC_Restaurant
         private void FilterType_Unchecked(object sender, RoutedEventArgs e)
         {
             FoodTypesCombo.IsEditable = false;
+            FoodNamesCombo.ItemsSource = Food.FoodsMenu.Select(x => x.Name).ToList();
         }       
 
         private void BuyOrderButton_Click(object sender, RoutedEventArgs e)
@@ -236,6 +237,31 @@ namespace MC_Restaurant
             this.Visibility = Visibility.Collapsed;
             factor.Show();
 
+        }
+
+        private void FoodTypesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FoodTypesCombo.Text != null)
+            {
+                FoodNamesCombo.ItemsSource = Food.FoodsMenu.Where(x => x.FoodType == FooDType.FindKey(FoodTypesCombo.Text)).Select(x => x.Name).ToList();
+
+            }
+        }
+
+        private void FoodInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (FoodNamesCombo.Text != null)
+                {
+                    var x = Food.findFoodByName(FoodNamesCombo.Text);
+                    x.showinfo();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

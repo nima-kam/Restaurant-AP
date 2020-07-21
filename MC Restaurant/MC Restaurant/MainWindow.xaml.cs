@@ -923,6 +923,10 @@ namespace MC_Restaurant
         {
             RemainingNumber += x;
         }
+        public void ShowInfo()
+        {
+            MessageBox.Show($"Name : {this.Name}\nPrice : {this.Price}\nIngredients : {this.ingredients}\nType : {FooDType.Foodtype[this.FoodType]}");
+        }
     }
 
     class Restaurant

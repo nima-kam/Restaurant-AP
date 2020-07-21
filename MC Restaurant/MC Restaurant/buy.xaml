@@ -31,9 +31,9 @@
                 <Button x:Name="ShowItemButton" Content="Show Order" Background="Beige" FontWeight="DemiBold" Click="ShowItemButton_Click" Margin="300,79,199.8,237.4" />
                 <CheckBox x:Name="AllOrderCheck" Unchecked="AllOrderCheck_Unchecked" FontWeight="DemiBold" Content="Show all orders" Margin="186,83,284.8,236.4" Checked="AllOrderCheck_Checked" />
                 <Label BorderBrush="Black" BorderThickness="2" FontWeight="Bold" Content="Show Foods info" Margin="392,0,-0.2,231.4" />
-                <ComboBox Text="Type"  x:Name="FoodTypesCombo" Width="70" Height="30" Margin="502,31,8.8,285.4" />
-                <ComboBox Text="Name" x:Name="FoodNamesCombo" Width="70" Height="30" Margin="503,76,7.8,240.4" SelectionChanged="FoodNamesCombo_SelectionChanged" />
-                <Button  x:Name="FoodInfoButton" FontWeight="DemiBold" Width="70" Height="30" Margin="411,76,99.8,240.4" Content="Info" />
+                <ComboBox Text="Type"  x:Name="FoodTypesCombo" Width="70" Height="30" Margin="502,31,8.8,285.4" SelectionChanged="FoodTypesCombo_SelectionChanged" />
+                <ComboBox Text="Name" x:Name="FoodNamesCombo" Width="70" Height="30" Margin="503,76,7.8,240.4"   />
+                <Button  x:Name="FoodInfoButton" FontWeight="DemiBold" Width="70" Height="30" Margin="411,76,99.8,240.4" Content="Info" Click="FoodInfoButton_Click" />
                 <CheckBox Checked="FilterType_Checked" Unchecked="FilterType_Unchecked" Content="Filter by type" FontWeight="DemiBold" x:Name="FilterType" Margin="409,34,74.8,283.4" />
             </Grid>
         </Border>
