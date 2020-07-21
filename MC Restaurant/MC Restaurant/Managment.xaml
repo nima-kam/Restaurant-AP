@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
-        Title="Managment" Height="546.4" Width="450.976">
+        Title="Managment" Height="543.2" Width="450.976">
     <StackPanel Margin="0,0,0,0">
         <Grid Margin="0,0,0,-0" Height="536" >
             <Grid.Background>
@@ -23,10 +23,11 @@
                     <Button x:Name="AddFoodButton" Content="New" Margin="15,87,350.8,160" Click="AddFoodButton_Click"/>
                     <Button x:Name="EditButton" Content="Edit " Margin="15,159,350.8,88" Click="EditButton_Click" RenderTransformOrigin="0.5,0.5"/>
                     <ListBox x:Name="ChangeFoodList" Margin="104,86,31.8,10"/>
-                    <Button x:Name="ShowDateButton" Content="show" Margin="345,48,33,194.8" Click="ShowDateButton_Click"/>
+                    <Button x:Name="ShowDateButton" Content="show" Margin="345,49,32.8,195" Click="ShowDateButton_Click"/>
                     <!--Date-->
                     <DatePicker Margin="144,52,148,192.8" x:Name="MenuDate" />
                     <TextBlock FontSize="12" FontWeight="Medium" Text="Date :" Margin="101,52,255,186.8"/>
+                    <Button x:Name="ExitButton" Content="Exit" Margin="345,12,32.8,232" Click="ExitButton_Click"/>
 
                 </Grid>
             </Border>

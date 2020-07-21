@@ -148,6 +148,12 @@ namespace MC_Restaurant
             }
         }
 
-        
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Restaurant.SaveCalander();
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Collapsed;
+            main.Show();
+        }
     }
 }

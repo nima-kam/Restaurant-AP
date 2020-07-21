@@ -29,7 +29,7 @@ namespace MC_Restaurant
             {
                 if (MenuDate.SelectedDate != null)
                 {
-                    if (DateTime.Today.CompareTo(MenuDate.SelectedDate) <= 0)
+                    if (DateTime.Today.CompareTo(MenuDate.SelectedDate) > 0)
                     {
                         MessageBox.Show("Selected date is no longer accessable.\nPlease select another one.");
                     }
@@ -194,7 +194,8 @@ namespace MC_Restaurant
                     item.food.ChangeRemainingNumber(item.FoodNumber);
                     Restaurant.AddFood(item.food, item.Date);
                     var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == item.food.Name && x.Date == item.Date).First();
-                    temp.ChangeFoodNum(-1 * item.FoodNumber);
+                    temp.FoodNumber = 0;
+                    //temp.ChangeFoodNum(-1 * item.FoodNumber);
                     item.ChangeFoodNum(item.FoodNumber * -1);
                 }
                 for (int i = Customers.CurrentCusomer.OrderedFood.Count - 1; i >= 0; --i) 
@@ -227,6 +228,14 @@ namespace MC_Restaurant
         private void FilterType_Unchecked(object sender, RoutedEventArgs e)
         {
             FoodTypesCombo.IsEditable = false;
+        }       
+
+        private void BuyOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var factor = new Show_factor();
+            this.Visibility = Visibility.Collapsed;
+            factor.Show();
+
         }
     }
 }

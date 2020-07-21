@@ -22,7 +22,7 @@ namespace MC_Restaurant
         public customers_ordering()
         {
             InitializeComponent();
-            if(Title.Text== "Order new food")
+            if(Title.Text == "Order new food")
             {
                 listOfTypesCombo.ItemsSource = FooDType.Foodtype.Values;
             }
@@ -47,8 +47,9 @@ namespace MC_Restaurant
                             {
                                 var foo = listOfFood.Where(x => x.Name == listOfFoodCombo.Text).First();
                                 Customers.CurrentCusomer.AddFood(Food.findFoodByName(listOfFoodCombo.Text), int.Parse(NumberOfFood.Text), DateList.SelectedDate ?? default);
-                                foo.RemainingNumber -= int.Parse(NumberOfFood.Text);
+                                foo.ChangeRemainingNumber(-1 * int.Parse(NumberOfFood.Text));
                                 Manager.restaurant.AddFoodReserved(Food.findFoodByName(listOfFoodCombo.Text), int.Parse(NumberOfFood.Text), DateList.SelectedDate ?? default);
+                                Restaurant.SaveCalander();
                             }
                         }
                         else
@@ -65,12 +66,13 @@ namespace MC_Restaurant
                             if (listOfFood.Count > 0)
                             {
                                 var food = listOfFoodres.Where(x => x.Name == listOfFoodCombo.Text).First();
-                                food.RemainingNumber += int.Parse(NumberOfFood.Text);
+                                food.ChangeRemainingNumber(int.Parse(NumberOfFood.Text));
                                 var foo = listOfFood.Where(x => x.food.Name == listOfFoodCombo.Text).First();
                                 foo.ChangeFoodNum(-1 * int.Parse(NumberOfFood.Text));
                                 var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == listOfFoodCombo.Text && x.Date == DateList.SelectedDate).First();
                                 temp.ChangeFoodNum(-1 * int.Parse(NumberOfFood.Text));
                             }
+                            Restaurant.SaveCalander();
                         }
                         else
                         {
@@ -209,8 +211,7 @@ namespace MC_Restaurant
         {
             try
             {
-
-                if (DateTime.Today.CompareTo(DateList.SelectedDate) < 0)
+                if (DateTime.Today.CompareTo(DateList.SelectedDate) > 0)
                 {
                     DateList.SelectedDate = DateTime.Today;
                     throw new Exception("Selected Date is no longer accessable.");
@@ -221,7 +222,8 @@ namespace MC_Restaurant
                     {
                         if (Title.Text == "Order new food")// for add to list.
                         {
-                            var source = Restaurant.ReadDateFood(DateList.SelectedDate ?? default).Select(x => x.Name);
+                            DateTime time = DateList.SelectedDate ?? default;
+                            var source = Restaurant.ReadDateFood(new DateTime(time.Year,time.Month,time.Day)).Select(x => x.Name);
                             if (source.Count() > 0)
                             {
                                 listOfFoodCombo.ItemsSource = source;

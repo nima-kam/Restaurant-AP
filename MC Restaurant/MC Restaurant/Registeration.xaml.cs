@@ -35,6 +35,8 @@ namespace MC_Restaurant
                     {
                         PassMatchingBlock.Text = "";
                         Customers.CurrentCusomer = new Customers(UserNameBox.Text, AddressBox.Text, MobileNumBox.Text, EmailBox.Text, IDBox.Text, PasswordBox.Password);
+                        MessageBox.Show($" {Customers.CurrentCusomer.FullName} \nWelcome to the {Manager.restaurant.Name} restaurant.");
+
                         buy buy = new buy();
                         this.Visibility = Visibility.Collapsed;
                         buy.Show();

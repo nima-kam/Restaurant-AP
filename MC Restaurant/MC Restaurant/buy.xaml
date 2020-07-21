@@ -32,7 +32,7 @@
                 <CheckBox x:Name="AllOrderCheck" Unchecked="AllOrderCheck_Unchecked" FontWeight="DemiBold" Content="Show all orders" Margin="186,83,284.8,236.4" Checked="AllOrderCheck_Checked" />
                 <Label BorderBrush="Black" BorderThickness="2" FontWeight="Bold" Content="Show Foods info" Margin="392,0,-0.2,231.4" />
                 <ComboBox Text="Type"  x:Name="FoodTypesCombo" Width="70" Height="30" Margin="502,31,8.8,285.4" />
-                <ComboBox Text="Name" x:Name="FoodNamesCombo" Width="70" Height="30" Margin="503,76,7.8,240.4" />
+                <ComboBox Text="Name" x:Name="FoodNamesCombo" Width="70" Height="30" Margin="503,76,7.8,240.4" SelectionChanged="FoodNamesCombo_SelectionChanged" />
                 <Button  x:Name="FoodInfoButton" FontWeight="DemiBold" Width="70" Height="30" Margin="411,76,99.8,240.4" Content="Info" />
                 <CheckBox Checked="FilterType_Checked" Unchecked="FilterType_Unchecked" Content="Filter by type" FontWeight="DemiBold" x:Name="FilterType" Margin="409,34,74.8,283.4" />
             </Grid>
@@ -42,7 +42,7 @@
             <TextBlock Text="Discount Code :" FontWeight="DemiBold" Margin="7,63,466,93"/>
             <TextBox IsEnabled="False" x:Name="DiscountCodeBox" Margin="98,62,308,92" />
             <CheckBox x:Name="DiscountCheck" Content="Discount" FontWeight="DemiBold" Margin="280,64,211,94" Checked="DiscountCheck_Checked"/>
-            <Button FontWeight="DemiBold" Background="Azure" x:Name="AddFoodButton_Copy" Content="Buy the Order" Margin="155,126,340,32" Click="AddFoodButton_Click"/>
+            <Button FontWeight="DemiBold" Background="Azure" x:Name="BuyOrderButton" Content="Buy the Order" Margin="155,126,340,32" Click="BuyOrderButton_Click"/>
             <Label FontWeight="Bold" FontSize="13" Content="Finalize the Buy" Margin="-1,-1,441,144" Height="44" VerticalAlignment="Bottom"  />
             <Button  x:Name="RestaurantInfoButton" FontWeight="DemiBold" Background="Azure" Content="Restaurant info" Margin="408,24,80.4,133" Click="RestaurantInfoButton_Click"/>
             <Button  x:Name="ResetOrderButton" FontWeight="DemiBold" Background="Azure" Content="Reset Order" Margin="438,68,50.4,89" Click="ResetOrderButton_Click"/>

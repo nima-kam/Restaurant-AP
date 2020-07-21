@@ -35,7 +35,27 @@ namespace MC_Restaurant
 
         private void Confirmbutton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (Restaurant.IsStablished == true)
+                {
+                    Customers.CurrentCusomer = Customers.FindCustomers(userName.Text, CustomerPassword.Password);
+                    MessageBox.Show($" {Customers.CurrentCusomer.FullName} \nWelcome to the {Manager.restaurant.Name} restaurant.");
+                    buy buy = new buy();
+                    this.Visibility = Visibility.Collapsed;
+                    buy.Show();
+                }
+                else
+                {
+                    MessageBox.Show("This part will be coming soon.");
+                }
+               
 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

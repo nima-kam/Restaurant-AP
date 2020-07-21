@@ -1,3 +1,8 @@
+*/2020/7/24
+joje_kabab 45
+Hamburger 29
+kabab_barg 89
 */2020/7/23
-Chili_soup 8
-shishlik 4
+pizza_goosht_o_gharch 70
+shishlik 60
+*/2020/7/21

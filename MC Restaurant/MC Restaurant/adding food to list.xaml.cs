@@ -41,6 +41,7 @@ namespace MC_Restaurant
                         if (menu.Any(x => x.Name == listOfFood.Text))
                         {
                             var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                            MessageBox.Show($"food {te.Name} selected.");
                             NumberOfFood.Text = $"{te.RemainingNumber}";
                         }
                         else
@@ -157,6 +158,7 @@ namespace MC_Restaurant
                             te.ChangeRemainingNumber(-1*int.Parse(NumberOfFood.Text));
                             //RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
                             MessageBox.Show($"Amount of food {listOfFood.Text} for date {DateList.SelectedDate} is {te.RemainingNumber}.");
+                            Restaurant.SaveCalander();
                         }
                         else
                         {

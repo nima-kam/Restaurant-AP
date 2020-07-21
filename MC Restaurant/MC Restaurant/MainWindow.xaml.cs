@@ -92,7 +92,7 @@ namespace MC_Restaurant
     {
         #region Properties
         string _FullName;
-        Regex FullNameAlg = new Regex(@"\b[a-z,A-Z]");
+        Regex FullNameAlg = new Regex(@"^[A-Z]+([a-z]{2,})$");
         public string FullName
         {
             get
@@ -171,10 +171,10 @@ namespace MC_Restaurant
             }
         }
         string _Password;
-        Regex PasswordAlg = new Regex(@"\b({8-32}[a-z0-9!#$%&\-*+/?^_~-])\z");
-        Regex passnum = new Regex(@"[0-9]");
-        Regex passAlpha = new Regex(@"[a-zA-Z]");
-        Regex PassSign = new Regex(@"[!@#$%&*\-_?]");
+        Regex PasswordAlg = new Regex(@"^.{8,32}$");
+        Regex passnum = new Regex(@"\d");
+        Regex passAlpha = new Regex(@"\D");
+        Regex PassSign = new Regex(@"[!@#$%&*\-_?<>]");
         public string Password
         {
             protected get
@@ -183,7 +183,8 @@ namespace MC_Restaurant
             }
             set
             {
-                if (PasswordAlg.IsMatch(value) && passAlpha.IsMatch(value) && passnum.IsMatch(value) && PassSign.IsMatch(value))
+               
+                if (PasswordAlg.IsMatch(value)  && passAlpha.Match(value).Success && passnum.Match(value).Success && PassSign.Match(value).Success)
                     _Password = value;
                 else
                 {
@@ -520,7 +521,7 @@ namespace MC_Restaurant
     public struct FoodList
     {
         public Food food { get;  set; }
-        public int FoodNumber { get; private set; }
+        public int FoodNumber { get;  set; }
         public DateTime Date { get; set; }
 
         public FoodList(Food food, int N, DateTime date)
@@ -1109,7 +1110,7 @@ namespace MC_Restaurant
                         int j = i + 1;
                         while (j < lines.Count )
                         {
-                            if (lines[j][0] != '*') break;
+                            if (lines[j][0] == '*') break;
 
                             var s = lines[j].Split(' ');
                             foods.Add(Food.findFoodByName(s[0], int.Parse(s[1])));
