@@ -3,3 +3,5 @@ ID, Name, Type, ingridiants, Remaining Number, Price
 2 Chili_soup 2 peper-milk-carrot-mushroom 0 25000
 3 shishlik 3 meet 0 60000
 5 joje_kabab 3 chicken 0 42000
+7 pizza_goosht_o_gharch 4 bread-cheese-meet-mashrom 0 35000
+9 kabab_barg 3 meet 0 20000

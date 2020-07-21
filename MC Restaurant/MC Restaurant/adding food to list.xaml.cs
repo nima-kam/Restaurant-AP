@@ -38,12 +38,19 @@ namespace MC_Restaurant
                     var menu = Restaurant.ReadDateFood(DateList.SelectedDate ?? default);
                     if (listOfFood.Text != "" && menu != null)
                     {
-                        var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                        NumberOfFood.Text = $"{te.RemainingNumber}";
+                        if (menu.Any(x => x.Name == listOfFood.Text))
+                        {
+                            var te = menu.Where(x => x.Name == listOfFood.Text).First();
+                            NumberOfFood.Text = $"{te.RemainingNumber}";
+                        }
+                        else
+                        {
+                            MessageBox.Show("This food is not available for Selected date");
+                        }
                     }
                     else
                     {
-                        NumberOfFood.Text = 0.ToString();
+                        MessageBox.Show("Please select another food.");
                     }
 
                 }
@@ -80,7 +87,7 @@ namespace MC_Restaurant
                     if (menu.Any(x => x.Name == listOfFood.Text))
                     {
                         var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                        if (NumberOfFood.Text == te.RemainingNumber.ToString())
+                        if (int.Parse(NumberOfFood.Text) >= te.RemainingNumber)
                         {
                             MessageBox.Show($"The max number of the specified date is {NumberOfFood.Text} and no more food can be deleted.");
                         }
@@ -147,7 +154,13 @@ namespace MC_Restaurant
                         if (menu.Any(x => x.Name == listOfFood.Text))
                         {
                             var te = menu.Where(x => x.Name == listOfFood.Text).First();
-                            te.RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
+                            te.ChangeRemainingNumber(-1*int.Parse(NumberOfFood.Text));
+                            //RemainingNumber = te.RemainingNumber - int.Parse(NumberOfFood.Text);
+                            MessageBox.Show($"Amount of food {listOfFood.Text} for date {DateList.SelectedDate} is {te.RemainingNumber}.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select another food.");
                         }
                         NumberOfFood.Text = "0";
                     }

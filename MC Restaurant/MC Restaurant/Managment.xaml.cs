@@ -51,19 +51,24 @@ namespace MC_Restaurant
             try
             {
                 List<Food> datelist;
+                ChangeFoodList.Items.Clear();
                 if (MenuDate.SelectedDate != null)
                 {
                     datelist = Restaurant.ReadDateFood(MenuDate.SelectedDate ?? default);
-                    foreach (var f in datelist)
+                    if (datelist.Count > 0)
                     {
-                        if (f.RemainingNumber != 0)
+                        foreach (var f in datelist)
                         {
-                            var text = new TextBlock();
-                            text.Text = $"Food name:{f.Name}  Amount:{f.RemainingNumber}";
-                            text.FontWeight = FontWeight.FromOpenTypeWeight(3);
-                            ChangeFoodList.Items.Add(text);
+                            if (f.RemainingNumber != 0)
+                            {
+                                var text = new TextBlock();
+                                text.Text = $"Food name:{f.Name}  Amount:{f.RemainingNumber}";
+                                text.FontWeight = FontWeight.FromOpenTypeWeight(3);
+                                ChangeFoodList.Items.Add(text);
+                            }
                         }
                     }
+                    
                 }
                 else
                 {
@@ -86,6 +91,7 @@ namespace MC_Restaurant
                     if (FooDType.Foodtype.Any(x => x.Value == TypefoodCombo.Text))
                     {
                         var newFood = new Food(NameFoodBox.Text, TypefoodCombo.Text, double.Parse(PriceBox.Text), ingredientBox.Text);
+                        
                         if (PhotoCheck.IsChecked == true)
                         {
                             newFood.HaveImage = true;

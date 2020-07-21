@@ -660,9 +660,13 @@ namespace MC_Restaurant
                 }
             }
         }
+        /// <summary>
+        /// Adding a new food type
+        /// </summary>
+        /// <param name="type"> Name of the new type</param>
         public static void add(string type)
         {
-            if (File.Exists("food type.txt"))
+            if (!File.Exists("food type.txt"))
             {
                 StreamWriter writer = new StreamWriter("food type.txt");
                 writer.Close();
@@ -1000,7 +1004,7 @@ namespace MC_Restaurant
             }
             else
             {
-                MessageBox.Show("restaurant not stablished.");
+                MessageBox.Show("Restaurant not stablished.");
                 IsStablished = false;
             }
         }
@@ -1037,7 +1041,8 @@ namespace MC_Restaurant
                 }
                 else
                 {
-                    MessageBox.Show("No food added yet.");                    
+                    MessageBox.Show("No food added yet.");
+                    foods = new List<Food>();
                     CalanderFood.Add(date, foods);
                     return foods;
                 }
@@ -1102,10 +1107,13 @@ namespace MC_Restaurant
                         var datestr = lines[i].Split('/');
                         date = new DateTime(int.Parse(datestr[1]), int.Parse(datestr[2]), int.Parse(datestr[3]));
                         int j = i + 1;
-                        while (j < lines.Count || lines[j][0] != '*')
+                        while (j < lines.Count )
                         {
+                            if (lines[j][0] != '*') break;
+
                             var s = lines[j].Split(' ');
                             foods.Add(Food.findFoodByName(s[0], int.Parse(s[1])));
+                            ++j;
                         }
                         if (date.CompareTo(DateTime.Today) <= 0)
                         {
