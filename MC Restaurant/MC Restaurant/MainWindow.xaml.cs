@@ -1133,7 +1133,7 @@ namespace MC_Restaurant
         /// </summary>
         /// <param name="food"></param>
         /// <param name="date"></param>
-        public static void AddFood(Food food, DateTime date)
+        public static void AddFood(Food food, DateTime date,bool mess =true)
         {
             if (DateTime.Today.CompareTo(date) <= 0)
             {
@@ -1148,7 +1148,8 @@ namespace MC_Restaurant
                             {
                                 foods[i].ChangeRemainingNumber(food.RemainingNumber);
                                 CalanderFood[date] = foods;
-                                MessageBox.Show($"food added to {date}.");
+                                if (mess)
+                                    MessageBox.Show($"food added to {date}.");
                             }
                         }
                     }

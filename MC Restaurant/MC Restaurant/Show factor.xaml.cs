@@ -23,8 +23,9 @@ namespace MC_Restaurant
         {
             InitializeComponent();
             ShowFactor();
-            DatePar = new Paragraph(new Run($"{DateTime.Now}"));
-            NamePar = new Paragraph(new Run($"{Customers.CurrentCusomer.FullName}"));
+            DateBlock.Text = DateTime.Now.ToString();
+            nameBlock.Text = $"{Customers.CurrentCusomer.FullName}";
+            RestaurantBlock.Text = $"{Manager.restaurant.Name}";
         }
         private void ShowFactor()
         {
@@ -132,6 +133,13 @@ namespace MC_Restaurant
 
 
 
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            buy buy = new buy();
+            this.Visibility = Visibility.Collapsed;
+            buy.Show();
         }
     }
 }

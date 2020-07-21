@@ -51,6 +51,7 @@ namespace MC_Restaurant
                                 foo.ChangeRemainingNumber(-1 * int.Parse(NumberOfFood.Text));
                                 Manager.restaurant.AddFoodReserved(Food.findFoodByName(listOfFoodCombo.Text), int.Parse(NumberOfFood.Text), DateList.SelectedDate ?? default);
                                 Restaurant.SaveCalander();
+                                NumberOfFood.Text = 0.ToString();
                             }
                         }
                         else

@@ -49,7 +49,7 @@
                     <TextBox x:Name="PriceBox" Margin="50,82,0,111" HorizontalAlignment="Left" Width="130" />
                     <!--ingridient-->
                     <TextBlock Text="ingredient:" FontSize="12" FontWeight="Medium" Margin="4,130,351,37"/>
-                    <TextBox x:Name="ingredientBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"  Margin="65,132,0,27" HorizontalAlignment="Left" Width="116" />
+                    <TextBox x:Name="ingredientBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="False" Margin="65,132,0,27" HorizontalAlignment="Left" Width="116" />
                     <Button x:Name="NewFoodButton" Content="New" Margin="195,178,176.6,10" Click="NewFoodButton_Click"/>
 
 

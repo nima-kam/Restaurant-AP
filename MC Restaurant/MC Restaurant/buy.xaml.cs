@@ -54,7 +54,7 @@ namespace MC_Restaurant
                                 var str = new TextBlock();
                                 str.FontWeight = FontWeight.FromOpenTypeWeight(40);
                                 str.FontSize = 12;
-                                str.Text = $"{i}. Name : {item.food.Name} \nAmount : {item.FoodNumber} \nPrice : {item.FoodNumber * item.food.FinalPrice }\n";
+                                str.Text = $"{i}. {item.food.Name} \nAmount : {item.FoodNumber} \nPrice : {item.FoodNumber * item.food.FinalPrice }\n";
                                 ChangeFoodList.Items.Add(str);
                             }
                         }
@@ -164,17 +164,15 @@ namespace MC_Restaurant
                 foreach (var item in Customers.CurrentCusomer.OrderedFood)
                 {
                     item.food.ChangeRemainingNumber(item.FoodNumber);
-                    Restaurant.AddFood(item.food, item.Date);
+                    Restaurant.AddFood(item.food, item.Date,false);
                     var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == item.food.Name && x.Date == item.Date).First();
                     temp.ChangeFoodNum(-1 * item.FoodNumber);
                     item.ChangeFoodNum(item.FoodNumber * -1);
                 }
                 for (int i = Customers.CurrentCusomer.OrderedFood.Count - 1; i >= 0; --i)
-                {
-                    if (Customers.CurrentCusomer.OrderedFood[i].FoodNumber == 0)
-                    {
-                        Customers.CurrentCusomer.OrderedFood.RemoveAt(i);
-                    }
+                {   
+                        Customers.CurrentCusomer.OrderedFood.RemoveAt(i);                   
+                    
                 }
                 MainWindow main = new MainWindow();
                 this.Visibility = Visibility.Collapsed;
@@ -190,23 +188,27 @@ namespace MC_Restaurant
         {
             try
             {
-                foreach (var item in Customers.CurrentCusomer.OrderedFood)
+                var lis = Customers.CurrentCusomer.OrderedFood;
+                for (int i = 0; i < Customers.CurrentCusomer.OrderedFood.Count; ++i) 
                 {
-                    item.food.ChangeRemainingNumber(item.FoodNumber);
-                    Restaurant.AddFood(item.food, item.Date);
-                    var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == item.food.Name && x.Date == item.Date).First();
+                    int m = lis[i].FoodNumber;
+                    lis[i].food.ChangeRemainingNumber(lis[i].FoodNumber);
+                    Restaurant.AddFood(lis[i].food, lis[i].Date, false);
+                    var temp = Restaurant.ReservedOrder.Where(x => x.food.Name == lis[i].food.Name && x.Date == lis[i].Date).First();
                     temp.FoodNumber = 0;
-                    //temp.ChangeFoodNum(-1 * item.FoodNumber);
-                    item.ChangeFoodNum(item.FoodNumber * -1);
-                }
+                }              
                 for (int i = Customers.CurrentCusomer.OrderedFood.Count - 1; i >= 0; --i) 
                 {
-                    if(Customers.CurrentCusomer.OrderedFood[i].FoodNumber == 0)
-                    {
-                        Customers.CurrentCusomer.OrderedFood.RemoveAt(i);
-                    }
+                    
+                    Customers.CurrentCusomer.OrderedFood.RemoveAt(i);
+                    
                 }
-                MessageBox.Show("Reseting Orders.");
+                if (Customers.CurrentCusomer.OrderedFood.Count == 0)
+                    MessageBox.Show("Reseting Orders.");
+                else
+                {
+                    MessageBox.Show("not complete reset.");
+                }
             }
             catch (Exception ex)
             {
@@ -241,7 +243,7 @@ namespace MC_Restaurant
 
         private void FoodTypesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (FoodTypesCombo.Text != null)
+            if (FoodTypesCombo.Text != null && FoodTypesCombo.Text == "Type")
             {
                 FoodNamesCombo.ItemsSource = Food.FoodsMenu.Where(x => x.FoodType == FooDType.FindKey(FoodTypesCombo.Text)).Select(x => x.Name).ToList();
 
@@ -251,7 +253,7 @@ namespace MC_Restaurant
         {
             try
             {
-                if (FoodNamesCombo.Text != null)
+                if (FoodNamesCombo.Text != null|| FoodNamesCombo.Text != "Name")
                 {
                     var x = Food.findFoodByName(FoodNamesCombo.Text);
                     x.showinfo();
@@ -265,6 +267,11 @@ namespace MC_Restaurant
             {
                 MessageBox.Show(ex.Message,"Alart");
             }
+        }
+
+        private void FoodNamesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

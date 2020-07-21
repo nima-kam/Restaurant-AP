@@ -2,7 +2,8 @@ ID, Name, Type, ingridiants, Remaining Number, Price
 1 Hamburger 1 bread-meet 0 29000
 2 Chili_soup 2 peper-milk-carrot-mushroom 0 25000
 3 shishlik 3 meet 0 60000
-5 joje_kabab 3 chicken 0 42000
-7 pizza_goosht_o_gharch 4 bread-cheese-meet-mashrom 0 35000
-9 kabab_barg 3 meet 0 20000
-11 cheese_cake 5 cooki-cheese-cream 0 12000
+4 joje_kabab 3 chicken 0 42000
+5 pizza_goosht_o_gharch 4 bread-cheese-meet-mashrom 0 35000
+6 kabab_barg 3 meet 0 20000
+7 cheese_cake 5 cooki-cheese-cream 0 12000
+9 abgusht 6 meat-potato-tomato-nokhod 0 47500

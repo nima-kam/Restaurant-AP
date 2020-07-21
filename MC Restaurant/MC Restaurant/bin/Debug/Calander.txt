@@ -1,19 +1,20 @@
 */2020/7/21
 */2020/7/24
-kabab_barg 65
-joje_kabab 5
+kabab_barg 60
+joje_kabab 37
 shishlik 11
-Chili_soup 4
+Chili_soup 44
 pizza_goosht_o_gharch 10
-Hamburger 4
+Hamburger 17
+abgusht 18
 */2020/7/23
-Hamburger 5
-pizza_goosht_o_gharch 8
+Hamburger 8
+pizza_goosht_o_gharch 13
 Chili_soup 5
 shishlik 3
 */2020/7/22
-cheese_cake 6
+cheese_cake 110
 pizza_goosht_o_gharch 5
-joje_kabab 5
+joje_kabab 54
 Hamburger 9
 */2020/7/27

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MC_Restaurant"
         mc:Ignorable="d"
         Title="Show_factor" Height="790" Width="586.781">
-    <StackPanel Margin="0,0,0,0" Background="Azure">
+    <StackPanel Margin="0,0,0,0" Background="WhiteSmoke">
         <Grid Height="760"   >
             <FlowDocumentReader Height="667" VerticalAlignment="Top">
 
@@ -19,7 +19,12 @@
                             <TableColumn/>
                         </Table.Columns>
                         <TableRowGroup>
-
+                            <!--Restaurant name-->
+                            <TableRow Background="Violet">
+                                <TableCell ColumnSpan="4" TextAlignment="Center">
+                                    <Paragraph FontSize="24pt" FontWeight="Bold"></Paragraph>
+                                </TableCell>
+                            </TableRow>
                             <!-- Title row for the table. -->
                             <TableRow Background="SkyBlue">
                                 <TableCell ColumnSpan="4" TextAlignment="Center">
@@ -62,10 +67,13 @@
                     </Table>
                 </FlowDocument>
             </FlowDocumentReader>
-            <Button x:Name="PayOnlineButton" Background="Beige" FontWeight="DemiBold" Content="Pay online" Click="PayOnline_Click" Margin="72,697,418,33"/>
-            <Button x:Name="PayHomeButton" Background="Beige"  FontWeight="DemiBold" Content="Pay away" Click="PayHomeButton_Click" Margin="204,697,286,33"/>
-            <Button x:Name="DiscountCodeButton" Background="Beige"  FontWeight="DemiBold" Content="Show Discount code" Click="DiscountCodeButton_Click" Margin="425,694,28,36"/>
-
+            <Button x:Name="PayOnlineButton" Background="LightYellow" FontWeight="DemiBold" Content="Pay online" Click="PayOnline_Click" Margin="38,697,452,33"/>
+            <Button x:Name="PayHomeButton" Background="LightYellow"  FontWeight="DemiBold" Content="Pay away" Click="PayHomeButton_Click" Margin="152,697,338,33"/>
+            <Button x:Name="DiscountCodeButton" Background="LightYellow"  FontWeight="DemiBold" Content="Show Discount code" Click="DiscountCodeButton_Click" Margin="265,697,188,33"/>
+            <Button x:Name="BackButton" FontWeight="Bold" Background="LightYellow" Content="Back" Width="70" Height="35" Click="BackButton_Click" Margin="445,695,65,30"/>
+            <TextBlock x:Name="DateBlock" FontSize="13pt" FontWeight="DemiBold" Margin="291,100,20,634"/>
+            <TextBlock x:Name="nameBlock" FontSize="13pt" FontWeight="DemiBold" Margin="291,123,20,611"/>
+            <TextBlock FontWeight="Bold" Foreground="#FF090B86" TextAlignment="Center" x:Name="RestaurantBlock" FontSize="23pt" Margin="20,18,21,700" />
         </Grid>
 
     </StackPanel>
