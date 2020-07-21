@@ -1115,12 +1115,11 @@ namespace MC_Restaurant
                         while (j < lines.Count )
                         {
                             if (lines[j][0] == '*') break;
-
                             var s = lines[j].Split(' ');
                             foods.Add(Food.findFoodByName(s[0], int.Parse(s[1])));
                             ++j;
                         }
-                        if (date.CompareTo(DateTime.Today) <= 0)
+                        if (date.CompareTo(DateTime.Today) >= 0)
                         {
                             CalanderFood.Add(date, foods);
                         }

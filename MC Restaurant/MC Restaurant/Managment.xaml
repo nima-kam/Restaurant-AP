@@ -27,7 +27,7 @@
                     <!--Date-->
                     <DatePicker Margin="144,52,148,192.8" x:Name="MenuDate" />
                     <TextBlock FontSize="12" FontWeight="Medium" Text="Date :" Margin="101,52,255,186.8"/>
-                    <Button x:Name="ExitButton" Content="Exit" Margin="345,12,32.8,232" Click="ExitButton_Click"/>
+                    <Button x:Name="ExitButton" Content="Exit" Margin="345,12,32.8,232" Click="ExitButton_Click" IsCancel="True"/>
 
                 </Grid>
             </Border>

@@ -16,7 +16,7 @@
                     </RadialGradientBrush.GradientStops>
                 </RadialGradientBrush>
             </Grid.Background>
-            <CheckBox x:Name="FilterTypeCheck" Unchecked="FilterTypeCheck_Unchecked" FontWeight="DemiBold" Content="Filter By Type" Margin="313,69,28.2,107" Checked="FilterTypeCheck_Checked" />
+            <CheckBox IsEnabled="True" x:Name="FilterTypeCheck" Unchecked="FilterTypeCheck_Unchecked" FontWeight="DemiBold" Content="Filter By Type" Margin="313,69,28.2,107" Checked="FilterTypeCheck_Checked" />
 
             <TextBox FontSize="14" x:Name="NumberOfFood" IsEnabled="False" Margin="310,105,93,67" TextAlignment="Center" Text="0"/>
             <Button Click="mines_Click" x:Name="mines" Margin="254,108,158,67" Content="-1"/>

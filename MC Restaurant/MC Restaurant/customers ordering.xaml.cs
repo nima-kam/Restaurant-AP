@@ -25,6 +25,7 @@ namespace MC_Restaurant
             if(Title.Text == "Order new food")
             {
                 listOfTypesCombo.ItemsSource = FooDType.Foodtype.Values;
+                FilterTypeCheck.IsEnabled = true;
             }
             else
             {

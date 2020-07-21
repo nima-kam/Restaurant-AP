@@ -63,7 +63,7 @@
                 </FlowDocument>
             </FlowDocumentReader>
             <Button x:Name="PayOnlineButton" Background="Beige" FontWeight="DemiBold" Content="Pay online" Click="PayOnline_Click" Margin="72,697,418,33"/>
-            <Button x:Name="PayHomeButton" Background="Beige"  FontWeight="DemiBold" Content="Pay online" Click="PayHomeButton_Click" Margin="204,697,286,33"/>
+            <Button x:Name="PayHomeButton" Background="Beige"  FontWeight="DemiBold" Content="Pay away" Click="PayHomeButton_Click" Margin="204,697,286,33"/>
             <Button x:Name="DiscountCodeButton" Background="Beige"  FontWeight="DemiBold" Content="Show Discount code" Click="DiscountCodeButton_Click" Margin="425,694,28,36"/>
 
         </Grid>

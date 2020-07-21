@@ -49,7 +49,7 @@ namespace MC_Restaurant
                         numberOfItems += item.FoodNumber;
                         row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.food.FinalPrice * item.FoodNumber}"))));
                         Customers.CurrentCusomer.TotalPrice += item.food.FinalPrice * item.FoodNumber;
-                        row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.Date.Year}{item.Date.Month}-{item.Date.Day}"))));
+                        row.Cells.Add(new TableCell(new Paragraph(new Run($"{item.Date.Year}-{item.Date.Month}-{item.Date.Day}"))));
                         group.Rows.Add(row);
                     }
                 }
@@ -113,16 +113,18 @@ namespace MC_Restaurant
         {
             MessageBox.Show($"Your total buy is {Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))}.");
             MessageBox.Show($"{Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))} Toman took from your account.\n Thank you for your shop. ");
-
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Collapsed;
+            main.Show();
         }
 
         private void PayHomeButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"Your total buy is {Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Tax + 1) - (Customers.CurrentCusomer.TotalPrice * (Customers.CurrentCusomer.Discount))}.");
-
             MessageBox.Show($" Thank you for your shop. ");
-
-
+            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Collapsed ;
+            main.Show();
         }
 
         private void DiscountCodeButton_Click(object sender, RoutedEventArgs e)

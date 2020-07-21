@@ -25,6 +25,7 @@ namespace MC_Restaurant
         }
         private void ShowItemButton_Click(object sender, RoutedEventArgs e)
         {
+            ChangeFoodList.Items.Clear();
             if (AllOrderCheck.IsChecked == false)
             {
                 if (MenuDate.SelectedDate != null)
@@ -236,7 +237,6 @@ namespace MC_Restaurant
             var factor = new Show_factor();
             this.Visibility = Visibility.Collapsed;
             factor.Show();
-
         }
 
         private void FoodTypesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -247,7 +247,6 @@ namespace MC_Restaurant
 
             }
         }
-
         private void FoodInfoButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -257,10 +256,14 @@ namespace MC_Restaurant
                     var x = Food.findFoodByName(FoodNamesCombo.Text);
                     x.showinfo();
                 }
+                else
+                {
+                    throw new Exception("Please select the Food.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Alart");
             }
         }
     }
